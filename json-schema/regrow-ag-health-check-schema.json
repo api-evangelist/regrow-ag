@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/regrow-ag/main/json-schema/regrow-ag-health-check-schema.json",
+  "title": "HealthCheck",
+  "description": "`HealthCheck` can be used to retrieve information about the state of Monitor API,\nsuch as the status and version.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/regrow-ag-monitor-api-openapi.yml#/components/schemas/HealthCheck",
+  "properties": {
+    "status": {
+      "type": "string",
+      "title": "Status"
+    },
+    "checks": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Checks"
+    },
+    "version": {
+      "type": "string",
+      "title": "Version"
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "required": [
+    "status",
+    "version"
+  ]
+}

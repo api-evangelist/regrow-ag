@@ -1,0 +1,495 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/regrow-ag/main/json-schema/regrow-ag-project-scope1-response-schema.json",
+  "title": "ProjectScope1Response",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/ProjectScope1Response",
+  "properties": {
+    "project_level": {
+      "$ref": "#/$defs/ProjectLevelCredits"
+    },
+    "field_level": {
+      "additionalProperties": {
+        "$ref": "#/$defs/scenarios_service_schema__public__intervention__v0__measure__scope_1_output__FieldLevelOutcomes"
+      },
+      "type": "object",
+      "title": "Field Level"
+    }
+  },
+  "type": "object",
+  "required": [
+    "project_level",
+    "field_level"
+  ],
+  "$defs": {
+    "BaseReportingInformation": {
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "title": "Start Date",
+          "description": "Format is \"YYYY-MM-DD\". Represents the date the reporting period begins. Typically, this is the harvest date of the commodity crop from the season prior to the practice change."
+        },
+        "end_date": {
+          "type": "string",
+          "title": "End Date",
+          "description": "Format is \"YYYY-MM-DD\". Represents the date the reporting period ends. Typically, this is the harvest date of the commodity crop during the practice change season, or the date of the last management event, whichever is later."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "start_date",
+        "end_date"
+      ],
+      "title": "BaseReportingInformation",
+      "description": "The `ReportingInformation` object specifies the metadata needed to quantify emissions/removals for a field, including the time period for which emissions should be quantified, and the crop the emissions/removals will be quantified for.\n\nTypically the `ReportingInformation` period correlates with a growing season or crop year for a field where regenerative or intervention practices are adopted."
+    },
+    "CreditEntityWithCredit": {
+      "properties": {
+        "mean": {
+          "type": "number",
+          "title": "Mean"
+        },
+        "standard_deviation": {
+          "type": "number",
+          "title": "Standard Deviation"
+        },
+        "reporting_percentile": {
+          "type": "number",
+          "title": "Reporting Percentile"
+        },
+        "uncertainty_distribution": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array",
+              "maxItems": 1000,
+              "minItems": 1000
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Uncertainty Distribution"
+        },
+        "credit": {
+          "type": "number",
+          "title": "Credit"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "mean",
+        "standard_deviation",
+        "reporting_percentile",
+        "credit"
+      ],
+      "title": "CreditEntityWithCredit"
+    },
+    "EmissionsEntity": {
+      "properties": {
+        "baseline": {
+          "type": "number",
+          "title": "Baseline"
+        },
+        "practice_change": {
+          "type": "number",
+          "title": "Practice Change"
+        },
+        "credit": {
+          "type": "number",
+          "title": "Credit"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "baseline",
+        "practice_change",
+        "credit"
+      ],
+      "title": "EmissionsEntity"
+    },
+    "OutcomeEntity": {
+      "properties": {
+        "baseline": {
+          "type": "number",
+          "title": "Baseline"
+        },
+        "practice_change": {
+          "type": "number",
+          "title": "Practice Change"
+        },
+        "preliminary_credit": {
+          "type": "number",
+          "title": "Preliminary Credit"
+        },
+        "mean": {
+          "type": "number",
+          "title": "Mean"
+        },
+        "standard_deviation": {
+          "type": "number",
+          "title": "Standard Deviation"
+        },
+        "uncertainty_distribution": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array",
+              "maxItems": 1000,
+              "minItems": 1000
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Uncertainty Distribution"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "baseline",
+        "practice_change",
+        "preliminary_credit",
+        "mean",
+        "standard_deviation"
+      ],
+      "title": "OutcomeEntity"
+    },
+    "OutcomeEntityWithOptionalUncertainty": {
+      "properties": {
+        "baseline": {
+          "type": "number",
+          "title": "Baseline"
+        },
+        "practice_change": {
+          "type": "number",
+          "title": "Practice Change"
+        },
+        "preliminary_credit": {
+          "type": "number",
+          "title": "Preliminary Credit"
+        },
+        "mean": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Mean"
+        },
+        "standard_deviation": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Standard Deviation"
+        },
+        "uncertainty_distribution": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array",
+              "maxItems": 1000,
+              "minItems": 1000
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Uncertainty Distribution"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "baseline",
+        "practice_change",
+        "preliminary_credit"
+      ],
+      "title": "OutcomeEntityWithOptionalUncertainty"
+    },
+    "ProjectCredits": {
+      "properties": {
+        "number_of_fields": {
+          "type": "integer",
+          "title": "Number Of Fields"
+        },
+        "number_of_acres": {
+          "type": "number",
+          "title": "Number Of Acres"
+        },
+        "reversible_credits": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CreditEntityWithCredit"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "non_reversible_credits": {
+          "$ref": "#/$defs/CreditEntityWithCredit"
+        },
+        "reversible_credit": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reversible Credit"
+        },
+        "non_reversible_credit": {
+          "type": "number",
+          "title": "Non Reversible Credit"
+        },
+        "total_credit": {
+          "type": "number",
+          "title": "Total Credit"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "number_of_fields",
+        "number_of_acres",
+        "non_reversible_credits",
+        "non_reversible_credit",
+        "total_credit"
+      ],
+      "title": "ProjectCredits"
+    },
+    "ProjectLevelCredits": {
+      "properties": {
+        "reporting_information": {
+          "$ref": "#/$defs/BaseReportingInformation"
+        },
+        "credit": {
+          "$ref": "#/$defs/ProjectCredits"
+        }
+      },
+      "type": "object",
+      "required": [
+        "reporting_information",
+        "credit"
+      ],
+      "title": "ProjectLevelCredits"
+    },
+    "ReportingInformationWithAreaInAcres": {
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "title": "Start Date",
+          "description": "Format is \"YYYY-MM-DD\". Represents the date the reporting period begins. Typically, this is the harvest date of the commodity crop from the season prior to the practice change."
+        },
+        "end_date": {
+          "type": "string",
+          "title": "End Date",
+          "description": "Format is \"YYYY-MM-DD\". Represents the date the reporting period ends. Typically, this is the harvest date of the commodity crop during the practice change season, or the date of the last management event, whichever is later."
+        },
+        "acres": {
+          "type": "number",
+          "title": "Area in acres",
+          "description": "The area of the field in acres."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "start_date",
+        "end_date",
+        "acres"
+      ],
+      "title": "ReportingInformationWithAreaInAcres",
+      "description": "The `ReportingInformation` object specifies the metadata needed to quantify emissions/removals for a field, including the time period for which emissions should be quantified, and the crop the emissions/removals will be quantified for.\n\nTypically the `ReportingInformation` period correlates with a growing season or crop year for a field where regenerative or intervention practices are adopted."
+    },
+    "scenarios_service_schema__public__intervention__v0__measure__scope_1_output__FieldLevelOutcomes": {
+      "properties": {
+        "reporting_information": {
+          "$ref": "#/$defs/ReportingInformationWithAreaInAcres"
+        },
+        "outcomes": {
+          "$ref": "#/$defs/scenarios_service_schema__public__intervention__v0__measure__scope_1_output__Outcomes"
+        },
+        "field_name": {
+          "type": "string",
+          "title": "Field Name"
+        }
+      },
+      "type": "object",
+      "required": [
+        "reporting_information",
+        "outcomes",
+        "field_name"
+      ],
+      "title": "FieldLevelOutcomes"
+    },
+    "scenarios_service_schema__public__intervention__v0__measure__scope_1_output__NonReversibleOutcomes": {
+      "properties": {
+        "credit_share": {
+          "type": "number",
+          "title": "Credit Share"
+        },
+        "mean": {
+          "type": "number",
+          "title": "Mean"
+        },
+        "standard_deviation": {
+          "type": "number",
+          "title": "Standard Deviation"
+        },
+        "direct_n2o": {
+          "$ref": "#/$defs/OutcomeEntity"
+        },
+        "indirect_n2o": {
+          "$ref": "#/$defs/EmissionsEntity"
+        },
+        "soil_ch4": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/OutcomeEntityWithOptionalUncertainty"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fossil_fuel_co2": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EmissionsEntity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "deprecated": true
+        },
+        "enteric_ch4": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EmissionsEntity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "deprecated": true
+        },
+        "liming_emissions": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EmissionsEntity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "deprecated": true
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "credit_share",
+        "mean",
+        "standard_deviation",
+        "direct_n2o",
+        "indirect_n2o"
+      ],
+      "title": "NonReversibleOutcomes"
+    },
+    "scenarios_service_schema__public__intervention__v0__measure__scope_1_output__Outcomes": {
+      "properties": {
+        "credit_share": {
+          "type": "number",
+          "title": "Credit Share",
+          "description": "A value representing the total emissions reduction attributed to the field. The value is calculated by deriving the weight of the field’s reversible `mean` in relation to other fields with the same commodity crop, and multiplying it by the total crop-level total emissions reduction value."
+        },
+        "reversible_outcomes": {
+          "$ref": "#/$defs/scenarios_service_schema__public__intervention__v0__measure__scope_1_output__ReversibleOutcomes",
+          "description": "An object containing data about the reversible emissions outcomes for the field."
+        },
+        "non_reversible_outcomes": {
+          "$ref": "#/$defs/scenarios_service_schema__public__intervention__v0__measure__scope_1_output__NonReversibleOutcomes",
+          "description": "An object containing data about the non-reversible emissions outcomes for the field."
+        }
+      },
+      "type": "object",
+      "required": [
+        "credit_share",
+        "reversible_outcomes",
+        "non_reversible_outcomes"
+      ],
+      "title": "Outcomes"
+    },
+    "scenarios_service_schema__public__intervention__v0__measure__scope_1_output__ReversibleOutcomes": {
+      "properties": {
+        "credit_share": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Credit Share"
+        },
+        "mean": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Mean"
+        },
+        "standard_deviation": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Standard Deviation"
+        },
+        "dsoc": {
+          "$ref": "#/$defs/OutcomeEntityWithOptionalUncertainty"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "dsoc"
+      ],
+      "title": "ReversibleOutcomes"
+    }
+  }
+}

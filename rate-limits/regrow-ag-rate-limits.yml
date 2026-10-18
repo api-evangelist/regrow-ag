@@ -1,0 +1,20 @@
+generated: '2026-10-18'
+method: searched
+source: https://developers.regrow.ag/portals/api/sites/flurosat-154904-regrowdeveloper/liveportal/apis/monitor-v2/download_spec
+name: Regrow rate limits
+limits:
+  - name: Monitor API rate limit
+    limit_text: 100 requests per minute
+    limit: 100
+    window: minute
+    scope: per API key
+    endpoint: Monitor API endpoints
+    plan: All plans
+    headers:
+      - X-RateLimit-Limit
+      - X-RateLimit-Remaining
+      - X-RateLimit-Reset
+    status_code: 429
+    docs: https://developers.regrow.ag/portals/api/sites/flurosat-154904-regrowdeveloper/liveportal/apis/monitor-v2/download_spec
+note: Rate limits documented in Monitor API OpenAPI specification. Measure API rate limits not documented in public OpenAPI.
+limit_count: 1

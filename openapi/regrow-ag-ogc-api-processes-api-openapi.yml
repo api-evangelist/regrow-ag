@@ -1,0 +1,1435 @@
+openapi: 3.2.0
+info:
+  title: Monitor OGC API - Processes API
+  description: '# Getting Started
+
+
+    The Monitor API provides access to crop and farming practice data using remote
+
+    sensing technology and proprietary machine learning algorithms. Monitor API
+
+    enables access to the specific field and management data (such as crop cover,
+
+    commodity crop type and tillage practices) needed to power sustainability programs
+
+    and verify regenerative practices remotely. The Monitor API is implemented using the OGC API (Open Geospatial Consortium API)
+
+    standard. The OGC API standard is designed to facilitate access and sharing of
+
+    geospatial data by providing a modern and standardized approach to interact with
+
+    geospatial services, making it an effective choice to provide easy access to agricultural
+
+    field data. More information about getting started with OGC standards can be found here. To get started using Monitor API, you’ll need an API key and agricultural field boundaries
+
+    in GeoJSON format. ## Authentication
+
+
+    The Monitor API uses API keys to authenticate requests. To receive an API key, reach
+
+    out to Regrow Support at support@regrow.ag. Include the API key as a `x-apikey` header for all API requests. ## Rate Limits
+
+
+    The Monitor API is rate limited to ensure the platform remains stable and provides fair
+
+    access for all users. The rate limit for the API is 100 requests per minute. Users will
+
+    receive a `429` error if the rate limit for the API is exceeded. ## API Statuses and Error Codes
+
+
+    Monitor API uses conventional HTTP response codes to communicate the success or failure
+
+    of API requests. Responses with `2XX` status codes generally indicate a successful API request,
+
+    while `4XX` status codes indicate an error with the request, and `5XX` codes indicate errors
+
+    internal to Regrow’s service. | Code | Error |
+
+    |--- | --- |
+
+    | 200 | OK |
+
+    | 401 | Invalid API Key |
+
+    | 404 | Resource Not Found |
+
+    | 422 | Validation Error |
+
+    | 429 | Too Many Requests |
+
+    | 500 | Internal Server Error |
+
+    | 503 | Service Unavailable |
+
+
+    ## Changelog
+
+    ## v3.10.0 - 2026-10-14
+
+    * Add support for preliminary 2026 in-season data for Europe
+
+
+    ## v3.9.0 - 2026-04-22
+
+    * Add Geographic Support for CONUS and Canada through December 2025
+
+
+    ## v3.8.0 - 2025-12-16
+
+    * Add Geographic Support for Spain. * Monitor Results supported from January 2019 through December 2025
+
+
+    ## v3.7.0 - 2025-10-28
+
+    * Add support for preliminary 2025 in-season data for Europe. Supported European countries and crops for the 2025 season can be found here. ## v3.6.0 - 2025-07-28
+
+    * Enhanced CropID ML Model (CropID V4) for Poland, Romania, Lithuania, Latvia, and Estonia:
+
+    - Improved accuracy in crop type classification. - New machine learning-based predictions for planting and harvest dates. - 2018-2023 data refreshed using new models
+
+    * Adds final 2024 data (replacing preliminary, in-season 2024 data)
+
+
+    ## v3.5.0 - 2025-06-16
+
+    * Enhanced CropID ML Model (CropID V4) for Ukraine and Hungary:
+
+    - Improved accuracy in crop type classification. - New machine learning-based predictions for planting and harvest dates. - 2018-2023 data refreshed using new models
+
+    * Adds final 2024 data for Ukraine and Hungary (replacing preliminary, in-season 2024 data)
+
+
+    ## v3.4.0 - 2025-06-04
+
+    * Enhanced CropID ML Model (CropID V4) for Ireland and UK:
+
+    - Improved accuracy in crop type classification. - New machine learning-based predictions for planting and harvest dates. - 2018-2023 data refreshed using new models
+
+    * Adds final 2024 data for Ireland and UK (replacing preliminary, in-season 2024 data)
+
+
+    ## v3.3.0 - 2025-05-08
+
+    * Enhanced CropID ML Model (CropID V4) for Germany and Benelux:
+
+    - Improved accuracy in crop type classification. - New machine learning-based predictions for planting and harvest dates.'
+  version: 3.10.0
+servers:
+- url: https://api.regrow.ag/monitor-api/
+tags:
+- name: OGC API - Processes
+paths:
+  /jobs/{job_id}:
+    get:
+      tags:
+      - OGC API - Processes
+      summary: Get Job Status
+      description: 'Job status endpoint.
+
+
+        Returns the status of an asynchronous job.'
+      operationId: get_job_status_jobs__job_id__get
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /jobs/{job_id}/results:
+    get:
+      tags:
+      - OGC API - Processes
+      summary: Get Job Results
+      description: 'Job Results endpoint.
+
+
+        Returns the resulting Monitor field dataset for a job. An example is provided here of a typical Monitor Field job result.'
+      operationId: get_job_results_jobs__job_id__results_get
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      - name: format
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Optional format parameter for use with prefill
+          title: Format
+        description: Optional format parameter for use with prefill
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobResultResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /processes/monitor-fields-boundary-id/execution:
+    post:
+      tags:
+      - OGC API - Processes
+      summary: Monitor Field
+      description: 'Monitor Field ID Boundary process execution endpoint.
+
+
+        Executes the monitor-fields-boundary-id process to query Monitor field data
+
+        for a given boundary using an existing ID from Regrow’s Field Boundary Service.
+
+
+        The monitor-fields-boundary-id process is asynchronous. Process execution
+
+        creates a new job. Check a job status using the Get Job Stats endpoint,
+
+        and retrieve results for completed jobs using the Get Job Results endpoint.'
+      operationId: Monitor_Field_processes_monitor_fields_boundary_id_execution_post
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteProcessRequestBody_MonitorFieldBoundaryIdInputs_'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/JobStatusResponse'
+                - $ref: '#/components/schemas/MonitorFieldBoundaryIdOutputs'
+                title: Response Monitor Field Processes Monitor Fields Boundary Id Execution Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /processes/monitor-fields-geojson/execution:
+    post:
+      tags:
+      - OGC API - Processes
+      summary: Monitor Field Geojson
+      description: 'Monitor Field Geojson process execution endpoint.
+
+
+        Executes the monitor-fields-geojson process to query Monitor field data
+
+        for a given boundary using GeoJson field boundaries.
+
+
+        The monitor-fields-geojson process is asynchronous. Process execution creates
+
+        a new job. Check a job status using the Get Job Status endpoint, and
+
+        retrieve results for completed jobs using the Get Job Results endpoint.'
+      operationId: Monitor_Field_Geojson_processes_monitor_fields_geojson_execution_post
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteProcessRequestBody_MonitorFieldGeojsonInputs_'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/JobStatusResponse'
+                - $ref: '#/components/schemas/MonitorFieldGeojsonOutputs'
+                title: Response Monitor Field Geojson Processes Monitor Fields Geojson Execution Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    FeatureCollection_Feature_Union_Polygon__MultiPolygon___dict_str__Any___:
+      properties:
+        bbox:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 4
+            minItems: 4
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Bbox
+        type:
+          type: string
+          const: FeatureCollection
+          title: Type
+        features:
+          items:
+            $ref: '#/components/schemas/Feature_Union_Polygon__MultiPolygon___dict_str__Any__'
+          type: array
+          title: Features
+      type: object
+      required:
+      - type
+      - features
+      title: FeatureCollection[Feature[Union[Polygon, MultiPolygon], dict[str, Any]]]
+    MonitorFieldResult:
+      additionalProperties: false
+      properties:
+        start_date:
+          format: date
+          title: Start Date
+          type: string
+        end_date:
+          format: date
+          title: End Date
+          type: string
+        algorithm_version:
+          title: Algorithm Version
+          type: string
+        area_m2:
+          title: Area M2
+          type: number
+        input_data_versions:
+          additionalProperties: true
+          title: Input Data Versions
+          type: object
+        row_crop_data:
+          $ref: '#/components/schemas/FieldPractices'
+        external_properties:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - {}
+              - type: 'null'
+            type: object
+          - type: 'null'
+          default: null
+          title: External Properties
+      required:
+      - start_date
+      - end_date
+      - algorithm_version
+      - area_m2
+      - input_data_versions
+      - row_crop_data
+      title: MonitorFieldResult
+      type: object
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    MonitorFieldGeojsonOutputs:
+      properties:
+        task_id:
+          type: string
+          title: Task Id
+      additionalProperties: false
+      type: object
+      required:
+      - task_id
+      title: MonitorFieldGeojsonOutputs
+      description: '`MonitorFieldGeojsonOutputs` returns the tasks, or jobs, created when a request
+
+        is made using `MonitorFieldGeojsonInputs`. Task IDs are used to retrieve field data
+
+        results once the job has completed processing.'
+      example:
+        task_id: d9b0b0c0-5e5a-4b9b-8c1c-1b0b0c0e5e5a
+    ExecuteProcessRequestBody_MonitorFieldBoundaryIdInputs_:
+      properties:
+        inputs:
+          anyOf:
+          - $ref: '#/components/schemas/MonitorFieldBoundaryIdInputs'
+          - type: 'null'
+        outputs:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Outputs
+        response:
+          anyOf:
+          - $ref: '#/components/schemas/ResponseMode'
+          - type: 'null'
+        transmission_mode:
+          anyOf:
+          - $ref: '#/components/schemas/TransmissionMode'
+          - type: 'null'
+        subscriber:
+          anyOf:
+          - $ref: '#/components/schemas/Subscriber'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      title: ExecuteProcessRequestBody[MonitorFieldBoundaryIdInputs]
+    JobTraceback:
+      properties:
+        job_id:
+          type: string
+          title: Job Id
+        task_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Name
+        positional_arguments:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Positional Arguments
+        keyword_arguments:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Keyword Arguments
+        traceback:
+          type: string
+          title: Traceback
+      additionalProperties: false
+      type: object
+      required:
+      - job_id
+      - traceback
+      title: JobTraceback
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    StatusCode:
+      type: string
+      enum:
+      - accepted
+      - running
+      - successful
+      - failed
+      - dismissed
+      - '{''dismissed'', ''successful'', ''failed''}'
+      title: StatusCode
+      description: 'The `StatusCode` provides information about the status of a job. such as success,
+
+        failure, processing, etc.'
+    JobStatusResponse:
+      properties:
+        job_id:
+          type: string
+          title: Job Id
+        process_id:
+          type: string
+          title: Process Id
+        status:
+          $ref: '#/components/schemas/StatusCode'
+        type:
+          type: string
+          const: process
+          title: Type
+          default: process
+        message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Message
+        created:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created
+        started:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Started
+        finished:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Finished
+        updated:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated
+        traceback:
+          anyOf:
+          - $ref: '#/components/schemas/JobTraceback'
+          - type: 'null'
+        children:
+          anyOf:
+          - items:
+              additionalProperties: true
+              type: object
+            type: array
+          - type: 'null'
+          title: Children
+        parent:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Parent
+      additionalProperties: false
+      type: object
+      required:
+      - job_id
+      - process_id
+      - status
+      title: JobStatusResponse
+      description: Summarizes the status information for a job.
+    MonitorFieldBoundaryIdOutputs:
+      properties:
+        task_id:
+          type: string
+          title: Task Id
+      additionalProperties: false
+      type: object
+      required:
+      - task_id
+      title: MonitorFieldBoundaryIdOutputs
+      description: '`MonitorFieldBoundaryIDOutputs` returns the tasks, or jobs, created when a request
+
+        is made using `MonitorFieldBoundaryIDInputs`. Task IDs are used to retrieve field
+
+        data results once the job has completed processing.'
+      example:
+        task_id: d9b0b0c0-5e5a-4b9b-8c1c-1b0b0c0e5e5a
+    ResponseMode:
+      type: string
+      enum:
+      - document
+      - raw
+      title: ResponseMode
+      description: 'Defines how Process results (if any) may be retrieved.
+
+
+        These values are defined in [OGC API - Processes: 7.11.2.5 Process
+
+        outputs](https://docs.ogc.org/is/18-062r2/18-062r2.html#7-11-2-5-%C2%A0-process-outputs).'
+    TransmissionMode:
+      type: string
+      enum:
+      - value
+      - reference
+      title: TransmissionMode
+      description: 'Defines how Process results (if any) may be retrieved.
+
+
+        These values are defined in [OGC API - Processes: 7.11.2.5 Process
+
+        outputs](https://docs.ogc.org/is/18-062r2/18-062r2.html#7-11-2-5-%C2%A0-process-outputs).'
+    LivingRootIntermediate:
+      additionalProperties: false
+      properties:
+        start_date:
+          format: date
+          title: Start Date
+          type: string
+        end_date:
+          format: date
+          title: End Date
+          type: string
+        living_root_ndvi_mean:
+          anyOf:
+          - maximum: 100
+            minimum: 0
+            type: number
+          - type: 'null'
+          title: Living Root Ndvi Mean
+        living_root_ndvi_variance:
+          anyOf:
+          - minimum: 0
+            type: number
+          - type: 'null'
+          title: Living Root Ndvi Variance
+        living_root_percent_high_ndvi:
+          anyOf:
+          - maximum: 100
+            minimum: 0
+            type: number
+          - type: 'null'
+          title: Living Root Percent High Ndvi
+        living_root_percent_moderate_ndvi:
+          anyOf:
+          - maximum: 100
+            minimum: 0
+            type: number
+          - type: 'null'
+          title: Living Root Percent Moderate Ndvi
+        living_root_percent_low_ndvi:
+          anyOf:
+          - maximum: 100
+            minimum: 0
+            type: number
+          - type: 'null'
+          title: Living Root Percent Low Ndvi
+        living_root_pct_nodata_frac:
+          anyOf:
+          - maximum: 1
+            minimum: 0
+            type: number
+          - type: 'null'
+          title: Living Root Pct Nodata Frac
+      required:
+      - start_date
+      - end_date
+      - living_root_ndvi_mean
+      - living_root_ndvi_variance
+      - living_root_percent_high_ndvi
+      - living_root_percent_moderate_ndvi
+      - living_root_percent_low_ndvi
+      - living_root_pct_nodata_frac
+      title: LivingRootIntermediate
+      type: object
+    DateWindow:
+      additionalProperties: false
+      properties:
+        start_date:
+          format: date
+          title: Start Date
+          type: string
+        end_date:
+          format: date
+          title: End Date
+          type: string
+      required:
+      - start_date
+      - end_date
+      title: DateWindow
+      type: object
+    Tillage:
+      additionalProperties: false
+      description: 'Tillage data model inherits from OptionalDateWindow data model because
+
+        start_date and end_date may be null if missing observation data available
+
+        or missing data that meets the no data threshold.'
+      properties:
+        observation_window_start_date:
+          description: The start date of a tillage practice observation time period. Remote sensing data is analyzed for tillage impact over dynamic time windows that are defined around planting and harvest of main crops on a field. A large tillage time window is observed initially, which is used to target the period of greatest tillage impact.
+        observation_window_end_date:
+          description: The end date of a tillage observation time period.
+      required:
+      - observation_window_start_date
+      - observation_window_end_date
+      - tillage_intensity
+      - residue_pct
+      - residue_conf
+      title: Tillage
+      type: object
+    CultivationCycle:
+      additionalProperties: false
+      properties:
+        start_date:
+          format: date
+          title: Start Date
+          type: string
+        end_date:
+          format: date
+          title: End Date
+          type: string
+        id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: null
+          description: An MD5 hash ID generated from the start_date, and end_date, and boundary_id of the cultivation cycle.
+          title: Id
+      required:
+      - start_date
+      - end_date
+      title: CultivationCycle
+      type: object
+    Position2D:
+      prefixItems:
+      - type: number
+        title: Longitude
+      - type: number
+        title: Latitude
+      type: array
+      maxItems: 2
+      minItems: 2
+    Position3D:
+      prefixItems:
+      - type: number
+        title: Longitude
+      - type: number
+        title: Latitude
+      - type: number
+        title: Altitude
+      type: array
+      maxItems: 3
+      minItems: 3
+    MonitorFieldBoundaryIdInputs:
+      properties:
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+        end_date:
+          type: string
+          format: date
+          title: End Date
+        priority:
+          anyOf:
+          - $ref: '#/components/schemas/Priority'
+          - type: 'null'
+        boundary_ids:
+          items:
+            type: string
+          type: array
+          title: Boundary Ids
+      additionalProperties: false
+      type: object
+      required:
+      - start_date
+      - end_date
+      - boundary_ids
+      title: MonitorFieldBoundaryIdInputs
+      description: '`MonitorFieldBoundaryIDInputs` are metadata used to define the parameters
+
+        of a data request, such as the geographical area of the agricultural
+
+        field and the start and end date for field monitoring.
+
+
+        `MonitorFieldBoundaryIDInputs` uses Regrow’s Boundary Service to retrieve
+
+        the geographical boundaries of the field. Users pass a Boundary Service Field
+
+        ID with the inputs to define the agricultural field to retrieve data for.
+
+        A Field ID is created in the Boundary Service when data requests provide GeoJSON
+
+        field boundaries using `MonitorFieldGeojsonInputs`. The first request for field
+
+        data should be made using `MonitorFieldGeojsonInputs`, and subsequent requests
+
+        for the field can be made using the Field ID rather than the field GeoJSON, if preferred.'
+      example:
+        boundary_ids:
+        - 9d45772c97996d0515ddc885973403fc
+        end_date: '2022-05-01'
+        start_date: '2021-06-01'
+    Polygon:
+      properties:
+        bbox:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 4
+            minItems: 4
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Bbox
+        type:
+          type: string
+          const: Polygon
+          title: Type
+        coordinates:
+          items:
+            items:
+              anyOf:
+              - $ref: '#/components/schemas/Position2D'
+              - $ref: '#/components/schemas/Position3D'
+            type: array
+            minItems: 4
+          type: array
+          title: Coordinates
+      type: object
+      required:
+      - type
+      - coordinates
+      title: Polygon
+      description: Polygon Model
+    ExecuteProcessRequestBody_MonitorFieldGeojsonInputs_:
+      properties:
+        inputs:
+          anyOf:
+          - $ref: '#/components/schemas/MonitorFieldGeojsonInputs'
+          - type: 'null'
+        outputs:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Outputs
+        response:
+          anyOf:
+          - $ref: '#/components/schemas/ResponseMode'
+          - type: 'null'
+        transmission_mode:
+          anyOf:
+          - $ref: '#/components/schemas/TransmissionMode'
+          - type: 'null'
+        subscriber:
+          anyOf:
+          - $ref: '#/components/schemas/Subscriber'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      title: ExecuteProcessRequestBody[MonitorFieldGeojsonInputs]
+    Subscriber:
+      properties:
+        successUri:
+          type: string
+          title: Successuri
+        successHeaders:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Successheaders
+        inProgressUri:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Inprogressuri
+        inProgressHeaders:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Inprogressheaders
+        failedUri:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Faileduri
+        failedHeaders:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Failedheaders
+        resultsFormat:
+          anyOf:
+          - type: string
+            const: prefill
+          - type: 'null'
+          title: Resultsformat
+      additionalProperties: false
+      type: object
+      required:
+      - successUri
+      title: Subscriber
+      description: 'The `StatusCode` provides information about the status of a job. such as success,
+
+        failure, processing, etc.'
+    PracticeParametersGreenCover:
+      additionalProperties: false
+      properties:
+        cover_crop_ndvi_threshold:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Cover Crop Ndvi Threshold
+      required:
+      - cover_crop_ndvi_threshold
+      title: PracticeParametersGreenCover
+      type: object
+    MultiPolygon:
+      properties:
+        bbox:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 4
+            minItems: 4
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Bbox
+        type:
+          type: string
+          const: MultiPolygon
+          title: Type
+        coordinates:
+          items:
+            items:
+              items:
+                anyOf:
+                - $ref: '#/components/schemas/Position2D'
+                - $ref: '#/components/schemas/Position3D'
+              type: array
+              minItems: 4
+            type: array
+          type: array
+          title: Coordinates
+      type: object
+      required:
+      - type
+      - coordinates
+      title: MultiPolygon
+      description: MultiPolygon Model
+    PracticeParametersSimple:
+      additionalProperties: false
+      properties:
+        geohash:
+          title: Geohash
+          type: string
+        date_range:
+          $ref: '#/components/schemas/DateWindow'
+        revision:
+          title: Revision
+          type: string
+      required:
+      - geohash
+      - date_range
+      - revision
+      title: PracticeParametersSimple
+      type: object
+    MainCropTypes:
+      additionalProperties: false
+      properties:
+        observation_window_start_date:
+          description: 'The start date of the time period a field is observed to detect and identify main, commodity crops growing.
+
+            Main crop observation windows are a 12 month period. The windows are determined based on the time crops
+
+            cycles/rotations transition on a field. This allows for detecting crops as the field''s crop cover changes
+
+            over the course of typical field management. The windows are dynamic for countries/larger regions,
+
+            corresponding to an agronomic event such as the major harvest, or aligned with a standard crop calendar
+
+            for the region.'
+          format: date
+          title: Observation Window Start Date
+          type: string
+        observation_window_end_date:
+          description: The end date of the main crop observation time period.
+          format: date
+          title: Observation Window End Date
+          type: string
+        crop_type:
+          description: The common name of the type of crop that was detected on the field.
+          title: Crop Type
+          type: string
+        plant_date:
+          description: The estimated emergence date of the crop, derived from remote sensing data. YYYY-MM-DD format.
+          format: date
+          title: Plant Date
+          type: string
+        harvest_date:
+          description: The estimated senescence date of the crop, derived from remote sensing data. YYYY-MM-DD format.
+          format: date
+          title: Harvest Date
+          type: string
+        crop_type_conf:
+          anyOf:
+          - maximum: 100.0
+            minimum: 0.0
+            type: number
+          - type: 'null'
+          description: This value represents the confidence in the crop type determination. Confidence is affected by the availability of remote sensing data and the quality of the data, where the quality of remote sensing data will be lower when there is high cloud cover. This value provides a correlation between the crop classification and the accuracy of the classification. For example, given 10 confidence values of 0.9, approximately 90% of the crop_type classifications will be correct.
+          title: Crop Type Conf
+        practice_parameters:
+          anyOf:
+          - $ref: '#/components/schemas/PracticeParametersSimple'
+          - type: 'null'
+          default: null
+        cultivation_cycle_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: null
+          description: An MD5 hash ID generated from the start_date, and end_date, and boundary_id of the crop.
+          title: Cultivation Cycle Id
+      required:
+      - observation_window_start_date
+      - observation_window_end_date
+      - crop_type
+      - plant_date
+      - harvest_date
+      - crop_type_conf
+      title: MainCropTypes
+      type: object
+    MonitorFieldGeojsonInputs:
+      properties:
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+        end_date:
+          type: string
+          format: date
+          title: End Date
+        priority:
+          anyOf:
+          - $ref: '#/components/schemas/Priority'
+          - type: 'null'
+        feature_collection:
+          $ref: '#/components/schemas/FeatureCollection_Feature_Union_Polygon__MultiPolygon___dict_str__Any___'
+      additionalProperties: false
+      type: object
+      required:
+      - start_date
+      - end_date
+      - feature_collection
+      title: MonitorFieldGeojsonInputs
+      description: '`MonitorFieldGeojsonInputs` are metadata used to define the parameters of a
+
+        data request, such as the geographical boundaries of the field and the start and
+
+        end date for field monitoring. A defining characteristic of `MonitorFieldGeojsonInputs`
+
+        is that boundaries of one or more agricultural fields or regions being monitored is passed
+
+        in GeoJSON format.
+
+
+        ### Limits on GeoJSON Payloads
+
+
+        - `50,000,000` maximum area per Feature (square meters).
+
+        - `2,000` maximum points per Feature.
+
+        - `50` Maximum number of Features in a FeatureCollection.
+
+
+        Exceeding any of these limits will generate a HTTP 422 Unprocessable Entity response.'
+      example:
+        end_date: '2022-05-01'
+        feature_collection:
+          features:
+          - geometry:
+              coordinates:
+              - - - 9.353746965704403
+                  - 48.267119394048564
+                - - 9.353746965704403
+                  - 48.266247020156015
+                - - 9.355395698360383
+                  - 48.266247020156015
+                - - 9.355395698360383
+                  - 48.267119394048564
+                - - 9.353746965704403
+                  - 48.267119394048564
+              type: Polygon
+            type: Feature
+          type: FeatureCollection
+        start_date: '2021-06-01'
+    Priority:
+      type: string
+      enum:
+      - high
+      - normal
+      - low
+      title: Priority
+    GreenCover:
+      additionalProperties: false
+      properties:
+        start_date:
+          format: date
+          title: Start Date
+          type: string
+        end_date:
+          format: date
+          title: End Date
+          type: string
+        cover_crop_class:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The classification of the cover crop on a field, as it relates to the likelihood of a cover crop. Classifications are `Cover crop not tracked`, `Potential cover crop`, `Cover crop`, `No green cover data`, and `Cover crop not applicable`.
+          title: Cover Crop Class
+        cover_crop_class_confidence:
+          anyOf:
+          - maximum: 3
+            minimum: 1
+            type: integer
+          - type: 'null'
+          description: Confidence associated with the cover_crop_class. Based on the percent of field observed throughout the observation period.
+          title: Cover Crop Class Confidence
+        emergence_class:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The classification of the emergence of green cover on a field during the observation window. The emergence_class provides an indication of the crop’s health, quality and vitality, and contributes to an overall green cover classification. Emergence classes are `no vegetation`, `weak emergence`, `good emergence`, `strong emergence`
+          title: Emergence Class
+        emergence_class_confidence:
+          anyOf:
+          - maximum: 3
+            minimum: 1
+            type: integer
+          - type: 'null'
+          description: Confidence associated with the emergence_class. Based on the percent of field observed in the first 3 months of the observation period.
+          title: Emergence Class Confidence
+        ndvi_mean:
+          anyOf:
+          - maximum: 100
+            minimum: 0
+            type: integer
+          - type: 'null'
+          description: The mean value of the max_ndvi statistic for the field, over the observation window.
+          title: Ndvi Mean
+        practice_parameters:
+          anyOf:
+          - $ref: '#/components/schemas/PracticeParametersGreenCover'
+          - type: 'null'
+          default: null
+        cultivation_cycle_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: null
+          title: Cultivation Cycle Id
+      required:
+      - start_date
+      - end_date
+      - cover_crop_class
+      - cover_crop_class_confidence
+      - emergence_class
+      - emergence_class_confidence
+      - ndvi_mean
+      title: GreenCover
+      type: object
+    JobResultResponse:
+      items:
+        $ref: '#/components/schemas/MonitorFieldResult'
+      type: array
+      title: JobResultResponse
+      description: 'Job results are the data returned for an agricultural field or area after a request
+
+        is successfully processed. Job results include main crop data, cover crop data and till
+
+        information, as well as metadata about the field itself and the date range monitored.
+
+        is successfully processed.'
+      example:
+      - boundary_id: 9d45772c97996d0515ddc885973403fc
+        job_id: 7f4bb14a-ef31-4860-8547-4fda23839214
+        result:
+          algorithm_version: 3.0.0
+          area_m2: 11873.47
+          end_date: '2022-05-01'
+          input_data_versions:
+            crop_id: 3.0.0
+            living_root: 2.0.0
+            plant_harvest: 3.1.0
+            residue_cover: 4.4.0
+          row_crop_data:
+            cultivation_cycles:
+            - end_date: '2021-08-29'
+              id: b2646b37ca4dfa0f344939a8a6653362
+              start_date: '2020-07-29'
+            - end_date: '2022-09-01'
+              id: c775f3670c87cf43da9685ef99744fdf
+              start_date: '2021-08-30'
+            errors:
+            - metadata:
+                crop_type: Spring Oats
+                date_set: '2022-09-01'
+                date_type: harvest
+              text: Harvest date 2022-09-01 for Spring Oats has been set using regional crop specific data
+            - metadata:
+                crop_type: Winter Barley
+                date_set: '2019-09-01'
+                date_type: plant
+              text: Plant date 2019-09-01 for Winter Barley has been set using regional crop specific data
+            green_cover:
+            - cover_crop_class: Potential cover crop
+              cover_crop_class_confidence: 3
+              cultivation_cycle_id: b2646b37ca4dfa0f344939a8a6653362
+              emergence_class: Strong emergence
+              emergence_class_confidence: 3
+              end_date: '2021-03-31'
+              ndvi_mean: 38
+              practice_parameters:
+                cover_crop_ndvi_threshold: 50.0
+              start_date: '2020-08-01'
+            - cover_crop_class: Potential cover crop
+              cover_crop_class_confidence: 3
+              cultivation_cycle_id: c775f3670c87cf43da9685ef99744fdf
+              emergence_class: Good emergence
+              emergence_class_confidence: 3
+              end_date: '2022-04-30'
+              ndvi_mean: 34
+              practice_parameters:
+                cover_crop_ndvi_threshold: 50.0
+              start_date: '2021-09-01'
+            living_root: []
+            main_crop_type:
+            - crop_type: barley
+              crop_type_conf: 69.86
+              cultivation_cycle_id: b2646b37ca4dfa0f344939a8a6653362
+              harvest_date: '2021-08-29'
+              observation_window_end_date: '2021-12-31'
+              observation_window_start_date: '2021-01-01'
+              plant_date: '2021-04-16'
+            - crop_type: oat
+              crop_type_conf: 52.2
+              cultivation_cycle_id: c775f3670c87cf43da9685ef99744fdf
+              harvest_date: '2022-09-01'
+              observation_window_end_date: '2022-12-31'
+              observation_window_start_date: '2022-01-01'
+              plant_date: '2022-05-01'
+            tillage:
+            - cultivation_cycle_id: b2646b37ca4dfa0f344939a8a6653362
+              end_date: '2020-08-14'
+              observation_window_end_date: '2020-09-23'
+              observation_window_start_date: '2020-07-29'
+              practice_parameters:
+                date_range:
+                  end_date: '2020-09-30'
+                  start_date: '2019-10-01'
+                geohash: u0w
+                revision: 975e47e8445927a5808eaccfbb1d2785633e267c
+              residue_conf: 3
+              residue_pct: 86.0
+              start_date: '2020-08-01'
+              tillage_intensity: No tillage
+            - cultivation_cycle_id: b2646b37ca4dfa0f344939a8a6653362
+              end_date: '2021-04-14'
+              observation_window_end_date: '2021-04-15'
+              observation_window_start_date: '2021-02-18'
+              practice_parameters:
+                date_range:
+                  end_date: '2021-09-30'
+                  start_date: '2020-10-01'
+                geohash: u0w
+                revision: 975e47e8445927a5808eaccfbb1d2785633e267c
+              residue_conf: 3
+              residue_pct: 29.0
+              start_date: '2021-02-22'
+              tillage_intensity: Reduced tillage
+            - cultivation_cycle_id: c775f3670c87cf43da9685ef99744fdf
+              end_date: '2021-10-21'
+              observation_window_end_date: '2021-10-25'
+              observation_window_start_date: '2021-08-30'
+              practice_parameters:
+                date_range:
+                  end_date: '2021-09-30'
+                  start_date: '2020-10-01'
+                geohash: u0w
+                revision: 975e47e8445927a5808eaccfbb1d2785633e267c
+              residue_conf: 3
+              residue_pct: 57.0
+              start_date: '2021-09-01'
+              tillage_intensity: No tillage
+            - cultivation_cycle_id: c775f3670c87cf43da9685ef99744fdf
+              end_date: '2022-04-21'
+              observation_window_end_date: '2022-04-30'
+              observation_window_start_date: '2022-03-05'
+              practice_parameters:
+                date_range:
+                  end_date: '2022-09-30'
+                  start_date: '2021-10-01'
+                geohash: u0w
+                revision: 975e47e8445927a5808eaccfbb1d2785633e267c
+              residue_conf: 3
+              residue_pct: 26.0
+              start_date: '2022-03-08'
+              tillage_intensity: Reduced tillage
+          start_date: '2021-06-01'
+    Feature_Union_Polygon__MultiPolygon___dict_str__Any__:
+      properties:
+        bbox:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 4
+            minItems: 4
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Bbox
+        type:
+          type: string
+          const: Feature
+          title: Type
+        geometry:
+          anyOf:
+          - $ref: '#/components/schemas/Polygon'
+          - $ref: '#/components/schemas/MultiPolygon'
+          - type: 'null'
+          title: Geometry
+        properties:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Properties
+        id:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Id
+      type: object
+      required:
+      - type
+      - geometry
+      - properties
+      title: Feature[Union[Polygon, MultiPolygon], dict[str, Any]]
+    FieldPractices:
+      additionalProperties: false
+      properties:
+        errors:
+          description: A list of errors raised while calculating field stats.
+          items:
+            $ref: '#/components/schemas/MonitorError'
+          title: Errors
+          type: array
+        green_cover:
+          description: An array of objects describing the level of green cover on a field during the requested time period. Each object represents a post-harvest green cover ‘observation window’. Green cover data is used to inform the likelihood and strength of a cover crop on a field.
+          items:
+            $ref: '#/components/schemas/GreenCover'
+          title: Green Cover
+          type: array
+        main_crop_type:
+          description: An array of objects describing the main crops on field during the requested time period.
+          items:
+            $ref: '#/components/schemas/MainCropTypes'
+          title: Main Crop Type
+          type: array
+        tillage:
+          description: An array of tillage practice determination objects and their associated tillage intensity, during the requested time period for a field. Each object represents a tillage determination window, which is derived from a tillage observation window. Tillage observation windows represent the time period by which plant residue is monitored on the field. The observation windows span a period of four months, either 3 months before the crop `plant date` and one month after, or 3 months after the crop `harvest date` and one month before.
+          items:
+            $ref: '#/components/schemas/Tillage'
+          title: Tillage
+          type: array
+        living_root:
+          items:
+            $ref: '#/components/schemas/LivingRootIntermediate'
+          title: Living Root
+          type: array
+        cultivation_cycles:
+          items:
+            $ref: '#/components/schemas/CultivationCycle'
+          title: Cultivation Cycles
+          type: array
+      required:
+      - errors
+      - green_cover
+      - main_crop_type
+      - tillage
+      - living_root
+      - cultivation_cycles
+      title: FieldPractices
+      type: object
+    MonitorError:
+      additionalProperties: false
+      description: 'Data model for monitor errors to be returned in API responses. Includes fields for an error code, human-readable
+
+        (text) and a dictionary of metadata for machine-readable structured payloads.'
+      properties:
+        code:
+          default: ''
+          title: Code
+          type: string
+        metadata:
+          additionalProperties: true
+          title: Metadata
+          type: object
+        text:
+          title: Text
+          type: string
+      required:
+      - text
+      title: MonitorError
+      type: object

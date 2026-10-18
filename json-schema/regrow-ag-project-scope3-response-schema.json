@@ -1,0 +1,662 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/regrow-ag/main/json-schema/regrow-ag-project-scope3-response-schema.json",
+  "title": "ProjectScope3Response",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/ProjectScope3Response",
+  "properties": {
+    "crop_level": {
+      "additionalProperties": {
+        "$ref": "#/$defs/CropLevelCredits"
+      },
+      "type": "object",
+      "title": "Crop Level",
+      "description": "An object containing data about the reporting period, crop data, emissions outcomes and credit values for each crop type in the project."
+    },
+    "field_level": {
+      "additionalProperties": {
+        "$ref": "#/$defs/scenarios_service_schema__public__intervention__v0__measure__scope_3_output__FieldLevelOutcomes"
+      },
+      "type": "object",
+      "title": "Field Level",
+      "description": "An object containing data about the reporting period, crop data, emissions outcomes and uncertainty for each field in the project."
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "required": [
+    "crop_level",
+    "field_level"
+  ],
+  "$defs": {
+    "CreditEntityWithTotalNonReversibleEmissionsReductions": {
+      "properties": {
+        "uncertainty_distribution": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array",
+              "maxItems": 1000,
+              "minItems": 1000
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Uncertainty Distribution",
+          "description": "The uncertainty distribution is an array of values generated from applying uncertainty to modeled emissions outcomes. The crop level `reversible credit` uncertainty distribution represents the sum of the field-level reversible uncertainty distributions, of all fields with the specified crop type."
+        },
+        "mean": {
+          "type": "number",
+          "title": "Mean",
+          "description": "The mean of the crop-level non-reversible uncertainty distribution."
+        },
+        "standard_deviation": {
+          "type": "number",
+          "title": "Standard Deviation",
+          "description": "The standard deviation of the crop-level non-reversible uncertainty distribution."
+        },
+        "reporting_percentile": {
+          "type": "number",
+          "title": "Reporting Percentile",
+          "description": "The percentile of the uncertainty distribution at which a credit value is taken. The reporting percentile determines how conservative the reported outcomes are, where a larger value results in less conservative credit outcomes."
+        },
+        "total_non_reversible_emissions_reductions": {
+          "type": "number",
+          "title": "Total Non Reversible Emissions Reductions",
+          "description": "The non-reversible emissions reduction value, with an uncertainty adjustment. The value is derived from the `reporting percentile` of the crop-level non-reversible uncertainty distribution. Emissions reductions are represented in tonnes of CO2 equivalents."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "mean",
+        "standard_deviation",
+        "reporting_percentile",
+        "total_non_reversible_emissions_reductions"
+      ],
+      "title": "CreditEntityWithTotalNonReversibleEmissionsReductions"
+    },
+    "CreditEntityWithTotalReversibleEmissionsReductions": {
+      "properties": {
+        "uncertainty_distribution": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array",
+              "maxItems": 1000,
+              "minItems": 1000
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Uncertainty Distribution",
+          "description": "The uncertainty distribution is an array of values generated from applying uncertainty to modeled emissions outcomes. The crop level `reversible credit` uncertainty distribution represents the sum of the field-level reversible uncertainty distributions, of all fields with the specified crop type."
+        },
+        "mean": {
+          "type": "number",
+          "title": "Mean",
+          "description": "The mean of the crop-level reversible uncertainty distribution."
+        },
+        "standard_deviation": {
+          "type": "number",
+          "title": "Standard Deviation",
+          "description": "The standard deviation of the crop-level reversible uncertainty distribution."
+        },
+        "reporting_percentile": {
+          "type": "number",
+          "title": "Reporting Percentile",
+          "description": "The percentile of the uncertainty distribution at which a credit value is taken. The reporting percentile determines how conservative the reported outcomes are, where a larger value results in less conservative credit outcomes."
+        },
+        "total_reversible_emissions_reductions": {
+          "type": "number",
+          "title": "Total Reversible Emissions Reductions",
+          "description": "The reversible emissions reduction value, with an uncertainty adjustment. The value is derived from the `reporting percentile` of the crop-level reversible uncertainty distribution. Emissions reductions are represented in tonnes of CO2 equivalents."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "mean",
+        "standard_deviation",
+        "reporting_percentile",
+        "total_reversible_emissions_reductions"
+      ],
+      "title": "CreditEntityWithTotalReversibleEmissionsReductions"
+    },
+    "Credits": {
+      "properties": {
+        "number_of_fields": {
+          "type": "integer",
+          "title": "Number Of Fields",
+          "description": "The total number of fields in the project with the specified crop type in the reporting period."
+        },
+        "number_of_acres": {
+          "type": "number",
+          "title": "Number Of Acres",
+          "description": "The total number of acres for all fields in the project with the specified crop type in the reporting period."
+        },
+        "reversible_credits": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CreditEntityWithTotalReversibleEmissionsReductions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "An object containing data about the reversible emissions outcomes and reversible credit values, for all fields in the project with the specified crop type."
+        },
+        "non_reversible_credits": {
+          "$ref": "#/$defs/CreditEntityWithTotalNonReversibleEmissionsReductions",
+          "description": "An object containing data about the non-reversible emissions outcomes and reversible credit values, for all fields in the project with the specified crop type."
+        },
+        "total_reversible_credit": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Total Reversible Credit",
+          "description": "The total reversible credit is the reversible emissions reduction credit value divided by the total crop yield. Reversible credit values are represented in tonnes of CO2 equivalents, per bushel of commodity crop."
+        },
+        "total_non_reversible_credit": {
+          "type": "number",
+          "title": "Total Non Reversible Credit",
+          "description": "The total non-reversible credit is the reversible emissions reduction credit value divided by the total crop yield. Reversible credit values are represented in tonnes of CO2 equivalents, per bushel of commodity crop."
+        },
+        "total_credit": {
+          "type": "number",
+          "title": "Total Credit",
+          "description": "The sum of the `total reversible credit` and the `total non-reversible credit`. Total credit values are represented in tonnes of CO2 equivalents, per bushel of commodity crop."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "number_of_fields",
+        "number_of_acres",
+        "reversible_credits",
+        "non_reversible_credits",
+        "total_reversible_credit",
+        "total_non_reversible_credit",
+        "total_credit"
+      ],
+      "title": "Credits"
+    },
+    "CropLevelCredits": {
+      "properties": {
+        "reporting_information": {
+          "$ref": "#/$defs/scenarios_service_schema__public__intervention__v0__measure__scope_3_output__ReportingInformation",
+          "description": "An object containing information about the time period for which carbon outcomes are quantified (AKA the ‘crediting period’) and the crop. The crop-level reporting period is the earliest `start date` through the latest `end date` of the field-level reporting period for fields with the specified crop."
+        },
+        "credit": {
+          "$ref": "#/$defs/Credits",
+          "description": "An object containing data about the fields, emissions outcomes and credit values for the specified crop type."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "reporting_information",
+        "credit"
+      ],
+      "title": "CropLevelCredits",
+      "description": "An object containing project-level emissions outcomes for all projects with the specified crop type."
+    },
+    "EmissionsEntityFuel": {
+      "properties": {
+        "baseline": {
+          "type": "number",
+          "title": "Baseline",
+          "description": "The calculated CO2 emissions under the baseline scenario. Emissions are represented in tonnes of CO2."
+        },
+        "practice_change": {
+          "type": "number",
+          "title": "Practice Change",
+          "description": "The calculated CO2 emissions under the practice change scenario. Emissions are represented in tonnes of CO2."
+        },
+        "credit": {
+          "type": "number",
+          "title": "Credit",
+          "description": "A value representing the calculated emissions reduction. It is the difference in CO2 emissions, calculated as baseline - practice change. Emissions reductions are represented in tonnes of CO2."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "baseline",
+        "practice_change",
+        "credit"
+      ],
+      "title": "EmissionsEntityFuel"
+    },
+    "EmissionsEntityIndirectN2O": {
+      "properties": {
+        "baseline": {
+          "type": "number",
+          "title": "Baseline",
+          "description": "The modeled indirect N2O emissions under the baseline scenario. Emissions are represented in tonnes of CO2 equivalents."
+        },
+        "practice_change": {
+          "type": "number",
+          "title": "Practice Change",
+          "description": "The modeled indirect N2O emissions under the practice change/intervention scenario. Emissions are represented in tonnes of CO2 equivalents."
+        },
+        "credit": {
+          "type": "number",
+          "title": "Credit",
+          "description": "A value representing the modeled emissions reduction. It is the difference in indirect N2O emissions, calculated as baseline - practice change. Emissions reductions are represented in tonnes of CO2 equivalents."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "baseline",
+        "practice_change",
+        "credit"
+      ],
+      "title": "EmissionsEntityIndirectN2O"
+    },
+    "EmissionsEntitySoilCH4": {
+      "properties": {
+        "baseline": {
+          "type": "number",
+          "title": "Baseline",
+          "description": "The modeled Soil CH4 emissions under the baseline scenario. Emissions are represented in tonnes of CO2 equivalents."
+        },
+        "practice_change": {
+          "type": "number",
+          "title": "Practice Change",
+          "description": "The modeled soil CH4 emissions under the practice change/intervention scenario. Emissions are represented in tonnes of CO2 equivalents."
+        },
+        "credit": {
+          "type": "number",
+          "title": "Credit",
+          "description": "A value representing the modeled emissions reduction. It is the difference in Soil CH4 emissions, calculated as baseline - practice change. Emissions reductions are represented in tonnes of CO2 equivalents."
+        },
+        "uncertainty_distribution": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array",
+              "maxItems": 1000,
+              "minItems": 1000
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Uncertainty Distribution",
+          "description": "The Soil CH4 uncertainty distribution is an array of values generated from applying uncertainty to the `preliminary credit value`."
+        },
+        "mean": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Mean",
+          "description": "The mean of the Soil CH4 uncertainty distribution."
+        },
+        "standard_deviation": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Standard Deviation",
+          "description": "The standard deviation of the Soil CH4 uncertainty distribution."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "baseline",
+        "practice_change",
+        "credit"
+      ],
+      "title": "EmissionsEntitySoilCH4"
+    },
+    "OutcomeEntityDSOC": {
+      "properties": {
+        "baseline": {
+          "type": "number",
+          "title": "Baseline",
+          "description": "A value representing the quantity of carbon sequestration into the soil. The modeled change in SOC under the baseline scenario is converted to represent emissions in tonnes of CO2 equivalents."
+        },
+        "practice_change": {
+          "type": "number",
+          "title": "Practice Change",
+          "description": "A value representing the quantity of carbon sequestration into the soil. The modeled change in SOC under the practice change scenario is converted to represent emissions in tonnes of CO2 equivalents."
+        },
+        "preliminary_credit": {
+          "type": "number",
+          "title": "Preliminary Credit",
+          "description": "A value representing the modeled carbon sequestration change. It is the difference of the practice change - baseline. Positive values represent increased sequestration, while negative values indicate carbon emissions resulting from SOC loss. Carbon sequestration is represented in tonnes of CO2 equivalents."
+        },
+        "mean": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Mean",
+          "description": "The mean of the dSOC uncertainty distribution."
+        },
+        "standard_deviation": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Standard Deviation",
+          "description": "The standard deviation of the dSOC uncertainty distribution."
+        },
+        "uncertainty_distribution": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array",
+              "maxItems": 1000,
+              "minItems": 1000
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Uncertainty Distribution",
+          "description": "The dSOC uncertainty distribution is an array of values generated from applying uncertainty to the `preliminary credit value`."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "baseline",
+        "practice_change",
+        "preliminary_credit"
+      ],
+      "title": "OutcomeEntityDSOC"
+    },
+    "OutcomeEntityDirectN2O": {
+      "properties": {
+        "baseline": {
+          "type": "number",
+          "title": "Baseline",
+          "description": "The modeled direct N2O emissions under the baseline scenario. Emissions are represented in tonnes of CO2 equivalents."
+        },
+        "practice_change": {
+          "type": "number",
+          "title": "Practice Change",
+          "description": "The modeled direct N2O emissions under the practice change/intervention scenario. Emissions are represented in tonnes of CO2 equivalents."
+        },
+        "preliminary_credit": {
+          "type": "number",
+          "title": "Preliminary Credit",
+          "description": "A value representing the modeled emissions reduction. It is the difference in direct N2O emissions, calculated as baseline - practice change. Positive values represent emissions reductions. Emissions reductions are represented in tonnes of CO2 equivalents."
+        },
+        "mean": {
+          "type": "number",
+          "title": "Mean",
+          "description": "The mean of the direct N2O uncertainty distribution."
+        },
+        "standard_deviation": {
+          "type": "number",
+          "title": "Standard Deviation",
+          "description": "The standard deviation of the direct N2O uncertainty distribution."
+        },
+        "uncertainty_distribution": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array",
+              "maxItems": 1000,
+              "minItems": 1000
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Uncertainty Distribution",
+          "description": "The direct N2O uncertainty distribution is an array of values generated from applying uncertainty to the `preliminary credit value`."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "baseline",
+        "practice_change",
+        "preliminary_credit",
+        "mean",
+        "standard_deviation"
+      ],
+      "title": "OutcomeEntityDirectN2O"
+    },
+    "ReportingInformationForFieldLevel": {
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "title": "Start Date",
+          "description": "The first day of the reporting period, also known as the crediting period. This is the starting date used to quantify carbon outcomes."
+        },
+        "end_date": {
+          "type": "string",
+          "title": "End Date",
+          "description": "The last day of the reporting period, also known as the crediting period. This is the end of the time period used to quantify carbon outcomes."
+        },
+        "crop_name": {
+          "type": "string",
+          "title": "Crop Name",
+          "description": "The common name of the crop for which carbon outcomes are quantified."
+        },
+        "crop_yield": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Yield",
+          "description": "The crop yield in bushels/acre. For Scope 1 and Scope 3 assets generation this means the average yield. This is required for protocols calculating Scope 3 assets. For protocols calculating Scope 1 assets, this is optional and will not be used for Scope 1 asset calculation. If included, it will be passed to the output config for reference."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "start_date",
+        "end_date",
+        "crop_name"
+      ],
+      "title": "ReportingInformationForFieldLevel"
+    },
+    "scenarios_service_schema__public__intervention__v0__measure__scope_3_output__FieldLevelOutcomes": {
+      "properties": {
+        "reporting_information": {
+          "$ref": "#/$defs/ReportingInformationForFieldLevel",
+          "description": "An object containing information about the time period for which carbon outcomes are quantified (AKA the ‘crediting period’) and the crop for the field."
+        },
+        "outcomes": {
+          "$ref": "#/$defs/scenarios_service_schema__public__intervention__v0__measure__scope_3_output__Outcomes",
+          "description": "An object containing data about the emissions outcomes and uncertainty application for the specified field."
+        },
+        "field_name": {
+          "type": "string",
+          "title": "Field Name",
+          "description": "The common description provided for the field."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "reporting_information",
+        "outcomes",
+        "field_name"
+      ],
+      "title": "FieldLevelOutcomes",
+      "description": "An object containing data about the reporting period, emissions outcomes and uncertainty for the specified field."
+    },
+    "scenarios_service_schema__public__intervention__v0__measure__scope_3_output__NonReversibleOutcomes": {
+      "properties": {
+        "credit_share": {
+          "type": "number",
+          "title": "Credit Share",
+          "description": "A value representing the non-reversible emissions reduction attributed to the field. The value is calculated by deriving the weight of the field’s reversible `mean` in relation to other fields with the same commodity crop, and multiplying it by the total crop-level non-reversible emissions reduction value."
+        },
+        "mean": {
+          "type": "number",
+          "title": "Mean",
+          "description": "The mean of the non-reversible uncertainty distribution. The non-reversible uncertainty distribution is the sum of all individual non-reversible GHG uncertainty distributions and the calculated `credit` values."
+        },
+        "standard_deviation": {
+          "type": "number",
+          "title": "Standard Deviation",
+          "description": "The standard deviation of the dSOC uncertainty distribution. The non-reversible uncertainty distribution is the sum of all individual non-reversible GHG uncertainty distributions and the calculated `credit` values."
+        },
+        "direct_n2o": {
+          "$ref": "#/$defs/OutcomeEntityDirectN2O",
+          "description": "An object containing data about the direct N2O outcomes for the field."
+        },
+        "indirect_n2o": {
+          "$ref": "#/$defs/EmissionsEntityIndirectN2O",
+          "description": "An object containing data about the indirect N2O outcomes for the field."
+        },
+        "soil_ch4": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EmissionsEntitySoilCH4"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "An object containing data about the Soil CH4 outcomes for the field."
+        },
+        "fossil_fuel_co2": {
+          "$ref": "#/$defs/EmissionsEntityFuel",
+          "description": "An object containing data about the emissions outcomes resulting from fossil fuel consumption for the field.",
+          "deprecated": true
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "credit_share",
+        "mean",
+        "standard_deviation",
+        "direct_n2o",
+        "indirect_n2o",
+        "fossil_fuel_co2"
+      ],
+      "title": "NonReversibleOutcomes"
+    },
+    "scenarios_service_schema__public__intervention__v0__measure__scope_3_output__Outcomes": {
+      "properties": {
+        "credit_share": {
+          "type": "number",
+          "title": "Credit Share",
+          "description": "A value representing the total emissions reduction attributed to the field. The value is calculated by deriving the weight of the field’s reversible `mean` in relation to other fields with the same commodity crop, and multiplying it by the total crop-level total emissions reduction value."
+        },
+        "reversible_outcomes": {
+          "$ref": "#/$defs/scenarios_service_schema__public__intervention__v0__measure__scope_3_output__ReversibleOutcomes",
+          "description": "An object containing data about the reversible emissions outcomes for the field."
+        },
+        "non_reversible_outcomes": {
+          "$ref": "#/$defs/scenarios_service_schema__public__intervention__v0__measure__scope_3_output__NonReversibleOutcomes",
+          "description": "An object containing data about the non-reversible emissions outcomes for the field."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "credit_share",
+        "reversible_outcomes",
+        "non_reversible_outcomes"
+      ],
+      "title": "Outcomes"
+    },
+    "scenarios_service_schema__public__intervention__v0__measure__scope_3_output__ReportingInformation": {
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "title": "Start Date",
+          "description": "The first day of the reporting period, also known as the crediting period. This is the starting date used to quantify carbon outcomes. It represents the earliest start date of the field-level reporting period."
+        },
+        "end_date": {
+          "type": "string",
+          "title": "End Date",
+          "description": "The last day of the reporting period, also known as the crediting period. This is the end of the time period used to quantify carbon outcomes. It represents the last end date of the field-level reporting period."
+        },
+        "crop_name": {
+          "type": "string",
+          "title": "Crop Name",
+          "description": "The common name of the crop for which carbon outcomes are quantified."
+        },
+        "total_yield": {
+          "type": "number",
+          "title": "Total Yield",
+          "description": "The sum of the yield from all fields in the project with the specified crop in the reporting information."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "start_date",
+        "end_date",
+        "crop_name",
+        "total_yield"
+      ],
+      "title": "ReportingInformation"
+    },
+    "scenarios_service_schema__public__intervention__v0__measure__scope_3_output__ReversibleOutcomes": {
+      "properties": {
+        "credit_share": {
+          "type": "number",
+          "title": "Credit Share",
+          "description": "A value representing the total emissions reduction attributed to the field. The value is calculated by deriving the weight of the field’s reversible `mean` in relation to other fields with the same commodity crop, and multiplying it by the total crop-level total emissions reduction value."
+        },
+        "dsoc": {
+          "$ref": "#/$defs/OutcomeEntityDSOC",
+          "description": "An object containing data about the dSOC outcomes for the field."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "credit_share",
+        "dsoc"
+      ],
+      "title": "ReversibleOutcomes"
+    }
+  }
+}

@@ -1,0 +1,861 @@
+{
+  "@context": {
+    "@vocab": "https://regrow.ag/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "regrow": "https://regrow.ag/schema#",
+    "AWDFlood": "regrow:AWDFlood",
+    "intervention": {
+      "@id": "regrow:intervention",
+      "@type": "@id"
+    },
+    "parameters": {
+      "@id": "regrow:parameters"
+    },
+    "AggregatedEmissions": "regrow:AggregatedEmissions",
+    "co2eq_total": {
+      "@id": "regrow:co2eq_total",
+      "@type": "xsd:decimal"
+    },
+    "co2eq_per_animal_unit": {
+      "@id": "regrow:co2eq_per_animal_unit",
+      "@type": "xsd:decimal"
+    },
+    "co2eq_per_terminal_unit": {
+      "@id": "regrow:co2eq_per_terminal_unit",
+      "@type": "xsd:decimal"
+    },
+    "co2eq_per_pound_of_terminal_unit": {
+      "@id": "regrow:co2eq_per_pound_of_terminal_unit",
+      "@type": "xsd:decimal"
+    },
+    "co2eq_per_animal_stage": {
+      "@id": "regrow:co2eq_per_animal_stage"
+    },
+    "AggregatedRancherEmissions": "regrow:AggregatedRancherEmissions",
+    "name": {
+      "@id": "regrow:name",
+      "@type": "xsd:string"
+    },
+    "baseline": {
+      "@id": "regrow:baseline",
+      "@type": "@id"
+    },
+    "reporting_period": {
+      "@id": "regrow:reporting_period"
+    },
+    "ApplicationAmountTypeEnum": "regrow:ApplicationAmountTypeEnum",
+    "ApplicationEvent": "regrow:ApplicationEvent",
+    "date": {
+      "@id": "regrow:date",
+      "@type": "xsd:string"
+    },
+    "amount": {
+      "@id": "regrow:amount",
+      "@type": "xsd:decimal"
+    },
+    "nutrient_product_type": {
+      "@id": "regrow:nutrient_product_type",
+      "@type": "@id"
+    },
+    "amount_type": {
+      "@id": "regrow:amount_type",
+      "@type": "@id"
+    },
+    "depth": {
+      "@id": "regrow:depth",
+      "@type": "xsd:decimal"
+    },
+    "liq_dry": {
+      "@id": "regrow:liq_dry",
+      "@type": "@id"
+    },
+    "application_method": {
+      "@id": "regrow:application_method",
+      "@type": "@id"
+    },
+    "additives": {
+      "@id": "regrow:additives"
+    },
+    "c_n": {
+      "@id": "regrow:c_n"
+    },
+    "organic_n": {
+      "@id": "regrow:organic_n"
+    },
+    "nh4": {
+      "@id": "regrow:nh4"
+    },
+    "no3": {
+      "@id": "regrow:no3"
+    },
+    "urea": {
+      "@id": "regrow:urea"
+    },
+    "area_unit": {
+      "@id": "regrow:area_unit",
+      "@type": "@id"
+    },
+    "rate_unit": {
+      "@id": "regrow:rate_unit"
+    },
+    "water_amount": {
+      "@id": "regrow:water_amount"
+    },
+    "ApplicationMethodEnum": "regrow:ApplicationMethodEnum",
+    "AreaUnitEnum": "regrow:AreaUnitEnum",
+    "ArrivalEvent": "regrow:ArrivalEvent",
+    "type": {
+      "@id": "regrow:type",
+      "@type": "xsd:string"
+    },
+    "count": {
+      "@id": "regrow:count",
+      "@type": "xsd:integer"
+    },
+    "total_start_weight": {
+      "@id": "regrow:total_start_weight"
+    },
+    "AutoIrrigationEvent": "regrow:AutoIrrigationEvent",
+    "start_date": {
+      "@id": "regrow:start_date",
+      "@type": "xsd:string"
+    },
+    "end_date": {
+      "@id": "regrow:end_date",
+      "@type": "xsd:string"
+    },
+    "method": {
+      "@id": "regrow:method",
+      "@type": "@id"
+    },
+    "furrow_percentage": {
+      "@id": "regrow:furrow_percentage"
+    },
+    "BaseReportingInformation": "regrow:BaseReportingInformation",
+    "BaselineMethodEnum": "regrow:BaselineMethodEnum",
+    "BeefCattleAgeClassEnum": "regrow:BeefCattleAgeClassEnum",
+    "Cohort": "regrow:Cohort",
+    "location": {
+      "@id": "regrow:location",
+      "@type": "@id"
+    },
+    "livestock": {
+      "@id": "regrow:livestock",
+      "@type": "@id"
+    },
+    "initial_head_count": {
+      "@id": "regrow:initial_head_count",
+      "@type": "xsd:integer"
+    },
+    "total_end_weight": {
+      "@id": "regrow:total_end_weight"
+    },
+    "diet": {
+      "@id": "regrow:diet",
+      "@container": "@list"
+    },
+    "management_events": {
+      "@id": "regrow:management_events",
+      "@container": "@list"
+    },
+    "CoverCrop": "regrow:CoverCrop",
+    "CreateProjectResponse": "regrow:CreateProjectResponse",
+    "message": {
+      "@id": "regrow:message",
+      "@type": "xsd:string"
+    },
+    "CreditEntityWithCredit": "regrow:CreditEntityWithCredit",
+    "mean": {
+      "@id": "regrow:mean",
+      "@type": "xsd:decimal"
+    },
+    "standard_deviation": {
+      "@id": "regrow:standard_deviation",
+      "@type": "xsd:decimal"
+    },
+    "reporting_percentile": {
+      "@id": "regrow:reporting_percentile",
+      "@type": "xsd:decimal"
+    },
+    "uncertainty_distribution": {
+      "@id": "regrow:uncertainty_distribution"
+    },
+    "credit": {
+      "@id": "regrow:credit",
+      "@type": "xsd:decimal"
+    },
+    "CreditEntityWithTotalNonReversibleEmissionsReductions": "regrow:CreditEntityWithTotalNonReversibleEmissionsReductions",
+    "total_non_reversible_emissions_reductions": {
+      "@id": "regrow:total_non_reversible_emissions_reductions",
+      "@type": "xsd:decimal"
+    },
+    "CreditEntityWithTotalReversibleEmissionsReductions": "regrow:CreditEntityWithTotalReversibleEmissionsReductions",
+    "total_reversible_emissions_reductions": {
+      "@id": "regrow:total_reversible_emissions_reductions",
+      "@type": "xsd:decimal"
+    },
+    "Credits": "regrow:Credits",
+    "number_of_fields": {
+      "@id": "regrow:number_of_fields",
+      "@type": "xsd:integer"
+    },
+    "number_of_acres": {
+      "@id": "regrow:number_of_acres",
+      "@type": "xsd:decimal"
+    },
+    "reversible_credits": {
+      "@id": "regrow:reversible_credits"
+    },
+    "non_reversible_credits": {
+      "@id": "regrow:non_reversible_credits",
+      "@type": "@id"
+    },
+    "total_reversible_credit": {
+      "@id": "regrow:total_reversible_credit"
+    },
+    "total_non_reversible_credit": {
+      "@id": "regrow:total_non_reversible_credit",
+      "@type": "xsd:decimal"
+    },
+    "total_credit": {
+      "@id": "regrow:total_credit",
+      "@type": "xsd:decimal"
+    },
+    "CropLevelCredits": "regrow:CropLevelCredits",
+    "reporting_information": {
+      "@id": "regrow:reporting_information",
+      "@type": "@id"
+    },
+    "CropNamesEnum": "regrow:CropNamesEnum",
+    "CroppingEvent": "regrow:CroppingEvent",
+    "reductions": {
+      "@id": "regrow:reductions",
+      "@container": "@list"
+    },
+    "plant_density": {
+      "@id": "regrow:plant_density"
+    },
+    "CultivationCycle": "regrow:CultivationCycle",
+    "CustomFertilizer": "regrow:CustomFertilizer",
+    "nitrate_percent": {
+      "@id": "regrow:nitrate_percent",
+      "@type": "xsd:decimal"
+    },
+    "ammonia_percent": {
+      "@id": "regrow:ammonia_percent",
+      "@type": "xsd:decimal"
+    },
+    "ammonium_percent": {
+      "@id": "regrow:ammonium_percent",
+      "@type": "xsd:decimal"
+    },
+    "ammonium_bicarbonate_percent": {
+      "@id": "regrow:ammonium_bicarbonate_percent",
+      "@type": "xsd:decimal"
+    },
+    "urea_percent": {
+      "@id": "regrow:urea_percent",
+      "@type": "xsd:decimal"
+    },
+    "sulfate_percent": {
+      "@id": "regrow:sulfate_percent",
+      "@type": "xsd:decimal"
+    },
+    "phosphate_percent": {
+      "@id": "regrow:phosphate_percent",
+      "@type": "xsd:decimal"
+    },
+    "liquid_density": {
+      "@id": "regrow:liquid_density"
+    },
+    "mass_liquid_density_unit": {
+      "@id": "regrow:mass_liquid_density_unit"
+    },
+    "CustomOrganicAmendment": "regrow:CustomOrganicAmendment",
+    "organic_n_percent": {
+      "@id": "regrow:organic_n_percent",
+      "@type": "xsd:decimal"
+    },
+    "carbon_percent": {
+      "@id": "regrow:carbon_percent",
+      "@type": "xsd:decimal"
+    },
+    "CustomReductionEvent": "regrow:CustomReductionEvent",
+    "frac_grain_removed": {
+      "@id": "regrow:frac_grain_removed",
+      "@type": "xsd:decimal"
+    },
+    "frac_grain_residue": {
+      "@id": "regrow:frac_grain_residue",
+      "@type": "xsd:decimal"
+    },
+    "frac_leaf_removed": {
+      "@id": "regrow:frac_leaf_removed",
+      "@type": "xsd:decimal"
+    },
+    "frac_leaf_residue": {
+      "@id": "regrow:frac_leaf_residue",
+      "@type": "xsd:decimal"
+    },
+    "frac_stem_residue": {
+      "@id": "regrow:frac_stem_residue",
+      "@type": "xsd:decimal"
+    },
+    "frac_stem_removed": {
+      "@id": "regrow:frac_stem_removed",
+      "@type": "xsd:decimal"
+    },
+    "frac_root_removed": {
+      "@id": "regrow:frac_root_removed",
+      "@type": "xsd:decimal"
+    },
+    "frac_root_residue": {
+      "@id": "regrow:frac_root_residue",
+      "@type": "xsd:decimal"
+    },
+    "DeleteFieldRequestResponse": "regrow:DeleteFieldRequestResponse",
+    "DeleteProjectResponse": "regrow:DeleteProjectResponse",
+    "DeleteRancherResponse": "regrow:DeleteRancherResponse",
+    "DepartureEvent": "regrow:DepartureEvent",
+    "departure_type": {
+      "@id": "regrow:departure_type",
+      "@type": "@id"
+    },
+    "departure_end_weight": {
+      "@id": "regrow:departure_end_weight"
+    },
+    "DepartureTypeEnum": "regrow:DepartureTypeEnum",
+    "Diet": "regrow:Diet",
+    "dry_matter_intake": {
+      "@id": "regrow:dry_matter_intake"
+    },
+    "neutral_detergent_fiber_percentage": {
+      "@id": "regrow:neutral_detergent_fiber_percentage"
+    },
+    "gross_energy_intake": {
+      "@id": "regrow:gross_energy_intake"
+    },
+    "crude_protein_percentage": {
+      "@id": "regrow:crude_protein_percentage",
+      "@type": "xsd:decimal"
+    },
+    "acid_detergent_fiber_percentage": {
+      "@id": "regrow:acid_detergent_fiber_percentage",
+      "@type": "xsd:decimal"
+    },
+    "DietTypeEnum": "regrow:DietTypeEnum",
+    "DownloadLink": "regrow:DownloadLink",
+    "download_link": {
+      "@id": "regrow:download_link",
+      "@type": "@id"
+    },
+    "DryMatterIntake": "regrow:DryMatterIntake",
+    "value": {
+      "@id": "regrow:value",
+      "@type": "xsd:decimal"
+    },
+    "unit": {
+      "@id": "regrow:unit",
+      "@type": "@id"
+    },
+    "time_period": {
+      "@id": "regrow:time_period",
+      "@type": "@id"
+    },
+    "EmissionReductionEntity": "regrow:EmissionReductionEntity",
+    "practice_change": {
+      "@id": "regrow:practice_change",
+      "@type": "xsd:decimal"
+    },
+    "offset": {
+      "@id": "regrow:offset",
+      "@type": "xsd:decimal"
+    },
+    "EmissionReductionEntityWithConservativeDeduction": "regrow:EmissionReductionEntityWithConservativeDeduction",
+    "deduction": {
+      "@id": "regrow:deduction",
+      "@type": "xsd:decimal"
+    },
+    "EmissionReductionEstimatesWithConservativeDeduction": "regrow:EmissionReductionEstimatesWithConservativeDeduction",
+    "total_emissions_reductions_estimate": {
+      "@id": "regrow:total_emissions_reductions_estimate",
+      "@type": "xsd:decimal"
+    },
+    "dsoc": {
+      "@id": "regrow:dsoc",
+      "@type": "@id"
+    },
+    "indirect_n2o": {
+      "@id": "regrow:indirect_n2o",
+      "@type": "@id"
+    },
+    "direct_n2o": {
+      "@id": "regrow:direct_n2o",
+      "@type": "@id"
+    },
+    "soil_ch4": {
+      "@id": "regrow:soil_ch4",
+      "@type": "@id"
+    },
+    "enteric_ch4": {
+      "@id": "regrow:enteric_ch4"
+    },
+    "fossil_fuel_co2": {
+      "@id": "regrow:fossil_fuel_co2"
+    },
+    "liming": {
+      "@id": "regrow:liming"
+    },
+    "EmissionsEntity": "regrow:EmissionsEntity",
+    "EmissionsEntityFuel": "regrow:EmissionsEntityFuel",
+    "EmissionsEntityIndirectN2O": "regrow:EmissionsEntityIndirectN2O",
+    "EmissionsEntitySoilCH4": "regrow:EmissionsEntitySoilCH4",
+    "EntericListProjectsResponseWithStats": "regrow:EntericListProjectsResponseWithStats",
+    "projects": {
+      "@id": "regrow:projects",
+      "@container": "@list"
+    },
+    "EntericProjectResponse": "regrow:EntericProjectResponse",
+    "ranchers": {
+      "@id": "regrow:ranchers",
+      "@container": "@list"
+    },
+    "EntericProjectResponseWithStats": "regrow:EntericProjectResponseWithStats",
+    "project_name": {
+      "@id": "regrow:project_name",
+      "@type": "xsd:string"
+    },
+    "created_at": {
+      "@id": "regrow:created_at",
+      "@type": "xsd:string"
+    },
+    "finalized_at": {
+      "@id": "regrow:finalized_at",
+      "@type": "xsd:string"
+    },
+    "is_finalized": {
+      "@id": "regrow:is_finalized",
+      "@type": "xsd:boolean"
+    },
+    "results_available": {
+      "@id": "regrow:results_available",
+      "@type": "xsd:boolean"
+    },
+    "results_available_at": {
+      "@id": "regrow:results_available_at",
+      "@type": "xsd:string"
+    },
+    "is_billable": {
+      "@id": "regrow:is_billable",
+      "@type": "xsd:boolean"
+    },
+    "total_ranchers": {
+      "@id": "regrow:total_ranchers",
+      "@type": "xsd:integer"
+    },
+    "program_start_date": {
+      "@id": "regrow:program_start_date",
+      "@type": "xsd:string"
+    },
+    "Events": "regrow:Events",
+    "irrigation": {
+      "@id": "regrow:irrigation",
+      "@container": "@list"
+    },
+    "till": {
+      "@id": "regrow:till",
+      "@container": "@list"
+    },
+    "flood": {
+      "@id": "regrow:flood",
+      "@container": "@list"
+    },
+    "cropping": {
+      "@id": "regrow:cropping",
+      "@container": "@list"
+    },
+    "fertilizer": {
+      "@id": "regrow:fertilizer",
+      "@container": "@list"
+    },
+    "organic_amendment": {
+      "@id": "regrow:organic_amendment",
+      "@container": "@list"
+    },
+    "fire": {
+      "@id": "regrow:fire",
+      "@container": "@list"
+    },
+    "application": {
+      "@id": "regrow:application",
+      "@container": "@list"
+    },
+    "ExploreAPIFieldSimulationResponseStatusEnum": "regrow:ExploreAPIFieldSimulationResponseStatusEnum",
+    "ExploreAPIFieldSimulationStatusResponse": "regrow:ExploreAPIFieldSimulationStatusResponse",
+    "response_status": {
+      "@id": "regrow:response_status",
+      "@type": "@id"
+    },
+    "ExploreAPIInput": "regrow:ExploreAPIInput",
+    "session_name": {
+      "@id": "regrow:session_name",
+      "@type": "xsd:string"
+    },
+    "scenarios": {
+      "@id": "regrow:scenarios",
+      "@container": "@list"
+    },
+    "optional_ghg_boundaries": {
+      "@id": "regrow:optional_ghg_boundaries",
+      "@container": "@list"
+    },
+    "conservative_deduction": {
+      "@id": "regrow:conservative_deduction",
+      "@type": "xsd:decimal"
+    },
+    "baseline_method": {
+      "@id": "regrow:baseline_method",
+      "@type": "xsd:string"
+    },
+    "ExploreAPIResultsResponse": "regrow:ExploreAPIResultsResponse",
+    "field_name": {
+      "@id": "regrow:field_name",
+      "@type": "xsd:string"
+    },
+    "field_id": {
+      "@id": "regrow:field_id",
+      "@type": "xsd:integer"
+    },
+    "emissions_reductions_estimates": {
+      "@id": "regrow:emissions_reductions_estimates",
+      "@type": "@id"
+    },
+    "ExploreScenario": "regrow:ExploreScenario",
+    "soil": {
+      "@id": "regrow:soil",
+      "@type": "@id"
+    },
+    "weather": {
+      "@id": "regrow:weather"
+    },
+    "rotations": {
+      "@id": "regrow:rotations",
+      "@container": "@list"
+    },
+    "weather_sources": {
+      "@id": "regrow:weather_sources",
+      "@container": "@list"
+    },
+    "soil_sources": {
+      "@id": "regrow:soil_sources",
+      "@container": "@list"
+    },
+    "scenario_type": {
+      "@id": "regrow:scenario_type",
+      "@type": "@id"
+    },
+    "fuel_consumption": {
+      "@id": "regrow:fuel_consumption"
+    },
+    "intervention_practices": {
+      "@id": "regrow:intervention_practices",
+      "@container": "@list"
+    },
+    "FertilizerEvent": "regrow:FertilizerEvent",
+    "custom": {
+      "@id": "regrow:custom"
+    },
+    "FertilizerMethodEnum": "regrow:FertilizerMethodEnum",
+    "FieldLevelCreditShareEnum": "regrow:FieldLevelCreditShareEnum",
+    "FieldLevelShare": "regrow:FieldLevelShare",
+    "crediting_crop": {
+      "@id": "regrow:crediting_crop",
+      "@type": "xsd:string"
+    },
+    "net_emissions_percentage": {
+      "@id": "regrow:net_emissions_percentage",
+      "@type": "xsd:decimal"
+    },
+    "area_acres": {
+      "@id": "regrow:area_acres",
+      "@type": "xsd:decimal"
+    },
+    "crop_yield_bushels_per_acre": {
+      "@id": "regrow:crop_yield_bushels_per_acre",
+      "@type": "xsd:decimal"
+    },
+    "FieldLevelSharePerGas": "regrow:FieldLevelSharePerGas",
+    "ch4_percentage": {
+      "@id": "regrow:ch4_percentage",
+      "@type": "xsd:decimal"
+    },
+    "n2o_percentage": {
+      "@id": "regrow:n2o_percentage",
+      "@type": "xsd:decimal"
+    },
+    "indirect_n2o_percentage": {
+      "@id": "regrow:indirect_n2o_percentage",
+      "@type": "xsd:decimal"
+    },
+    "soc_percentage": {
+      "@id": "regrow:soc_percentage",
+      "@type": "xsd:decimal"
+    },
+    "FieldLevelValue": "regrow:FieldLevelValue",
+    "net_emissions_factor": {
+      "@id": "regrow:net_emissions_factor",
+      "@type": "xsd:decimal"
+    },
+    "indirect_n2o_emissions": {
+      "@id": "regrow:indirect_n2o_emissions",
+      "@type": "xsd:decimal"
+    },
+    "direct_n2o_emissions": {
+      "@id": "regrow:direct_n2o_emissions",
+      "@type": "xsd:decimal"
+    },
+    "ch4_emissions": {
+      "@id": "regrow:ch4_emissions",
+      "@type": "xsd:decimal"
+    },
+    "soc": {
+      "@id": "regrow:soc",
+      "@type": "xsd:decimal"
+    },
+    "ghg_emissions_factor": {
+      "@id": "regrow:ghg_emissions_factor",
+      "@type": "xsd:decimal"
+    },
+    "soc_emissions_factor": {
+      "@id": "regrow:soc_emissions_factor",
+      "@type": "xsd:decimal"
+    },
+    "FieldLocation": "regrow:FieldLocation",
+    "latlon": {
+      "@id": "regrow:latlon"
+    },
+    "boundary": {
+      "@id": "regrow:boundary"
+    },
+    "area": {
+      "@id": "regrow:area"
+    },
+    "FieldRequestIdOutputResponse": "regrow:FieldRequestIdOutputResponse",
+    "id": {
+      "@id": "regrow:id",
+      "@type": "xsd:integer"
+    },
+    "FieldRequestOutput": "regrow:FieldRequestOutput",
+    "FieldRequestOutputWithAPIVersion": "regrow:FieldRequestOutputWithAPIVersion",
+    "api_version": {
+      "@id": "regrow:api_version",
+      "@type": "xsd:string"
+    },
+    "FinalizeProjectResponse": "regrow:FinalizeProjectResponse",
+    "FireEvent": "regrow:FireEvent",
+    "burn_area_fraction": {
+      "@id": "regrow:burn_area_fraction",
+      "@type": "xsd:decimal"
+    },
+    "combusted_fraction": {
+      "@id": "regrow:combusted_fraction"
+    },
+    "FloodEvent": "regrow:FloodEvent",
+    "FuelConsumption": "regrow:FuelConsumption",
+    "gasoline": {
+      "@id": "regrow:gasoline",
+      "@type": "xsd:decimal"
+    },
+    "diesel": {
+      "@id": "regrow:diesel",
+      "@type": "xsd:decimal"
+    },
+    "FurrowIrrigation": "regrow:FurrowIrrigation",
+    "HTTPValidationError": "regrow:HTTPValidationError",
+    "detail": {
+      "@id": "regrow:detail",
+      "@container": "@list"
+    },
+    "InterventionEnum": "regrow:InterventionEnum",
+    "InterventionInput": "regrow:InterventionInput",
+    "intervention_start_date": {
+      "@id": "regrow:intervention_start_date"
+    },
+    "InterventionScenario": "regrow:InterventionScenario",
+    "InventoryInput": "regrow:InventoryInput",
+    "start_year": {
+      "@id": "regrow:start_year"
+    },
+    "cultivation_cycles": {
+      "@id": "regrow:cultivation_cycles",
+      "@container": "@list"
+    },
+    "InventoryListProjectsResponseWithStats": "regrow:InventoryListProjectsResponseWithStats",
+    "InventoryProjectAsset": "regrow:InventoryProjectAsset",
+    "crop_yield": {
+      "@id": "regrow:crop_yield",
+      "@type": "xsd:decimal"
+    },
+    "soil_ch4_emissions": {
+      "@id": "regrow:soil_ch4_emissions"
+    },
+    "total_emissions": {
+      "@id": "regrow:total_emissions",
+      "@type": "xsd:decimal"
+    },
+    "total_emissions_per_bushel": {
+      "@id": "regrow:total_emissions_per_bushel",
+      "@type": "xsd:decimal"
+    },
+    "soc_per_bushel": {
+      "@id": "regrow:soc_per_bushel",
+      "@type": "xsd:decimal"
+    },
+    "InventoryProjectResponseWithStats": "regrow:InventoryProjectResponseWithStats",
+    "total_fields": {
+      "@id": "regrow:total_fields",
+      "@type": "xsd:integer"
+    },
+    "total_area": {
+      "@id": "regrow:total_area",
+      "@type": "xsd:decimal"
+    },
+    "IrrigationEvent": "regrow:IrrigationEvent",
+    "IrrigationMethodEnum": "regrow:IrrigationMethodEnum",
+    "LatLong": "regrow:LatLong",
+    "latitude": {
+      "@id": "regrow:latitude",
+      "@type": "xsd:decimal"
+    },
+    "longitude": {
+      "@id": "regrow:longitude",
+      "@type": "xsd:decimal"
+    },
+    "LiquidDryEnum": "regrow:LiquidDryEnum",
+    "ListFieldRequestOutputResponse": "regrow:ListFieldRequestOutputResponse",
+    "data": {
+      "@id": "regrow:data",
+      "@container": "@list"
+    },
+    "ListProjectsResponseWithStats": "regrow:ListProjectsResponseWithStats",
+    "ListProtocolsResponse": "regrow:ListProtocolsResponse",
+    "protocols": {
+      "@id": "regrow:protocols",
+      "@container": "@list"
+    },
+    "ListRancherOutput": "regrow:ListRancherOutput",
+    "ListRanchersOutputResponse": "regrow:ListRanchersOutputResponse",
+    "Livestock": "regrow:Livestock",
+    "age_class": {
+      "@id": "regrow:age_class",
+      "@type": "@id"
+    },
+    "LivestockTypeEnum": "regrow:LivestockTypeEnum",
+    "Location": "regrow:Location",
+    "MultiPolygon": "regrow:MultiPolygon",
+    "coordinates": {
+      "@id": "regrow:coordinates",
+      "@container": "@list"
+    },
+    "NitrogenReductionParameters": "regrow:NitrogenReductionParameters",
+    "reduction_factor": {
+      "@id": "regrow:reduction_factor",
+      "@type": "xsd:decimal"
+    },
+    "NoTill": "regrow:NoTill",
+    "NutrientProductTypeEnum": "regrow:NutrientProductTypeEnum",
+    "OptionalGHGBoundaryEnum": "regrow:OptionalGHGBoundaryEnum",
+    "OrganicAmendmentEvent": "regrow:OrganicAmendmentEvent",
+    "OrganicAmendmentMethodEnum": "regrow:OrganicAmendmentMethodEnum",
+    "OutcomeEntity": "regrow:OutcomeEntity",
+    "preliminary_credit": {
+      "@id": "regrow:preliminary_credit",
+      "@type": "xsd:decimal"
+    },
+    "OutcomeEntityDSOC": "regrow:OutcomeEntityDSOC",
+    "OutcomeEntityDirectN2O": "regrow:OutcomeEntityDirectN2O",
+    "OutcomeEntityWithOptionalUncertainty": "regrow:OutcomeEntityWithOptionalUncertainty",
+    "Polygon": "regrow:Polygon",
+    "PracticeChangeEnum": "regrow:PracticeChangeEnum",
+    "ProjectCredits": "regrow:ProjectCredits",
+    "reversible_credit": {
+      "@id": "regrow:reversible_credit"
+    },
+    "non_reversible_credit": {
+      "@id": "regrow:non_reversible_credit",
+      "@type": "xsd:decimal"
+    },
+    "ProjectInventoryResponse": "regrow:ProjectInventoryResponse",
+    "crop_level": {
+      "@id": "regrow:crop_level"
+    },
+    "field_level": {
+      "@id": "regrow:field_level",
+      "@container": "@list"
+    },
+    "field_level_value": {
+      "@id": "regrow:field_level_value",
+      "@container": "@list"
+    },
+    "ProjectLevelCredits": "regrow:ProjectLevelCredits",
+    "ProjectResponseWithStats": "regrow:ProjectResponseWithStats",
+    "protocol": {
+      "@id": "regrow:protocol",
+      "@type": "xsd:string"
+    },
+    "is_test": {
+      "@id": "regrow:is_test",
+      "@type": "xsd:boolean"
+    },
+    "project_configuration": {
+      "@id": "regrow:project_configuration"
+    },
+    "ProjectScope1CreditShareResponse": "regrow:ProjectScope1CreditShareResponse",
+    "project_level": {
+      "@id": "regrow:project_level",
+      "@type": "@id"
+    },
+    "ProjectScope1Response": "regrow:ProjectScope1Response",
+    "ProjectScope3CreditShareResponse": "regrow:ProjectScope3CreditShareResponse",
+    "ProjectScope3Response": "regrow:ProjectScope3Response",
+    "ProtocolEnum": "regrow:ProtocolEnum",
+    "PublicAdditivesEnum": "regrow:PublicAdditivesEnum",
+    "PublicApplicationsEnum": "regrow:PublicApplicationsEnum",
+    "PublicFertilizersEnum": "regrow:PublicFertilizersEnum",
+    "PublicOrganicAmendmentsEnum": "regrow:PublicOrganicAmendmentsEnum",
+    "RancherIdOutput": "regrow:RancherIdOutput",
+    "rancher_name": {
+      "@id": "regrow:rancher_name",
+      "@type": "xsd:string"
+    },
+    "rancher_id": {
+      "@id": "regrow:rancher_id",
+      "@type": "xsd:integer"
+    },
+    "RancherIdOutputResponse": "regrow:RancherIdOutputResponse",
+    "RancherInput": "regrow:RancherInput",
+    "cohorts": {
+      "@id": "regrow:cohorts",
+      "@container": "@list"
+    },
+    "ReduceAppliedNitrogen": "regrow:ReduceAppliedNitrogen",
+    "ReduceTillageDepth": "regrow:ReduceTillageDepth",
+    "ReductionEnum": "regrow:ReductionEnum",
+    "ReductionEvent": "regrow:ReductionEvent",
+    "ReportingInformationForFieldLevel": "regrow:ReportingInformationForFieldLevel",
+    "crop_name": {
+      "@id": "regrow:crop_name",
+      "@type": "xsd:string"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Regrow API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Regrow's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-18) from openapi/regrow-ag-measure-api-openapi.yml, openapi/regrow-ag-monitor-api-openapi.yml.",
+  "dcterms:created": "2026-10-18",
+  "dcterms:source": [
+    "openapi/regrow-ag-measure-api-openapi.yml",
+    "openapi/regrow-ag-monitor-api-openapi.yml"
+  ]
+}

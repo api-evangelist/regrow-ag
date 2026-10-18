@@ -1,0 +1,220 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/regrow-ag/main/json-schema/regrow-ag-project-scope1-credit-share-response-schema.json",
+  "title": "ProjectScope1CreditShareResponse",
+  "description": "DEPRECATED - Only used for the CREDIT_SHARE_WEIGHTED field level credit share type, which is also deprecated.\n\nThis response does not contain full field level outcomes.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/ProjectScope1CreditShareResponse",
+  "properties": {
+    "project_level": {
+      "$ref": "#/$defs/ProjectLevelCredits"
+    },
+    "field_level": {
+      "additionalProperties": {
+        "$ref": "#/$defs/scenarios_service_schema__public__intervention__v0__measure__scope_1_output__FieldLevelCreditShareOutcomes"
+      },
+      "type": "object",
+      "title": "Field Level"
+    }
+  },
+  "type": "object",
+  "required": [
+    "project_level",
+    "field_level"
+  ],
+  "$defs": {
+    "BaseReportingInformation": {
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "title": "Start Date",
+          "description": "Format is \"YYYY-MM-DD\". Represents the date the reporting period begins. Typically, this is the harvest date of the commodity crop from the season prior to the practice change."
+        },
+        "end_date": {
+          "type": "string",
+          "title": "End Date",
+          "description": "Format is \"YYYY-MM-DD\". Represents the date the reporting period ends. Typically, this is the harvest date of the commodity crop during the practice change season, or the date of the last management event, whichever is later."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "start_date",
+        "end_date"
+      ],
+      "title": "BaseReportingInformation",
+      "description": "The `ReportingInformation` object specifies the metadata needed to quantify emissions/removals for a field, including the time period for which emissions should be quantified, and the crop the emissions/removals will be quantified for.\n\nTypically the `ReportingInformation` period correlates with a growing season or crop year for a field where regenerative or intervention practices are adopted."
+    },
+    "CreditEntityWithCredit": {
+      "properties": {
+        "mean": {
+          "type": "number",
+          "title": "Mean"
+        },
+        "standard_deviation": {
+          "type": "number",
+          "title": "Standard Deviation"
+        },
+        "reporting_percentile": {
+          "type": "number",
+          "title": "Reporting Percentile"
+        },
+        "uncertainty_distribution": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array",
+              "maxItems": 1000,
+              "minItems": 1000
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Uncertainty Distribution"
+        },
+        "credit": {
+          "type": "number",
+          "title": "Credit"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "mean",
+        "standard_deviation",
+        "reporting_percentile",
+        "credit"
+      ],
+      "title": "CreditEntityWithCredit"
+    },
+    "ProjectCredits": {
+      "properties": {
+        "number_of_fields": {
+          "type": "integer",
+          "title": "Number Of Fields"
+        },
+        "number_of_acres": {
+          "type": "number",
+          "title": "Number Of Acres"
+        },
+        "reversible_credits": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CreditEntityWithCredit"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "non_reversible_credits": {
+          "$ref": "#/$defs/CreditEntityWithCredit"
+        },
+        "reversible_credit": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reversible Credit"
+        },
+        "non_reversible_credit": {
+          "type": "number",
+          "title": "Non Reversible Credit"
+        },
+        "total_credit": {
+          "type": "number",
+          "title": "Total Credit"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "number_of_fields",
+        "number_of_acres",
+        "non_reversible_credits",
+        "non_reversible_credit",
+        "total_credit"
+      ],
+      "title": "ProjectCredits"
+    },
+    "ProjectLevelCredits": {
+      "properties": {
+        "reporting_information": {
+          "$ref": "#/$defs/BaseReportingInformation"
+        },
+        "credit": {
+          "$ref": "#/$defs/ProjectCredits"
+        }
+      },
+      "type": "object",
+      "required": [
+        "reporting_information",
+        "credit"
+      ],
+      "title": "ProjectLevelCredits"
+    },
+    "ReportingInformationWithAreaInAcres": {
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "title": "Start Date",
+          "description": "Format is \"YYYY-MM-DD\". Represents the date the reporting period begins. Typically, this is the harvest date of the commodity crop from the season prior to the practice change."
+        },
+        "end_date": {
+          "type": "string",
+          "title": "End Date",
+          "description": "Format is \"YYYY-MM-DD\". Represents the date the reporting period ends. Typically, this is the harvest date of the commodity crop during the practice change season, or the date of the last management event, whichever is later."
+        },
+        "acres": {
+          "type": "number",
+          "title": "Area in acres",
+          "description": "The area of the field in acres."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "start_date",
+        "end_date",
+        "acres"
+      ],
+      "title": "ReportingInformationWithAreaInAcres",
+      "description": "The `ReportingInformation` object specifies the metadata needed to quantify emissions/removals for a field, including the time period for which emissions should be quantified, and the crop the emissions/removals will be quantified for.\n\nTypically the `ReportingInformation` period correlates with a growing season or crop year for a field where regenerative or intervention practices are adopted."
+    },
+    "scenarios_service_schema__public__intervention__v0__measure__scope_1_output__FieldLevelCreditShareOutcomes": {
+      "properties": {
+        "reporting_information": {
+          "$ref": "#/$defs/ReportingInformationWithAreaInAcres",
+          "description": "An object containing information about the time period for which carbon outcomes are quantified (AKA the ‘crediting period’), the area and the crop for the field."
+        },
+        "credit_share": {
+          "type": "number",
+          "title": "Credit Share",
+          "description": "An emissions redistribution value that redistributes credits proportionally based on the initial (preliminary) DNDC results. This is calculated as: (preliminary tCO2e for a field/total preliminary tCO2e) * post-uncertainty tCO2e."
+        },
+        "field_name": {
+          "type": "string",
+          "title": "Field Name",
+          "description": "The common description provided for the field."
+        }
+      },
+      "type": "object",
+      "required": [
+        "reporting_information",
+        "credit_share",
+        "field_name"
+      ],
+      "title": "FieldLevelCreditShareOutcomes",
+      "description": "An object containing data about the reporting period and credit share for the specified field."
+    }
+  }
+}

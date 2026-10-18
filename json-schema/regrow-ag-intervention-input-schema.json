@@ -1,0 +1,3024 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/regrow-ag/main/json-schema/regrow-ag-intervention-input-schema.json",
+  "title": "InterventionInput",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/InterventionInput",
+  "properties": {
+    "session_name": {
+      "type": "string",
+      "title": "Session Name",
+      "description": "A string describing the session input data, typically a description of the agricultural field being modeled. Cannot contain the following characters: '.' and '/'."
+    },
+    "scenarios": {
+      "items": {
+        "$ref": "#/$defs/InterventionScenario"
+      },
+      "type": "array",
+      "maxItems": 2,
+      "minItems": 2,
+      "title": "Scenarios",
+      "description": "A list of scenario objects. A scenario is a collection of field and management practices used to simulate GHG emissions using the DNDC model. There are four types of scenarios: `baseline`, `practice_change`, `historical_baseline`, and `intervention`.\n\nTwo `Scenario` objects are required: `baseline` and `practice_change` **or** `historical_baseline` and `intervention`."
+    },
+    "reporting_information": {
+      "$ref": "#/$defs/scenarios_service_schema__schema__ReportingInformation[CropNamesEnum]"
+    },
+    "intervention_start_date": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Intervention Start Date",
+      "description": "The start date of the cultivation cycle when intervention practices were first adopted on a field. This date typically represents the beginning of a carbon project. This field is only applicable when baseline and practice change scenario types are used in the session input"
+    }
+  },
+  "type": "object",
+  "required": [
+    "session_name",
+    "scenarios",
+    "reporting_information"
+  ],
+  "ex_ante": {
+    "baseline_method": "rotational",
+    "conservative_deduction": 0,
+    "reporting_information": {
+      "crop_name": "corn",
+      "end_date": "2023-09-01",
+      "start_date": "2022-09-02"
+    },
+    "scenarios": [
+      {
+        "location": {
+          "area": 100,
+          "area_unit": "hectare",
+          "latlon": {
+            "latitude": "43.1340",
+            "longitude": "70.9264"
+          }
+        },
+        "name": "historical_baseline_example",
+        "rotations": [
+          {
+            "phases": [
+              {
+                "end_date": "2020-09-01",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 150,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2020-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2020-09-01",
+                      "name": "corn",
+                      "reductions": [
+                        {
+                          "date": "2020-09-01",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2020-04-01"
+                    }
+                  ],
+                  "irrigation": [
+                    {
+                      "end_date": "2020-08-01",
+                      "method": "drip",
+                      "start_date": "2020-04-01"
+                    }
+                  ],
+                  "till": [
+                    {
+                      "date": "2020-03-01",
+                      "depth": 8,
+                      "soil_inverted": false
+                    }
+                  ]
+                },
+                "start_date": "2019-09-01"
+              },
+              {
+                "end_date": "2021-09-01",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 150,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2021-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2021-09-01",
+                      "name": "corn",
+                      "reductions": [
+                        {
+                          "date": "2021-09-01",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2021-04-01"
+                    }
+                  ],
+                  "irrigation": [
+                    {
+                      "end_date": "2021-08-01",
+                      "method": "drip",
+                      "start_date": "2021-04-01"
+                    }
+                  ],
+                  "till": [
+                    {
+                      "date": "2021-03-01",
+                      "depth": 8,
+                      "soil_inverted": false
+                    }
+                  ]
+                },
+                "start_date": "2020-09-02"
+              },
+              {
+                "end_date": "2022-09-01",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 150,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2022-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2022-09-01",
+                      "name": "corn",
+                      "reductions": [
+                        {
+                          "date": "2022-09-01",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2022-04-01"
+                    }
+                  ],
+                  "irrigation": [
+                    {
+                      "end_date": "2022-08-01",
+                      "method": "drip",
+                      "start_date": "2022-04-01"
+                    }
+                  ],
+                  "till": [
+                    {
+                      "date": "2022-03-01",
+                      "depth": 8,
+                      "soil_inverted": false
+                    }
+                  ]
+                },
+                "start_date": "2021-09-02"
+              }
+            ]
+          }
+        ],
+        "scenario_type": "historical_baseline",
+        "soil": {
+          "bulk_density": 1.1,
+          "clay_fraction": 0.3,
+          "ph": 6.2,
+          "soc": 0.25,
+          "topsoil_depth": 30
+        },
+        "soil_sources": [
+          "SSURGO",
+          "GLOBAL"
+        ]
+      },
+      {
+        "location": {
+          "area": 100,
+          "area_unit": "hectare",
+          "latlon": {
+            "latitude": "43.1340",
+            "longitude": "70.9264"
+          }
+        },
+        "name": "intervention_example",
+        "rotations": [
+          {
+            "phases": [
+              {
+                "end_date": "2023-09-01",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 75,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2023-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2023-09-01",
+                      "name": "corn",
+                      "reductions": [
+                        {
+                          "date": "2023-09-01",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2023-04-01"
+                    }
+                  ],
+                  "irrigation": [
+                    {
+                      "end_date": "2023-08-01",
+                      "method": "drip",
+                      "start_date": "2023-04-01"
+                    }
+                  ],
+                  "till": [
+                    {
+                      "date": "2023-03-01",
+                      "depth": 2,
+                      "soil_inverted": false
+                    }
+                  ]
+                },
+                "start_date": "2022-09-02"
+              }
+            ]
+          }
+        ],
+        "scenario_type": "intervention",
+        "soil": {
+          "bulk_density": 1.1,
+          "clay_fraction": 0.3,
+          "ph": 6.2,
+          "soc": 0.25,
+          "topsoil_depth": 30
+        },
+        "soil_sources": [
+          "SSURGO",
+          "GLOBAL"
+        ],
+        "weather_sources": [
+          "PRISM",
+          "GLOBAL"
+        ]
+      }
+    ],
+    "session_name": "example field"
+  },
+  "intervention_estimate": {
+    "baseline_method": "rotational",
+    "conservative_deduction": 0,
+    "reporting_information": {
+      "crop_name": "corn",
+      "end_date": "2023-09-01",
+      "start_date": "2022-09-02"
+    },
+    "scenarios": [
+      {
+        "location": {
+          "area": 100,
+          "area_unit": "hectare",
+          "latlon": {
+            "latitude": "43.1340",
+            "longitude": "70.9264"
+          }
+        },
+        "name": "historical_baseline_example",
+        "rotations": [
+          {
+            "phases": [
+              {
+                "end_date": "2020-09-01",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 150,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2020-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2020-09-01",
+                      "name": "corn",
+                      "reductions": [
+                        {
+                          "date": "2020-09-01",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2020-04-01"
+                    }
+                  ],
+                  "irrigation": [
+                    {
+                      "end_date": "2020-08-01",
+                      "method": "drip",
+                      "start_date": "2020-04-01"
+                    }
+                  ],
+                  "till": [
+                    {
+                      "date": "2020-03-01",
+                      "depth": 8,
+                      "soil_inverted": false
+                    }
+                  ]
+                },
+                "start_date": "2019-09-01"
+              },
+              {
+                "end_date": "2021-09-01",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 150,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2021-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2021-09-01",
+                      "name": "corn",
+                      "reductions": [
+                        {
+                          "date": "2021-09-01",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2021-04-01"
+                    }
+                  ],
+                  "irrigation": [
+                    {
+                      "end_date": "2021-08-01",
+                      "method": "drip",
+                      "start_date": "2021-04-01"
+                    }
+                  ],
+                  "till": [
+                    {
+                      "date": "2021-03-01",
+                      "depth": 8,
+                      "soil_inverted": false
+                    }
+                  ]
+                },
+                "start_date": "2020-09-02"
+              },
+              {
+                "end_date": "2022-09-01",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 150,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2022-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2022-09-01",
+                      "name": "corn",
+                      "reductions": [
+                        {
+                          "date": "2022-09-01",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2022-04-01"
+                    }
+                  ],
+                  "irrigation": [
+                    {
+                      "end_date": "2022-08-01",
+                      "method": "drip",
+                      "start_date": "2022-04-01"
+                    }
+                  ],
+                  "till": [
+                    {
+                      "date": "2022-03-01",
+                      "depth": 8,
+                      "soil_inverted": false
+                    }
+                  ]
+                },
+                "start_date": "2021-09-02"
+              }
+            ]
+          }
+        ],
+        "scenario_type": "historical_baseline",
+        "soil": {
+          "bulk_density": 1.1,
+          "clay_fraction": 0.3,
+          "ph": 6.2,
+          "soc": 0.25,
+          "topsoil_depth": 30
+        },
+        "soil_sources": [
+          "SSURGO",
+          "GLOBAL"
+        ]
+      },
+      {
+        "intervention_practices": [
+          {
+            "intervention": "no_till"
+          }
+        ],
+        "location": {
+          "area": 100,
+          "area_unit": "hectare",
+          "latlon": {
+            "latitude": "43.1340",
+            "longitude": "70.9264"
+          }
+        },
+        "name": "intervention_practice_example",
+        "scenario_type": "intervention",
+        "soil": {
+          "bulk_density": 1.1,
+          "clay_fraction": 0.3,
+          "ph": 6.2,
+          "soc": 0.25,
+          "topsoil_depth": 30
+        },
+        "soil_sources": [
+          "SSURGO",
+          "GLOBAL"
+        ],
+        "weather_sources": [
+          "PRISM",
+          "GLOBAL"
+        ]
+      }
+    ],
+    "session_name": "example field"
+  },
+  "no_till_intervention": {
+    "reporting_information": {
+      "crop_name": "corn",
+      "crop_yield": 20,
+      "end_date": "2023-09-01",
+      "start_date": "2022-09-02"
+    },
+    "scenarios": [
+      {
+        "location": {
+          "area": 100,
+          "area_unit": "hectare",
+          "latlon": {
+            "latitude": "43.1340",
+            "longitude": "70.9264"
+          }
+        },
+        "name": "historical_baseline_example",
+        "rotations": [
+          {
+            "phases": [
+              {
+                "end_date": "2020-09-01",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 150,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2020-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2020-09-01",
+                      "name": "corn",
+                      "reductions": [
+                        {
+                          "date": "2020-09-01",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2020-04-01"
+                    }
+                  ],
+                  "irrigation": [
+                    {
+                      "end_date": "2020-08-01",
+                      "method": "drip",
+                      "start_date": "2020-04-01"
+                    }
+                  ],
+                  "till": [
+                    {
+                      "date": "2020-03-01",
+                      "depth": 8,
+                      "soil_inverted": false
+                    }
+                  ]
+                },
+                "start_date": "2019-09-01"
+              },
+              {
+                "end_date": "2021-09-01",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 150,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2021-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2021-09-01",
+                      "name": "corn",
+                      "reductions": [
+                        {
+                          "date": "2021-09-01",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2021-04-01"
+                    }
+                  ],
+                  "irrigation": [
+                    {
+                      "end_date": "2021-08-01",
+                      "method": "drip",
+                      "start_date": "2021-04-01"
+                    }
+                  ],
+                  "till": [
+                    {
+                      "date": "2021-03-01",
+                      "depth": 8,
+                      "soil_inverted": false
+                    }
+                  ]
+                },
+                "start_date": "2020-09-02"
+              },
+              {
+                "end_date": "2022-09-01",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 150,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2022-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2022-09-01",
+                      "name": "corn",
+                      "reductions": [
+                        {
+                          "date": "2022-09-01",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2022-04-01"
+                    }
+                  ],
+                  "irrigation": [
+                    {
+                      "end_date": "2022-08-01",
+                      "method": "drip",
+                      "start_date": "2022-04-01"
+                    }
+                  ],
+                  "till": [
+                    {
+                      "date": "2022-03-01",
+                      "depth": 8,
+                      "soil_inverted": false
+                    }
+                  ]
+                },
+                "start_date": "2021-09-02"
+              }
+            ]
+          }
+        ],
+        "scenario_type": "historical_baseline",
+        "soil": {
+          "bulk_density": 1.1,
+          "clay_fraction": 0.3,
+          "ph": 6.2,
+          "soc": 0.25,
+          "topsoil_depth": 30
+        },
+        "soil_sources": [
+          "SSURGO",
+          "GLOBAL"
+        ],
+        "weather_sources": [
+          "PRISM",
+          "GLOBAL"
+        ]
+      },
+      {
+        "location": {
+          "area": 100,
+          "area_unit": "hectare",
+          "latlon": {
+            "latitude": "43.1340",
+            "longitude": "70.9264"
+          }
+        },
+        "name": "intervention_example",
+        "rotations": [
+          {
+            "phases": [
+              {
+                "end_date": "2023-09-01",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 75,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2023-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2023-09-01",
+                      "name": "corn",
+                      "reductions": [
+                        {
+                          "date": "2023-09-01",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2023-04-01"
+                    }
+                  ],
+                  "irrigation": [
+                    {
+                      "end_date": "2023-08-01",
+                      "method": "drip",
+                      "start_date": "2023-04-01"
+                    }
+                  ]
+                },
+                "start_date": "2022-09-02"
+              }
+            ]
+          }
+        ],
+        "scenario_type": "intervention",
+        "soil": {
+          "bulk_density": 1.1,
+          "clay_fraction": 0.3,
+          "ph": 6.2,
+          "soc": 0.25,
+          "topsoil_depth": 30
+        },
+        "soil_sources": [
+          "SSURGO",
+          "GLOBAL"
+        ],
+        "weather_sources": [
+          "PRISM",
+          "GLOBAL"
+        ]
+      }
+    ],
+    "session_name": "example field"
+  },
+  "public_example": {
+    "reporting_information": {
+      "crop_name": "corn",
+      "crop_yield": 20,
+      "end_date": "2023-09-01",
+      "start_date": "2022-09-02"
+    },
+    "scenarios": [
+      {
+        "location": {
+          "area": 100,
+          "area_unit": "hectare",
+          "latlon": {
+            "latitude": "43.1340",
+            "longitude": "70.9264"
+          }
+        },
+        "name": "historical_baseline_example",
+        "rotations": [
+          {
+            "phases": [
+              {
+                "end_date": "2020-09-01",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 150,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2020-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2020-09-01",
+                      "name": "corn",
+                      "reductions": [
+                        {
+                          "date": "2020-09-01",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2020-04-01"
+                    }
+                  ],
+                  "irrigation": [
+                    {
+                      "end_date": "2020-08-01",
+                      "method": "drip",
+                      "start_date": "2020-04-01"
+                    }
+                  ],
+                  "till": [
+                    {
+                      "date": "2020-03-01",
+                      "depth": 8,
+                      "soil_inverted": false
+                    }
+                  ]
+                },
+                "start_date": "2019-09-01"
+              },
+              {
+                "end_date": "2021-09-01",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 150,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2021-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2021-09-01",
+                      "name": "corn",
+                      "reductions": [
+                        {
+                          "date": "2021-09-01",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2021-04-01"
+                    }
+                  ],
+                  "irrigation": [
+                    {
+                      "end_date": "2021-08-01",
+                      "method": "drip",
+                      "start_date": "2021-04-01"
+                    }
+                  ],
+                  "till": [
+                    {
+                      "date": "2021-03-01",
+                      "depth": 8,
+                      "soil_inverted": false
+                    }
+                  ]
+                },
+                "start_date": "2020-09-02"
+              },
+              {
+                "end_date": "2022-09-01",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 150,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2022-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2022-09-01",
+                      "name": "corn",
+                      "reductions": [
+                        {
+                          "date": "2022-09-01",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2022-04-01"
+                    }
+                  ],
+                  "irrigation": [
+                    {
+                      "end_date": "2022-08-01",
+                      "method": "drip",
+                      "start_date": "2022-04-01"
+                    }
+                  ],
+                  "till": [
+                    {
+                      "date": "2022-03-01",
+                      "depth": 8,
+                      "soil_inverted": false
+                    }
+                  ]
+                },
+                "start_date": "2021-09-02"
+              }
+            ]
+          }
+        ],
+        "scenario_type": "historical_baseline",
+        "soil": {
+          "bulk_density": 1.1,
+          "clay_fraction": 0.3,
+          "ph": 6.2,
+          "soc": 0.25,
+          "topsoil_depth": 30
+        },
+        "soil_sources": [
+          "SSURGO",
+          "GLOBAL"
+        ],
+        "weather_sources": [
+          "PRISM",
+          "GLOBAL"
+        ]
+      },
+      {
+        "location": {
+          "area": 100,
+          "area_unit": "hectare",
+          "latlon": {
+            "latitude": "43.1340",
+            "longitude": "70.9264"
+          }
+        },
+        "name": "intervention_example",
+        "rotations": [
+          {
+            "phases": [
+              {
+                "end_date": "2023-09-01",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 75,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2023-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2023-09-01",
+                      "name": "corn",
+                      "reductions": [
+                        {
+                          "date": "2023-09-01",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2023-04-01"
+                    }
+                  ],
+                  "irrigation": [
+                    {
+                      "end_date": "2023-08-01",
+                      "method": "drip",
+                      "start_date": "2023-04-01"
+                    }
+                  ],
+                  "till": [
+                    {
+                      "date": "2023-03-01",
+                      "depth": 2,
+                      "soil_inverted": false
+                    }
+                  ]
+                },
+                "start_date": "2022-09-02"
+              }
+            ]
+          }
+        ],
+        "scenario_type": "intervention",
+        "soil": {
+          "bulk_density": 1.1,
+          "clay_fraction": 0.3,
+          "ph": 6.2,
+          "soc": 0.25,
+          "topsoil_depth": 30
+        },
+        "soil_sources": [
+          "SSURGO",
+          "GLOBAL"
+        ],
+        "weather_sources": [
+          "PRISM",
+          "GLOBAL"
+        ]
+      }
+    ],
+    "session_name": "example field"
+  },
+  "rice_simulation": {
+    "reporting_information": {
+      "crop_name": "rice",
+      "crop_yield": 20,
+      "end_date": "2023-08-31",
+      "start_date": "2022-08-21"
+    },
+    "scenarios": [
+      {
+        "location": {
+          "area": 100,
+          "area_unit": "hectare",
+          "latlon": {
+            "latitude": 43.134,
+            "longitude": -70.9264
+          }
+        },
+        "name": "historical baseline",
+        "rotations": [
+          {
+            "phases": [
+              {
+                "end_date": "2020-08-15",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 75,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2020-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2020-08-15",
+                      "name": "rice",
+                      "reductions": [
+                        {
+                          "date": "2020-08-15",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2020-03-15"
+                    }
+                  ],
+                  "fire": [
+                    {
+                      "burn_area_fraction": 1,
+                      "combusted_fraction": 1,
+                      "date": "2019-10-01"
+                    }
+                  ],
+                  "flood": [
+                    {
+                      "end_date": "2020-08-01",
+                      "start_date": "2020-04-01"
+                    }
+                  ],
+                  "till": [
+                    {
+                      "date": "2020-03-01",
+                      "depth": 8,
+                      "soil_inverted": false
+                    }
+                  ]
+                },
+                "start_date": "2019-08-15"
+              },
+              {
+                "end_date": "2021-09-15",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 75,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2021-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2021-09-15",
+                      "name": "rice",
+                      "reductions": [
+                        {
+                          "date": "2021-09-15",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2021-03-15"
+                    }
+                  ],
+                  "fire": [
+                    {
+                      "burn_area_fraction": 1,
+                      "combusted_fraction": 1,
+                      "date": "2020-11-01"
+                    }
+                  ],
+                  "flood": [
+                    {
+                      "end_date": "2021-09-01",
+                      "start_date": "2021-04-01"
+                    }
+                  ],
+                  "till": [
+                    {
+                      "date": "2021-03-01",
+                      "depth": 8,
+                      "soil_inverted": false
+                    }
+                  ]
+                },
+                "start_date": "2020-08-16"
+              },
+              {
+                "end_date": "2022-08-20",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 75,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2022-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2022-08-20",
+                      "name": "rice",
+                      "reductions": [
+                        {
+                          "date": "2022-08-20",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2022-03-15"
+                    }
+                  ],
+                  "fire": [
+                    {
+                      "burn_area_fraction": 1,
+                      "combusted_fraction": 1,
+                      "date": "2021-10-01"
+                    }
+                  ],
+                  "flood": [
+                    {
+                      "end_date": "2022-08-10",
+                      "start_date": "2022-04-01"
+                    }
+                  ],
+                  "till": [
+                    {
+                      "date": "2022-03-01",
+                      "depth": 8,
+                      "soil_inverted": false
+                    }
+                  ]
+                },
+                "start_date": "2021-09-16"
+              }
+            ]
+          }
+        ],
+        "scenario_type": "historical_baseline"
+      },
+      {
+        "location": {
+          "area": 100,
+          "area_unit": "hectare",
+          "latlon": {
+            "latitude": 43.134,
+            "longitude": -70.9264
+          }
+        },
+        "name": "rice intervention scenario",
+        "rotations": [
+          {
+            "phases": [
+              {
+                "end_date": "2023-08-31",
+                "management_events": {
+                  "application": [
+                    {
+                      "amount": 75,
+                      "amount_type": "n_rate",
+                      "area_unit": "hectare",
+                      "date": "2023-05-01",
+                      "name": "urea",
+                      "nutrient_product_type": "basic_inorganic",
+                      "rate_unit": "kilogram"
+                    }
+                  ],
+                  "cropping": [
+                    {
+                      "end_date": "2023-08-31",
+                      "name": "rice",
+                      "reductions": [
+                        {
+                          "date": "2023-08-31",
+                          "type": "grain_harvest"
+                        }
+                      ],
+                      "start_date": "2023-03-15"
+                    }
+                  ],
+                  "fire": [
+                    {
+                      "burn_area_fraction": 1,
+                      "combusted_fraction": 1,
+                      "date": "2022-10-01"
+                    }
+                  ],
+                  "flood": [
+                    {
+                      "end_date": "2023-03-31",
+                      "start_date": "2023-03-15"
+                    },
+                    {
+                      "end_date": "2023-05-31",
+                      "start_date": "2023-04-15"
+                    },
+                    {
+                      "end_date": "2023-08-15",
+                      "start_date": "2023-06-15"
+                    }
+                  ],
+                  "till": [
+                    {
+                      "date": "2023-03-01",
+                      "depth": 8,
+                      "soil_inverted": false
+                    }
+                  ]
+                },
+                "start_date": "2022-08-21"
+              }
+            ]
+          }
+        ],
+        "scenario_type": "intervention"
+      }
+    ],
+    "session_name": "example_rice_AWD"
+  },
+  "$defs": {
+    "ApplicationAmountTypeEnum": {
+      "type": "string",
+      "enum": [
+        "product",
+        "n_rate",
+        "s_rate",
+        "p_rate",
+        "c_rate"
+      ],
+      "title": "ApplicationAmountTypeEnum",
+      "description": "The Application Amount Type represents the fertilizer nutrient corresponding to the fertilizer amount. Select the product option when only the total application amount for a fertilizer product is known. Select a specific nutrient application rate when the fertilizer amount is known for a specific nutrient (ex: select n_rate when the total amount of nitrogen applied to the field is measured)."
+    },
+    "ApplicationEvent": {
+      "properties": {
+        "date": {
+          "type": "string",
+          "title": "Date",
+          "description": "Format is \"YYYY-MM-DD\""
+        },
+        "name": {
+          "$ref": "#/$defs/PublicApplicationsEnum",
+          "title": "Name",
+          "description": "The name of the application. The valid list of applications by type are:\n | Basic Inorganic | N ratio | Percent of N as Nitrate | Percent of N as Urea | Percent of N as Ammonia | Percent of N as Ammonium | Percent of N as Ammonium Bicarbonate | P<sub>2</sub>O<sub>5</sub> ratio | K<sub>2</sub>0 ratio | \n| --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- |\n| ammonium_bicarbonate| 17.7| 0.0| 0.0| 0.0| 0.0| 1.0| 0.0| 0.0|\n| ammonium_nitrate| 34.0| 0.5| 0.0| 0.0| 0.5| 0.0| 0.0| 0.0|\n| di_ammonium_phosphate| 18.0| 0.0| 0.0| 0.0| 1.0| 0.0| 46.0| 0.0|\n| tri_ammonium_phosphate_trihydrate| 20.7| 0.0| 0.0| 0.0| 1.0| 0.0| 35.0| 0.0|\n| ammonium_sulfate| 21.0| 0.0| 0.0| 0.0| 1.0| 0.0| 0.0| 0.0|\n| ammonia_aqueous| 20.0| 0.0| 0.0| 1.0| 0.0| 0.0| 0.0| 0.0|\n| monoammonium_phosphate| 11.0| 0.0| 0.0| 0.0| 1.0| 0.0| 48.0| 0.0|\n| urea| 46.0| 0.0| 1.0| 0.0| 0.0| 0.0| 0.0| 0.0|\n| urea_ammonium_nitrate| 30.0| 0.25| 0.5| 0.0| 0.25| 0.0| 0.0| 0.0|\n| ammonia_anhydrous| 82.0| 0.0| 0.0| 1.0| 0.0| 0.0| 0.0| 0.0|\n| calcium_nitrate| 15.5| 1.0| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0|\n| calcium_ammonium_nitrate| 27.0| 0.5| 0.0| 0.0| 0.5| 0.0| 0.0| 0.0|\n| nitrate| 22.6| 1.0| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0|\n| potassium_nitrate| 13.0| 1.0| 0.0| 0.0| 0.0| 0.0| 0.0| 44.0|\n| ammonium_polyphosphate| 11.0| 0.0| 0.0| 0.0| 1.0| 0.0| 37.0| 0.0|\n| sulfate| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0|\n| phosphate| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 74.7| 0.0|\n| npk_28_12_12| 28.0| 0.0| 0.0| 0.0| 1.0| 0.0| 12.0| 12.0|\n| urea_ammonium_sulfate| 38.0| 0.0| 0.67| 0.0| 0.33| 0.0| 0.0| 0.0|\n| urea_ammonium_nitrate_28| 28.0| 0.25| 0.5| 0.0| 0.25| 0.0| 0.0| 0.0|\n| urea_ammonium_nitrate_32| 32.0| 0.25| 0.5| 0.0| 0.25| 0.0| 0.0| 0.0|\n| potassium_chloride| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 60.0|\n| sulfonitrate| 26.0| 0.27| 0.0| 0.0| 0.73| 0.0| 0.0| 0.0|\n| microessentials_s10| 12.0| 0.0| 0.0| 0.0| 1.0| 0.0| 40.0| 0.0|\n| microessentials_s15| 13.0| 0.0| 0.0| 0.0| 1.0| 0.0| 33.0| 0.0|\n| microessentials_sz| 12.0| 0.0| 0.0| 0.0| 1.0| 0.0| 40.0| 0.0|\n| ammonium_thiosulfate| 12.0| 0.0| 0.0| 0.0| 1.0| 0.0| 0.0| 0.0|\n| potassium_sulfate| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 53.0|\n| single_superphosphate| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 20.0| 0.0|\n| triple_superphosphate| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 46.0| 0.0|\n| crystal_green| 5.0| 0.0| 0.0| 0.0| 1.0| 0.0| 28.0| 0.0|\n| npk_20_0_24| 20.0| 0.5| 0.0| 0.0| 0.5| 0.0| 0.0| 24.0|\n| yaramila_complex| 12.0| 0.42| 0.0| 0.0| 0.58| 0.0| 11.0| 18.0|\n| ammo_31| 30.7| 0.0| 0.4| 0.0| 0.6| 0.0| 0.0| 0.0|\n| cropmaster_15| 14.8| 0.0| 0.0| 0.0| 1.0| 0.0| 10.0| 10.0|\n| croplex| 12.0| 0.0| 0.0| 0.0| 1.0| 0.0| 40.0| 0.0|\n| npk_15_15_15| 15.0| 0.0| 0.13| 0.0| 0.87| 0.0| 15.0| 15.0|\n| lime| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0|\n| urea_ammonium_phosphate| 34.0| 0.0| 0.88| 0.0| 0.12| 0.0| 17.0| 0.0|\n| ammonium_polyphosphate_10_34_0| 10.0| 0.0| 0.0| 0.0| 1.0| 0.0| 34.0| 0.0|\n| ammonium_phosphate_sulfate| 16.0| 0.0| 0.0| 0.0| 1.0| 0.0| 20.0| 0.0|\n| hakaphos_13_40_13| 13.0| 0.0| 0.31| 0.0| 0.69| 0.0| 40.0| 13.0|\n\n | EENF Inorganic | \n| --------- |\n| entec_26|\n| entec_46|\n| esn|\n| nexen_46|\n| nitamin_nfusion|\n| osmocote_classic|\n| superu|\n| urea_formaldehyde|\n| urea_neem_coated|\n| urea_polymer_coated|\n| urea_sulfer_coated|\n\n | Organic | C:N Ratio | N Ratio | \n| --------- | --------- | --------- |\n| alfalfa_meal| 16.9842| 4.0|\n| blood_meal| 3.55626| 12.0|\n| bone_meal| 5.16883| 2.0|\n| fish_meal| 5.06011| 11.0|\n| hay_grass| 32.0| 1.5|\n| hay_legume| 16.8889| 3.0|\n| manure_beef_liquid| 15.5109| 1.5|\n| manure_beef_solid| 15.5109| 1.5|\n| manure_compost| 15.0| 1.5|\n| manure_dairy_liquid| 12.0398| 1.5|\n| manure_dairy_solid| 17.2761| 1.5|\n| manure_guano| 5.28333| 1.2|\n| manure_horse_liquid| 0.0| 0.0|\n| manure_horse_solid| 34.7016| 0.4|\n| manure_pig_liquid| 5.57551| 0.6|\n| manure_pig_solid| 13.0509| 0.6|\n| manure_poultry_liquid| 7.34159| 2.1|\n| manure_poultry_solid| 7.34159| 2.1|\n| manure_sheep_liquid| 21.0894| 0.6|\n| manure_sheep_solid| 13.0212| 0.6|\n| municipal_waste| 18.2066| 5.0|\n| peat| 32.6087| 2.3|\n| seaweed_fresh| 10.0| 1.0|\n| seaweed_ground| 16.0263| 1.0|\n| soybean_meal| 7.0| 7.0|\n| straw| 66.0| 0.5|\n"
+        },
+        "amount": {
+          "type": "number",
+          "exclusiveMinimum": 0.0,
+          "title": "Rate",
+          "description": "Rate of the application. Unit depends on amount_type"
+        },
+        "nutrient_product_type": {
+          "$ref": "#/$defs/NutrientProductTypeEnum"
+        },
+        "amount_type": {
+          "$ref": "#/$defs/ApplicationAmountTypeEnum"
+        },
+        "depth": {
+          "type": "number",
+          "minimum": 0.0,
+          "title": "Depth",
+          "description": "The depth of the application in centimeters. Must be greater than zero when the application method is inject, subsurface or fertigation_subsurface_drip.",
+          "default": 0.0
+        },
+        "liq_dry": {
+          "$ref": "#/$defs/LiquidDryEnum",
+          "default": "dry"
+        },
+        "application_method": {
+          "$ref": "#/$defs/ApplicationMethodEnum",
+          "default": "broadcast"
+        },
+        "additives": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/PublicAdditivesEnum"
+              },
+              "type": "array",
+              "maxItems": 2
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Additives",
+          "description": "Chemicals added to fertilizer products to reduce nitrogen losses to the environment and increase nitrogen availability to crops. Supported additives are shown in the table below. Additives are not allowed when type = eenf_inorganic or application_method = fertigation.\n\n | Additives | \n| --------- |\n| agrotain|\n| agrotain_plus|\n| anvol|\n| centuro|\n| n_serve|\n| nitrification_inhibitor|\n| nutrisphere|\n| urease_inhibitor|\n| urease_nitrification_dual_inhibitor|\n"
+        },
+        "c_n": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "C:N Ratio",
+          "description": "The carbon to nitrogen ratio of the organic amendment."
+        },
+        "organic_n": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Organic N content",
+          "description": "kgN/ha"
+        },
+        "nh4": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Ammonium N content",
+          "description": "kgN/ha"
+        },
+        "no3": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Nitrate N content",
+          "description": "kgN/ha"
+        },
+        "urea": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Urea N content",
+          "description": "kgN/na"
+        },
+        "area_unit": {
+          "$ref": "#/$defs/AreaUnitEnum",
+          "default": "hectare"
+        },
+        "rate_unit": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/scenarios_service_schema__public__units__MassUnitEnum"
+            },
+            {
+              "$ref": "#/$defs/VolumeUnitEnum"
+            }
+          ],
+          "title": "Rate Unit",
+          "default": "kilogram"
+        },
+        "water_amount": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Water Amount",
+          "description": "Millimeters of water applied during a fertilizer application (ex: from a rain gauge). Required if the application method is any of the fertigation methods, not allowed otherwise."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "date",
+        "name",
+        "amount",
+        "nutrient_product_type",
+        "amount_type"
+      ],
+      "title": "ApplicationEvent",
+      "description": "The applicationEvent contains data about a single fertilizer or nutrient management event on a field. The applied product type (ex: basic synthetic fertilizer, organic fertilizer) is specified for each event, along with the application date, method, amount and rate applied.\n\n    - Basic Inorganic: inorganic fertilizer products that are not enhanced-efficiency nitrogen fertilizers\n    - EENF Inorganic: enhanced efficiency nitrogen fertilizer products that are designed to reduce nitrogen losses to the environment and increase nitrogen availability to crops\n    - Organic: organic fertilizer products (manure, mulch, compost, etc.)\n\n    | nutrient_product_type | valid application_method choices |\n    | --------------------- | -------------------------------- |\n    | basic_inorganic       | broadcast, subsurface, fertigation_furrow, fertigation_sprinkler, fertigation_drip, fertigation_subsurface_drip |\n    | eenf_inorganic        | broadcast, subsurface, fertigation_furrow, fertigation_sprinkler, fertigation_drip, fertigation_subsurface_drip |\n    | organic               | broadcast, inject |\n\n    **Currently \"lime\", \"potassium_chloride\", \"granite_dust\", \"manure_horse_liquid\" and \"cottonseed_hull_ash\" events are accepted, but the values are not used by DNDC for outcomes calculations. This feature will be added in the future.**\n\n    "
+    },
+    "ApplicationMethodEnum": {
+      "type": "string",
+      "enum": [
+        "broadcast",
+        "fertigation_furrow",
+        "fertigation_sprinkler",
+        "fertigation_drip",
+        "fertigation_subsurface_drip",
+        "inject",
+        "subsurface"
+      ],
+      "title": "ApplicationMethodEnum",
+      "description": "The `applicationMethod` specified how a fertilizer is applied to the soil. The following options are supported:\n\n- `broadcast` - application is spread across the soil surface\n- `subsurface` - application is applied below the soil surface, at the depth specified. *(The `depth` input is required for `subsurface` applications.)*\n- `inject` - application is injected directly into the soil. *(The `depth` input is required for `inject` applications.)*\n\n- `fertigation_furrow` - fertilizer product is applied to the field with water at a single point during the day. *(The `water_amount` input is required for `fertigation_furrow` applications.)* Note: plant accessible water is 0.15x `water_amount`.\n- `fertigation_sprinkler` -  fertilizer product is applied to the surface of the field with water, distributed over half a day. *(The `water_amount` input is required for `fertigation_sprinkler` applications.)* Note: plant accessible water is 0.15x `water_amount`.\n- `fertigation_drip` - fertilizer product is applied to the surface of the field with water, distributed equally over the entire day. *(The `water_amount` input is required for `fertigation_drip` applications.) Note: plant accessible water is 0.75x `water_amount`.\n- `fertigation_subsurface_drip` - fertilizer product is applied below the surface of the field with water at a depth of 8-10cm, distributed equally over the entire day. *(The `water_amount` input is required for `fertigation_subsurface_drip` applications.) Note: plant accessible water is 1.0x `water_amount`."
+    },
+    "AreaUnitEnum": {
+      "type": "string",
+      "enum": [
+        "square_meter",
+        "hectare",
+        "acre"
+      ],
+      "title": "AreaUnitEnum"
+    },
+    "AutoIrrigationEvent": {
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "title": "Start Date",
+          "description": "Format is \"YYYY-MM-DD\""
+        },
+        "end_date": {
+          "type": "string",
+          "title": "End Date",
+          "description": "Format is \"YYYY-MM-DD\""
+        },
+        "method": {
+          "$ref": "#/$defs/IrrigationMethodEnum"
+        },
+        "furrow_percentage": {
+          "anyOf": [
+            {
+              "type": "number",
+              "maximum": 1.0,
+              "minimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Furrow Percentage",
+          "description": "Percentage of the field that is furrowed, should only be specified when `method = furrow` (default = 0.95)."
+        },
+        "depth": {
+          "type": "number",
+          "minimum": 0.0,
+          "title": "Application Depth",
+          "description": "The depth of the application in centimeters. Depth must be greater than 0 when subsurface_drip is the irrigation method.",
+          "default": 0.0
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "start_date",
+        "end_date",
+        "method"
+      ],
+      "title": "AutoIrrigationEvent",
+      "description": "The `AutoIrrigationEvent` contains information about irrigation that occurs over the course of the growing season. With this event, irrigation is automatically applied over a period of time, for the specified application method. The irrigation amount will be calculated automatically based on the water demand of the crop and climate factors such as weather precipitation, weather method, and index. Use the AutoIrrigation Event when an irrigation event occurs regularly over the cropping season, where the water amount may not be known. For single irrigation events, or events where the specific water amount is available use the `IrrigationEvent`."
+    },
+    "CropNamesEnum": {
+      "type": "string",
+      "enum": [
+        "corn",
+        "wheat_winter",
+        "soybean",
+        "hay",
+        "wheat_spring",
+        "barley",
+        "oat",
+        "alfalfa",
+        "grass_annual",
+        "sorghum",
+        "cotton",
+        "rye_spring",
+        "potato",
+        "rice",
+        "peanut",
+        "rice_upland",
+        "canola",
+        "millet",
+        "sunflower",
+        "dry_bean",
+        "corn_silage",
+        "tomato",
+        "safflower",
+        "flax",
+        "mustard",
+        "radish",
+        "sweet_potato",
+        "clover",
+        "sorghum_silage",
+        "rye",
+        "vetch",
+        "triticale",
+        "wheatgrass",
+        "pea",
+        "turnip",
+        "buckwheat",
+        "sunn_hemp",
+        "lentil",
+        "sweet_corn",
+        "pop_or_orn_corn",
+        "ryegrass",
+        "watermelon",
+        "teff",
+        "pumpkin",
+        "sugar_beet",
+        "switchgrass",
+        "miscanthus",
+        "wheat_durum",
+        "orchardgrass",
+        "faba_bean",
+        "premium_cover_crop_mix",
+        "hemp",
+        "camelina",
+        "speltz",
+        "basic_cover_crop",
+        "pasture",
+        "alternative_single_species_cover_crop",
+        "legume_cover_crop",
+        "traditional_blend_cover_crop",
+        "alternative_blend_cover_crop"
+      ],
+      "title": "CropNamesEnum"
+    },
+    "CroppingEvent": {
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "title": "Start Date",
+          "description": "Format is \"YYYY-MM-DD\". Represents the date the crop is planted"
+        },
+        "end_date": {
+          "type": "string",
+          "title": "End Date",
+          "description": "Format is \"YYYY-MM-DD. Represents the date the crop is killed. In the model the plant is terminated and remaining aboveground biomass (leaf/stem/grain, remaining) tracked as residues and converted to surface litter, root biomass becomes residue/litter that is distributed among the the top ~20 cm of soil layers.\""
+        },
+        "name": {
+          "$ref": "#/$defs/CropNamesEnum",
+          "title": "Name"
+        },
+        "reductions": {
+          "items": {
+            "$ref": "#/$defs/ReductionEvent"
+          },
+          "type": "array",
+          "title": "Reduction Events",
+          "description": "\nThe `ReductionEvent` contains information about how and when a crop is mechanically harvested, mowed or cut. A `cropping` event can contain multiple reductions. Choose the reduction method that is most applicable for the crop type grown.\n\nFor crops that are not mechanically reduced (such as crops terminated by herbicide, or winter-killed), omit any `ReductionEvents`, as the death of the crop is captured by the `end date` of the `croppingEvent`.\n\n| Reduction Type | Description |\n| -------------- | ----------- |\n| grain_harvest  | A cutting event that cuts the entire plant aboveground. All grain and 5% of leaf and stem biomass are removed from the field. The remaining 95% of leaf and stem biomass is applied back to the field as green mulch.  |\n| silage_harvest | A cutting event that cuts the entire plant aboveground. All grain and 95% of leaf and stem biomass are removed from the field. The remaining 5% of leaf and stem biomass is applied back to the field as green mulch.  |\n| mow_50         | A cutting event that cuts all grain and 50% of leaf and stem and applies it back to the field as green mulch. |\n| hay_50         | A cutting event that cuts all grain and 50% of leaf and stem and removes it from the field.|\n| mow_75         | A cutting event that cuts all grain and 75% of leaf and stem and applies it back to the field as green mulch. |\n| hay_75         | A cutting event that cuts all grain and 75% of leaf and stem and removes it from the field. |\n| mow_100        | A cutting event that cuts all aboveground plant material (grain, leaf, and stem) and applies it back to the field as green mulch. |\n| hay_100        | A cutting event that cuts all aboveground plant material (grain, leaf, and stem) and removes it from the field. |\n\nIf the available default Reduction Events do not serve your use case, a customized Reduction Event can be defined using the `CustomReductionEvent` schema.  The `type` and `custom` fields are mutually exclusive.  One of `type` or `custom` must be specified.\n\nFor a given crop biomass category (grain, leaf, stem, or root), the sum of the fractional biomass removed or returned to the field as residue must not be greater than 1. For example, a custom Reduction Event that removes all grain, leaf, and stem (i.e. a silage harvest) would be specified as follows:\n- frac_grain_removed = 1\n- frac_grain_residue = 0\n- frac_leaf_removed = 1\n- frac_leaf_residue = 0\n- frac_stem_removed = 1\n- frac_stem_residue = 0\n- frac_root_removed = 0\n- frac_root_residue = 0\n\nAll root crops (potatoes, sugar beet, etc.) classify the traditionally consumed tuber part (e.g., the potato itself) as a 'grain' in DNDC, so therefore a DNDC harvest event for tubers should use the following. Leaf and stem can be treated as more variable depending on how the above ground leaf material is handled by the client.\n- frac_grain_removed = 1\n- frac_grain_residue = 0\n- frac_root_removed = 0\n- frac_root_residue = 1\n"
+        },
+        "plant_density": {
+          "anyOf": [
+            {
+              "type": "number",
+              "maximum": 600.0,
+              "minimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Plant Density",
+          "description": "The number of plants per square meter. Can only be specified for `rice_paddy_short` and `rice_paddy_long`. Only supported by DNDC versions 12.3 and up."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "start_date",
+        "end_date",
+        "name"
+      ],
+      "title": "CroppingEvent",
+      "description": "The `CroppingEvent` contains information about a crop growing on a field, including the type of crop, planting and harvest dates, and when applicable the harvest/reduction methods.\n\nCropping events can be used to represent commodity crops, cover crops and pasture cover."
+    },
+    "CustomFertilizer": {
+      "properties": {
+        "nitrate_percent": {
+          "type": "number",
+          "maximum": 100.0,
+          "minimum": 0.0,
+          "title": "Nitrate Percent",
+          "default": 0
+        },
+        "ammonia_percent": {
+          "type": "number",
+          "maximum": 100.0,
+          "minimum": 0.0,
+          "title": "Ammonia Percent",
+          "default": 0
+        },
+        "ammonium_percent": {
+          "type": "number",
+          "maximum": 100.0,
+          "minimum": 0.0,
+          "title": "Ammonium Percent",
+          "default": 0
+        },
+        "ammonium_bicarbonate_percent": {
+          "type": "number",
+          "maximum": 100.0,
+          "minimum": 0.0,
+          "title": "Ammonium Bicarbonate Percent",
+          "default": 0
+        },
+        "urea_percent": {
+          "type": "number",
+          "maximum": 100.0,
+          "minimum": 0.0,
+          "title": "Urea Percent",
+          "default": 0
+        },
+        "sulfate_percent": {
+          "type": "number",
+          "maximum": 100.0,
+          "minimum": 0.0,
+          "title": "Sulfate Percent",
+          "default": 0
+        },
+        "phosphate_percent": {
+          "type": "number",
+          "maximum": 100.0,
+          "minimum": 0.0,
+          "title": "Phosphate Percent",
+          "default": 0
+        },
+        "liquid_density": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Liquid Density",
+          "description": "Required if the custom blend is liquid. Otherwise, it is considered solid."
+        },
+        "mass_liquid_density_unit": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/scenarios_service_schema__public__units__MassUnitEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Mass Liquid Density Unit",
+          "description": "Required if the custom blend is liquid. Otherwise, it is considered solid."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "CustomFertilizer",
+      "description": "The CustomFertilizer object allows customers to specify fertilizers and fertilizer blends that do not already exist in Regrow's predefined fertilizer types. To use this users will need to provide the nutrient breakdown and the liquid density of the product (in the event it's a liquid).\n\nTo use, set the parent fertilizer \"name\" to \"custom\"."
+    },
+    "CustomOrganicAmendment": {
+      "properties": {
+        "organic_n_percent": {
+          "type": "number",
+          "maximum": 100.0,
+          "exclusiveMinimum": 0.0,
+          "title": "Organic N Percent",
+          "default": 0
+        },
+        "nitrate_percent": {
+          "type": "number",
+          "maximum": 100.0,
+          "minimum": 0.0,
+          "title": "Nitrate Percent",
+          "default": 0
+        },
+        "ammonium_percent": {
+          "type": "number",
+          "maximum": 100.0,
+          "minimum": 0.0,
+          "title": "Ammonium Percent",
+          "default": 0
+        },
+        "urea_percent": {
+          "type": "number",
+          "maximum": 100.0,
+          "minimum": 0.0,
+          "title": "Urea Percent",
+          "default": 0
+        },
+        "carbon_percent": {
+          "type": "number",
+          "maximum": 100.0,
+          "exclusiveMinimum": 0.0,
+          "title": "Carbon Percent"
+        },
+        "liquid_density": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Liquid Density",
+          "description": "Required if the custom blend is liquid. Otherwise, it is considered solid."
+        },
+        "mass_liquid_density_unit": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/scenarios_service_schema__public__units__MassUnitEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Mass Liquid Density Unit",
+          "description": "Required if the custom blend is liquid. Otherwise, it is considered solid."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "carbon_percent"
+      ],
+      "title": "CustomOrganicAmendment"
+    },
+    "CustomReductionEvent": {
+      "properties": {
+        "frac_grain_removed": {
+          "type": "number",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Frac Grain Removed",
+          "description": "The fraction of crop grain biomass cut and removed from the field",
+          "default": 0.0
+        },
+        "frac_grain_residue": {
+          "type": "number",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Frac Grain Residue",
+          "description": "The fraction of crop grain biomass cut and left on the field",
+          "default": 0.0
+        },
+        "frac_leaf_removed": {
+          "type": "number",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Frac Leaf Removed",
+          "description": "The fraction of crop leaf biomass cut and removed from the field",
+          "default": 0.0
+        },
+        "frac_leaf_residue": {
+          "type": "number",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Frac Leaf Residue",
+          "description": "The fraction of crop leaf biomass cut and left on the field",
+          "default": 0.0
+        },
+        "frac_stem_residue": {
+          "type": "number",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Frac Stem Residue",
+          "description": "The fraction of crop stem biomass cut and left on the field",
+          "default": 0.0
+        },
+        "frac_stem_removed": {
+          "type": "number",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Frac Stem Removed",
+          "description": "The fraction of crop stem biomass cut and removed from the field",
+          "default": 0.0
+        },
+        "frac_root_removed": {
+          "type": "number",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Frac Root Removed",
+          "description": "The fraction of crop root biomass cut and removed from the field",
+          "default": 0.0
+        },
+        "frac_root_residue": {
+          "type": "number",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Frac Root Residue",
+          "description": "The fraction of crop root biomass cut and left on the field",
+          "default": 0.0
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "CustomReductionEvent",
+      "description": "The `CustomReductionEvent` contains information about the plant biomass removed/retained on the field after a mechanical reduction. Use the `CustomReductionEvent` when none of the available reduction methods are applicable for the crop type."
+    },
+    "Events": {
+      "properties": {
+        "irrigation": {
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/IrrigationEvent"
+              },
+              {
+                "$ref": "#/$defs/AutoIrrigationEvent"
+              }
+            ]
+          },
+          "type": "array",
+          "title": "irrigation",
+          "description": "A list of IrrigationEvent or AutoIrrigationEvents. The dates of these events cannot overlap.",
+          "default": []
+        },
+        "till": {
+          "items": {
+            "$ref": "#/$defs/TillEvent"
+          },
+          "type": "array",
+          "title": "Till",
+          "default": []
+        },
+        "flood": {
+          "items": {
+            "$ref": "#/$defs/FloodEvent"
+          },
+          "type": "array",
+          "title": "Flood",
+          "default": []
+        },
+        "cropping": {
+          "items": {
+            "$ref": "#/$defs/CroppingEvent"
+          },
+          "type": "array",
+          "title": "Cropping",
+          "default": []
+        },
+        "fertilizer": {
+          "items": {
+            "$ref": "#/$defs/FertilizerEvent"
+          },
+          "type": "array",
+          "title": "Fertilizer",
+          "default": []
+        },
+        "organic_amendment": {
+          "items": {
+            "$ref": "#/$defs/OrganicAmendmentEvent"
+          },
+          "type": "array",
+          "title": "Organic Amendment",
+          "default": []
+        },
+        "fire": {
+          "items": {
+            "$ref": "#/$defs/FireEvent"
+          },
+          "type": "array",
+          "title": "Fire",
+          "default": []
+        },
+        "application": {
+          "items": {
+            "$ref": "#/$defs/ApplicationEvent"
+          },
+          "type": "array",
+          "title": "application",
+          "description": "Please use `fertilizer` and/or `organic_amendment` instead.",
+          "default": [],
+          "deprecated": true
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Events"
+    },
+    "FertilizerEvent": {
+      "properties": {
+        "date": {
+          "type": "string",
+          "title": "Date",
+          "description": "Format is \"YYYY-MM-DD\""
+        },
+        "name": {
+          "$ref": "#/$defs/PublicFertilizersEnum",
+          "title": "Name",
+          "description": "The name of the fertilizer. The valid list of fertilizers by type are:\n | Basic Inorganic | N ratio | Percent of N as Nitrate | Percent of N as Urea | Percent of N as Ammonia | Percent of N as Ammonium | Percent of N as Ammonium Bicarbonate | P<sub>2</sub>O<sub>5</sub> ratio | K<sub>2</sub>0 ratio | \n| --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- |\n| ammonium_bicarbonate| 17.7| 0.0| 0.0| 0.0| 0.0| 1.0| 0.0| 0.0|\n| ammonium_nitrate| 34.0| 0.5| 0.0| 0.0| 0.5| 0.0| 0.0| 0.0|\n| di_ammonium_phosphate| 18.0| 0.0| 0.0| 0.0| 1.0| 0.0| 46.0| 0.0|\n| tri_ammonium_phosphate_trihydrate| 20.7| 0.0| 0.0| 0.0| 1.0| 0.0| 35.0| 0.0|\n| ammonium_sulfate| 21.0| 0.0| 0.0| 0.0| 1.0| 0.0| 0.0| 0.0|\n| ammonia_aqueous| 20.0| 0.0| 0.0| 1.0| 0.0| 0.0| 0.0| 0.0|\n| monoammonium_phosphate| 11.0| 0.0| 0.0| 0.0| 1.0| 0.0| 48.0| 0.0|\n| urea| 46.0| 0.0| 1.0| 0.0| 0.0| 0.0| 0.0| 0.0|\n| urea_ammonium_nitrate| 30.0| 0.25| 0.5| 0.0| 0.25| 0.0| 0.0| 0.0|\n| ammonia_anhydrous| 82.0| 0.0| 0.0| 1.0| 0.0| 0.0| 0.0| 0.0|\n| calcium_nitrate| 15.5| 1.0| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0|\n| calcium_ammonium_nitrate| 27.0| 0.5| 0.0| 0.0| 0.5| 0.0| 0.0| 0.0|\n| nitrate| 22.6| 1.0| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0|\n| potassium_nitrate| 13.0| 1.0| 0.0| 0.0| 0.0| 0.0| 0.0| 44.0|\n| ammonium_polyphosphate| 11.0| 0.0| 0.0| 0.0| 1.0| 0.0| 37.0| 0.0|\n| sulfate| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0|\n| phosphate| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 74.7| 0.0|\n| npk_28_12_12| 28.0| 0.0| 0.0| 0.0| 1.0| 0.0| 12.0| 12.0|\n| urea_ammonium_sulfate| 38.0| 0.0| 0.67| 0.0| 0.33| 0.0| 0.0| 0.0|\n| urea_ammonium_nitrate_28| 28.0| 0.25| 0.5| 0.0| 0.25| 0.0| 0.0| 0.0|\n| urea_ammonium_nitrate_32| 32.0| 0.25| 0.5| 0.0| 0.25| 0.0| 0.0| 0.0|\n| potassium_chloride| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 60.0|\n| sulfonitrate| 26.0| 0.27| 0.0| 0.0| 0.73| 0.0| 0.0| 0.0|\n| microessentials_s10| 12.0| 0.0| 0.0| 0.0| 1.0| 0.0| 40.0| 0.0|\n| microessentials_s15| 13.0| 0.0| 0.0| 0.0| 1.0| 0.0| 33.0| 0.0|\n| microessentials_sz| 12.0| 0.0| 0.0| 0.0| 1.0| 0.0| 40.0| 0.0|\n| ammonium_thiosulfate| 12.0| 0.0| 0.0| 0.0| 1.0| 0.0| 0.0| 0.0|\n| potassium_sulfate| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 53.0|\n| single_superphosphate| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 20.0| 0.0|\n| triple_superphosphate| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 46.0| 0.0|\n| crystal_green| 5.0| 0.0| 0.0| 0.0| 1.0| 0.0| 28.0| 0.0|\n| npk_20_0_24| 20.0| 0.5| 0.0| 0.0| 0.5| 0.0| 0.0| 24.0|\n| yaramila_complex| 12.0| 0.42| 0.0| 0.0| 0.58| 0.0| 11.0| 18.0|\n| ammo_31| 30.7| 0.0| 0.4| 0.0| 0.6| 0.0| 0.0| 0.0|\n| cropmaster_15| 14.8| 0.0| 0.0| 0.0| 1.0| 0.0| 10.0| 10.0|\n| croplex| 12.0| 0.0| 0.0| 0.0| 1.0| 0.0| 40.0| 0.0|\n| npk_15_15_15| 15.0| 0.0| 0.13| 0.0| 0.87| 0.0| 15.0| 15.0|\n| lime| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0| 0.0|\n| urea_ammonium_phosphate| 34.0| 0.0| 0.88| 0.0| 0.12| 0.0| 17.0| 0.0|\n| ammonium_polyphosphate_10_34_0| 10.0| 0.0| 0.0| 0.0| 1.0| 0.0| 34.0| 0.0|\n| ammonium_phosphate_sulfate| 16.0| 0.0| 0.0| 0.0| 1.0| 0.0| 20.0| 0.0|\n| hakaphos_13_40_13| 13.0| 0.0| 0.31| 0.0| 0.69| 0.0| 40.0| 13.0|\n\n | EENF Inorganic | \n| --------- |\n| entec_26|\n| entec_46|\n| esn|\n| nexen_46|\n| nitamin_nfusion|\n| osmocote_classic|\n| superu|\n| urea_formaldehyde|\n| urea_neem_coated|\n| urea_polymer_coated|\n| urea_sulfer_coated|\n\nEnter 'custom' to specify a custom fertilizer.\n"
+        },
+        "amount": {
+          "type": "number",
+          "exclusiveMinimum": 0.0,
+          "title": "Rate",
+          "description": "Rate of the application, in units specified by `rate_unit` and `area_unit`"
+        },
+        "depth": {
+          "type": "number",
+          "maximum": 50.0,
+          "minimum": 0.0,
+          "title": "Depth",
+          "description": "The depth of the application in centimeters. Must be greater than zero when the application method is subsurface or fertigation_subsurface_drip.",
+          "default": 0.0
+        },
+        "application_method": {
+          "$ref": "#/$defs/FertilizerMethodEnum",
+          "default": "broadcast"
+        },
+        "additives": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/PublicAdditivesEnum",
+                "maxLength": 256,
+                "minLength": 1
+              },
+              "type": "array",
+              "maxItems": 2,
+              "uniqueItems": true
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Additives",
+          "description": "Chemicals added to fertilizer products to reduce nitrogen losses to the environment and increase nitrogen availability to crops. Supported additives are shown in the table below. Additives are not allowed when type = eenf_inorganic or application_method = fertigation.\n\n | Additives | \n| --------- |\n| agrotain|\n| agrotain_plus|\n| anvol|\n| centuro|\n| n_serve|\n| nitrification_inhibitor|\n| nutrisphere|\n| urease_inhibitor|\n| urease_nitrification_dual_inhibitor|\n"
+        },
+        "area_unit": {
+          "$ref": "#/$defs/AreaUnitEnum"
+        },
+        "rate_unit": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/scenarios_service_schema__public__units__MassUnitEnum"
+            },
+            {
+              "$ref": "#/$defs/VolumeUnitEnum"
+            }
+          ],
+          "title": "Rate Unit"
+        },
+        "water_amount": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Water Amount",
+          "description": "Millimeters of water applied during a fertilizer application (ex: from a rain gauge). Required if the application method is any of the fertigation methods, not allowed otherwise."
+        },
+        "custom": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CustomFertilizer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Custom",
+          "description": "If the product name is “custom”, then the following component percentages are needed. For each component, if no percentage is added, then it is assumed to be 0. The total percentage of all components must sum to < 100."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "date",
+        "name",
+        "amount",
+        "area_unit",
+        "rate_unit"
+      ],
+      "title": "FertilizerEvent",
+      "description": "The FertilizerEvent contains data about a single inorganic fertilizer or inorganic nutrient management event on a field. The applied product name is specified for each event, along with the application date, method, amount and rate applied. Inorganic fertilizer types include:\n\n    - Basic Inorganic: inorganic fertilizer products that are not enhanced-efficiency nitrogen fertilizers\n    - EENF Inorganic: enhanced efficiency nitrogen fertilizer products that are designed to reduce nitrogen losses to the environment and increase nitrogen availability to crops\n\n    **Currently \"lime\", \"potassium_chloride\" and \"granite_dust\" events are accepted, but the values are not used by DNDC for outcomes calculations. This feature will be added in the future.**\n\n    "
+    },
+    "FertilizerMethodEnum": {
+      "type": "string",
+      "enum": [
+        "broadcast",
+        "fertigation_furrow",
+        "fertigation_sprinkler",
+        "fertigation_drip",
+        "fertigation_subsurface_drip",
+        "subsurface"
+      ],
+      "title": "FertilizerMethodEnum",
+      "description": "The application_method specifies how a fertilizer is applied to the soil. The following options are supported:\n- `broadcast` - fertilizer is spread across the soil surface\n- `subsurface` - fertilizer is applied below the soil surface, at the depth specified. *(The `depth` input is required for `subsurface` applications.)*\n- `fertigation_furrow` - fertilizer product is applied to the field with water at a single point during the day. *(The `water_amount` input is required for `fertigation_furrow` applications.)* Note: plant accessible water is 0.15x `water_amount`.\n- `fertigation_sprinkler` -  fertilizer product is applied to the surface of the field with water, distributed over half a day. *(The `water_amount` input is required for `fertigation_sprinkler` applications.)* Note: plant accessible water is 0.15x `water_amount`.\n- `fertigation_drip` - fertilizer product is applied to the surface of the field with water, distributed equally over the entire day. *(The `water_amount` input is required for `fertigation_drip` applications.) Note: plant accessible water is 0.75x `water_amount`.\n- `fertigation_subsurface_drip` - fertilizer product is applied below the surface of the field with water at a depth of 8-10cm, distributed equally over the entire day. *(The `water_amount` input is required for `fertigation_subsurface_drip` applications.) Note: plant accessible water is 1.0x `water_amount`."
+    },
+    "FieldLocation": {
+      "properties": {
+        "latlon": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LatLong"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "boundary": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Polygon"
+            },
+            {
+              "$ref": "#/$defs/MultiPolygon"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Boundary",
+          "description": "GeoJSON describing the field boundaries. The geometry type must be 'Polygon' or `MultiPolygon`."
+        },
+        "area": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Field Area",
+          "description": "The area of the field in units defined by @area_unit."
+        },
+        "area_unit": {
+          "$ref": "#/$defs/AreaUnitEnum",
+          "title": "Field Area Units",
+          "description": "The units for the field @area. Used to calculate the total emissions for the field simulation. Default is hectares.",
+          "default": "hectare"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "FieldLocation",
+      "description": "The `FieldLocation` object contains geospatial data representing a field's location. Location data can be provided in one of two ways: point based or boundary based. *Regrow strongly recommends providing a field boundary, as it results in higher fidelity outcomes.*"
+    },
+    "FireEvent": {
+      "properties": {
+        "date": {
+          "type": "string",
+          "title": "Start Date",
+          "description": "Format is YYYY-MM-DD.  The start date of the fire event."
+        },
+        "burn_area_fraction": {
+          "type": "number",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Burn Area Fraction",
+          "description": "The proportion of the field, by area, lost through combustion."
+        },
+        "combusted_fraction": {
+          "anyOf": [
+            {
+              "type": "number",
+              "maximum": 1.0,
+              "minimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Combustion Fraction",
+          "description": "The proportion of above ground biomass lost through combustion."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "date",
+        "burn_area_fraction"
+      ],
+      "title": "FireEvent"
+    },
+    "FloodEvent": {
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "title": "Start Date",
+          "description": "Format is \"YYYY-MM-DD\""
+        },
+        "end_date": {
+          "type": "string",
+          "title": "End Date",
+          "description": "Format is \"YYYY-MM-DD\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "start_date",
+        "end_date"
+      ],
+      "title": "FloodEvent",
+      "description": "The `FloodEvent` contains information about field flooding, or time periods where standing water is present on the field. This event is most commonly used for rice fields, and includes information about the duration of the flood.\n\nAdditionally, this event is used to represent Alternate-Wetting-and_Drying (AWD) irrigation on a field a rice field. A flood event is specified for each instance of 'wetting', and the time period between the flood events represents the dry-down period."
+    },
+    "FuelConsumption": {
+      "properties": {
+        "gasoline": {
+          "type": "number",
+          "title": "Gasoline",
+          "description": "Gasoline consumption in liters.",
+          "default": 0.0
+        },
+        "diesel": {
+          "type": "number",
+          "title": "Diesel",
+          "description": "Diesel consumption in liters.",
+          "default": 0.0
+        }
+      },
+      "type": "object",
+      "title": "FuelConsumption",
+      "description": "The amount of fossil fuel consumed in liters for all farm management practices on a field, including operating machinery for tillage and crop harvests. This is only required if the optional GHG boundary `fossil_fuel_co2` was set.\n\nWhen field data is provided with `baseline` and `practice_change` scenario types and a single `RotationPhase` of management events, the fuel consumption is the amount consumed on the field during the reporting period (the time period for which carbon assets will be quantified).\n\nWhen field data is provided with `historical_baseline` and `intervention` scenarios with multiple `RotationPhases` to represent cultivation cycles, the amount of fuel is the amount consumed during the cultivation cycle."
+    },
+    "InterventionScenario": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name",
+          "description": "A name to describe the simulation. Cannot contain the following characters: '.' and '/'."
+        },
+        "location": {
+          "$ref": "#/$defs/FieldLocation",
+          "description": "Information about the location of the field in the simulation. Used to look up weather and soil information if not provided."
+        },
+        "soil": {
+          "$ref": "#/$defs/Soil",
+          "description": "The soil characteristics for the field in the simulation.",
+          "default": {
+            "topsoil_depth": 30.0,
+            "total_depth": 50.0,
+            "extra": {
+              "biological_mixing": {
+                "bio_mix_efficiency": 0.001,
+                "bio_mix_max_depth": 0.3,
+                "bio_mix_surface_scrv_1": 5.01,
+                "bio_mix_surface_scrv_2": 50.99,
+                "bio_mix_temperature_scrv_1": 5.1,
+                "bio_mix_temperature_scrv_2": 20.95
+              },
+              "drain_depth_m": 1.0,
+              "drain_depth_to_bedrock_m": 3.0,
+              "drain_radius_m": 0.1,
+              "drain_spacing_m": 10.0,
+              "slope": 0.0,
+              "slope_length": 100.0
+            }
+          }
+        },
+        "weather": {
+          "anyOf": [
+            {
+              "items": {},
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Weather",
+          "description": "A JSON object representing daily weather data for every day in the simulation. If weather data is not directly provided, weather data will be retrieved from @weather_sources, when available. Should be in the following format. [             [\"doy\", \"year\", \"min_temp\", \"avg_temp\", \"max_temp\", \"precip\"],             [1, 2019, -0.833, 2.852, 6.538, 0.0],             [2, 2019, -2.722, 0.713, 4.148, 0.0],             [3, 2019, -1.664, 0.695, 3.054, 0.0],         ].         Optional columns can be informed, too. They are: \"solrad\" (solar radiation), \"wind_speed\" and \"humidity\".",
+          "deprecated": true
+        },
+        "rotations": {
+          "items": {
+            "$ref": "#/$defs/Rotation"
+          },
+          "type": "array",
+          "title": "Rotations",
+          "description": "A list of rotation objects. Currently, only one rotation object is allowed. The `Rotation` object contains `RotationPhases`, or cultivation cycles, with the field management events for the cycle."
+        },
+        "weather_sources": {
+          "items": {
+            "$ref": "#/$defs/WeatherSourceEnum"
+          },
+          "type": "array",
+          "title": "Weather Sources",
+          "description": "An ordered list of weather sources to retrieve weather data from, when data is not directly provided.",
+          "default": [
+            "PRISM",
+            "GLOBAL"
+          ],
+          "deprecated": true
+        },
+        "soil_sources": {
+          "items": {
+            "$ref": "#/$defs/SoilSourceEnum"
+          },
+          "type": "array",
+          "title": "Soil Sources",
+          "description": "An ordered list of data sources to attempt to retrieve soil data from, when soil data is not directly provided.",
+          "default": [
+            "SSURGO",
+            "GLOBAL"
+          ]
+        },
+        "scenario_type": {
+          "$ref": "#/$defs/ScenarioTypeEnum",
+          "title": "Scenario Type",
+          "description": "Whether or not the simulation represents a baseline or practice change. Used for calculations of net ghg effects of an intervention when requested.",
+          "default": "baseline"
+        },
+        "fuel_consumption": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FuelConsumption"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Fossil Fuel Consumption",
+          "description": "The amount of fossil fuel consumed in liters for all farm management practices on a field. This field is deprecated. Pass fuel consumption with management events in a `RotationPhase`.",
+          "deprecated": true
+        }
+      },
+      "type": "object",
+      "required": [
+        "name",
+        "location"
+      ],
+      "title": "InterventionScenario"
+    },
+    "IrrigationEvent": {
+      "properties": {
+        "date": {
+          "type": "string",
+          "title": "Date",
+          "description": "Format is \"YYYY-MM-DD\""
+        },
+        "water_amount": {
+          "type": "number",
+          "maximum": 100000.0,
+          "exclusiveMinimum": 0.0,
+          "title": "Water Amount",
+          "description": "Millimeters of water applied. Ex: from a rain gauge."
+        },
+        "method": {
+          "$ref": "#/$defs/IrrigationMethodEnum"
+        },
+        "depth": {
+          "type": "number",
+          "maximum": 500.0,
+          "minimum": 0.0,
+          "title": "Application Depth",
+          "description": "The depth of the application in centimeters. Depth must be greater than 0 when subsurface_drip is the irrigation method.",
+          "default": 0.0
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "date",
+        "water_amount",
+        "method"
+      ],
+      "title": "IrrigationEvent",
+      "description": "The `irrigationEvent` contains data about a single irrigation instance on a field, including the date of irrigation, the amount of water applied and the application method. Use the `IrrigationEvent` for single instances of irrigation, such as supplementing normal rainfall. For recurring irrigation over the course of the growing season, use the `AutoIrrigationEvent`."
+    },
+    "IrrigationMethodEnum": {
+      "type": "string",
+      "enum": [
+        "drip",
+        "furrow",
+        "sprinkler",
+        "subsurface_drip",
+        "film_mulch"
+      ],
+      "title": "IrrigationMethodEnum",
+      "description": "The irrigationMethod specifies how water is applied to the field. The following options are supported:\n\n- `furrow`: water_amount added to the surface at single point in day. Plant accessible water is 0.15x `water_amount`\n- `sprinkler`: water_amount added to the surface distributed equally over half a day. Plant accessible water is 0.50x `water_amount`\n- `drip`: water_amount added to the surface distributed equally over full day. Plant accessible water is 0.75x `water_amount`\n- `subsurface_drip`: water_amount added to the ~8-10 cm soil depth, distributed equally over full day. Plant accessible water is 1.0x `water_amount`"
+    },
+    "LatLong": {
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "maximum": 84.0,
+          "minimum": -80.0,
+          "title": "Latitude"
+        },
+        "longitude": {
+          "type": "number",
+          "maximum": 180.0,
+          "minimum": -180.0,
+          "title": "Longitude"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "title": "LatLong",
+      "description": "Geographic coordinates."
+    },
+    "LiquidDryEnum": {
+      "type": "string",
+      "enum": [
+        "liquid",
+        "dry"
+      ],
+      "title": "LiquidDryEnum"
+    },
+    "MultiPolygon": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "MultiPolygon",
+          "title": "Type",
+          "default": "MultiPolygon"
+        },
+        "coordinates": {
+          "items": {
+            "items": {
+              "items": {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              },
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "type": "array",
+          "title": "Coordinates"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "coordinates"
+      ],
+      "title": "MultiPolygon"
+    },
+    "NutrientProductTypeEnum": {
+      "type": "string",
+      "enum": [
+        "basic_inorganic",
+        "eenf_inorganic",
+        "organic"
+      ],
+      "title": "NutrientProductTypeEnum"
+    },
+    "OrganicAmendmentEvent": {
+      "properties": {
+        "date": {
+          "type": "string",
+          "title": "Date",
+          "description": "Format is \"YYYY-MM-DD\""
+        },
+        "name": {
+          "$ref": "#/$defs/PublicOrganicAmendmentsEnum",
+          "title": "Name",
+          "description": "The name of the organic amendment. The valid list of organic amendments by type are:\n | Organic | C:N Ratio | N Ratio | \n| --------- | --------- | --------- |\n| alfalfa_meal| 16.9842| 4.0|\n| blood_meal| 3.55626| 12.0|\n| bone_meal| 5.16883| 2.0|\n| fish_meal| 5.06011| 11.0|\n| hay_grass| 32.0| 1.5|\n| hay_legume| 16.8889| 3.0|\n| manure_beef_liquid| 15.5109| 1.5|\n| manure_beef_solid| 15.5109| 1.5|\n| manure_compost| 15.0| 1.5|\n| manure_dairy_liquid| 12.0398| 1.5|\n| manure_dairy_solid| 17.2761| 1.5|\n| manure_guano| 5.28333| 1.2|\n| manure_horse_liquid| 0.0| 0.0|\n| manure_horse_solid| 34.7016| 0.4|\n| manure_pig_liquid| 5.57551| 0.6|\n| manure_pig_solid| 13.0509| 0.6|\n| manure_poultry_liquid| 7.34159| 2.1|\n| manure_poultry_solid| 7.34159| 2.1|\n| manure_sheep_liquid| 21.0894| 0.6|\n| manure_sheep_solid| 13.0212| 0.6|\n| municipal_waste| 18.2066| 5.0|\n| peat| 32.6087| 2.3|\n| seaweed_fresh| 10.0| 1.0|\n| seaweed_ground| 16.0263| 1.0|\n| soybean_meal| 7.0| 7.0|\n| straw| 66.0| 0.5|\n\nEnter 'custom' to specify a custom organic amendment.\n"
+        },
+        "amount": {
+          "type": "number",
+          "exclusiveMinimum": 0.0,
+          "title": "Rate",
+          "description": "Rate of the application, in units specified by `rate_unit` and `area_unit`"
+        },
+        "depth": {
+          "type": "number",
+          "maximum": 50.0,
+          "minimum": 0.0,
+          "title": "Depth",
+          "description": "The depth of the application in centimeters. Must be greater than zero when the application method is inject.",
+          "default": 0.0
+        },
+        "application_method": {
+          "$ref": "#/$defs/OrganicAmendmentMethodEnum",
+          "default": "broadcast"
+        },
+        "area_unit": {
+          "$ref": "#/$defs/AreaUnitEnum"
+        },
+        "rate_unit": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/scenarios_service_schema__public__units__MassUnitEnum"
+            },
+            {
+              "$ref": "#/$defs/VolumeUnitEnum"
+            }
+          ],
+          "title": "Rate Unit"
+        },
+        "custom": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CustomOrganicAmendment"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Custom",
+          "description": "If the product name is “custom”, then the following component percentages are needed. For each component, if no percentage is added, then it is assumed to be 0. The total percentage of all components must sum to < 100."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "date",
+        "name",
+        "amount",
+        "area_unit",
+        "rate_unit"
+      ],
+      "title": "OrganicAmendmentEvent",
+      "description": "The OrganicAmendmentEvent contains data about a single organic fertilizer or organic nutrient management event (manure, mulch, compost, etc.) on a field. The applied product name is specified for each event, along with the application date, method, amount and rate applied.\n\n    **Currently \"manure_horse_liquid\" and \"cottonseed_hull_ash\" events are accepted, but the values are not used by DNDC for outcomes calculations. This feature will be added in the future.**\n    "
+    },
+    "OrganicAmendmentMethodEnum": {
+      "type": "string",
+      "enum": [
+        "broadcast",
+        "inject"
+      ],
+      "title": "OrganicAmendmentMethodEnum",
+      "description": "The `applicationMethod` specified how an organic amendment is applied to the soil. The following options are supported:\n\n- `broadcast` - organic amendment is spread across the soil surface\n- `inject` - organic amendment is injected directly into the soil. *(The `depth` input is required for `inject` applications.)*\n"
+    },
+    "Polygon": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "Polygon",
+          "title": "Type",
+          "default": "Polygon"
+        },
+        "coordinates": {
+          "items": {
+            "items": {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "type": "array",
+          "title": "Coordinates"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "coordinates"
+      ],
+      "title": "Polygon"
+    },
+    "PublicAdditivesEnum": {
+      "type": "string",
+      "enum": [
+        "agrotain",
+        "agrotain_plus",
+        "nitrification_inhibitor",
+        "urease_inhibitor",
+        "anvol",
+        "nutrisphere",
+        "n_serve",
+        "centuro",
+        "urease_nitrification_dual_inhibitor"
+      ],
+      "title": "PublicAdditivesEnum"
+    },
+    "PublicApplicationsEnum": {
+      "type": "string",
+      "enum": [
+        "ammonium_bicarbonate",
+        "ammonium_nitrate",
+        "di_ammonium_phosphate",
+        "tri_ammonium_phosphate_trihydrate",
+        "ammonium_sulfate",
+        "ammonia_aqueous",
+        "monoammonium_phosphate",
+        "urea",
+        "urea_ammonium_nitrate",
+        "ammonia_anhydrous",
+        "calcium_nitrate",
+        "calcium_ammonium_nitrate",
+        "nitrate",
+        "potassium_nitrate",
+        "ammonium_polyphosphate",
+        "sulfate",
+        "phosphate",
+        "npk_28_12_12",
+        "urea_ammonium_sulfate",
+        "urea_ammonium_nitrate_28",
+        "urea_ammonium_nitrate_32",
+        "potassium_chloride",
+        "sulfonitrate",
+        "microessentials_s10",
+        "microessentials_s15",
+        "microessentials_sz",
+        "ammonium_thiosulfate",
+        "potassium_sulfate",
+        "single_superphosphate",
+        "triple_superphosphate",
+        "crystal_green",
+        "npk_20_0_24",
+        "yaramila_complex",
+        "ammo_31",
+        "cropmaster_15",
+        "croplex",
+        "npk_15_15_15",
+        "lime",
+        "urea_ammonium_phosphate",
+        "ammonium_polyphosphate_10_34_0",
+        "ammonium_phosphate_sulfate",
+        "hakaphos_13_40_13",
+        "manure_poultry_solid",
+        "manure_poultry_liquid",
+        "manure_dairy_solid",
+        "manure_dairy_liquid",
+        "manure_beef_solid",
+        "manure_beef_liquid",
+        "manure_pig_solid",
+        "manure_pig_liquid",
+        "straw",
+        "municipal_waste",
+        "alfalfa_meal",
+        "blood_meal",
+        "bone_meal",
+        "fish_meal",
+        "hay_grass",
+        "hay_legume",
+        "seaweed_fresh",
+        "manure_horse_solid",
+        "manure_sheep_liquid",
+        "manure_sheep_solid",
+        "peat",
+        "manure_guano",
+        "seaweed_ground",
+        "soybean_meal",
+        "manure_horse_liquid",
+        "manure_compost",
+        "esn",
+        "superu",
+        "urea_sulfer_coated",
+        "urea_formaldehyde",
+        "urea_polymer_coated",
+        "nitamin_nfusion",
+        "osmocote_classic",
+        "entec_26",
+        "entec_46",
+        "nexen_46",
+        "urea_neem_coated"
+      ],
+      "title": "PublicApplicationsEnum"
+    },
+    "PublicFertilizersEnum": {
+      "type": "string",
+      "enum": [
+        "ammonium_bicarbonate",
+        "ammonium_nitrate",
+        "di_ammonium_phosphate",
+        "tri_ammonium_phosphate_trihydrate",
+        "ammonium_sulfate",
+        "ammonia_aqueous",
+        "monoammonium_phosphate",
+        "urea",
+        "urea_ammonium_nitrate",
+        "ammonia_anhydrous",
+        "calcium_nitrate",
+        "calcium_ammonium_nitrate",
+        "nitrate",
+        "potassium_nitrate",
+        "ammonium_polyphosphate",
+        "sulfate",
+        "phosphate",
+        "npk_28_12_12",
+        "urea_ammonium_sulfate",
+        "urea_ammonium_nitrate_28",
+        "urea_ammonium_nitrate_32",
+        "potassium_chloride",
+        "sulfonitrate",
+        "microessentials_s10",
+        "microessentials_s15",
+        "microessentials_sz",
+        "ammonium_thiosulfate",
+        "potassium_sulfate",
+        "single_superphosphate",
+        "triple_superphosphate",
+        "crystal_green",
+        "npk_20_0_24",
+        "yaramila_complex",
+        "ammo_31",
+        "cropmaster_15",
+        "croplex",
+        "npk_15_15_15",
+        "lime",
+        "urea_ammonium_phosphate",
+        "ammonium_polyphosphate_10_34_0",
+        "ammonium_phosphate_sulfate",
+        "hakaphos_13_40_13",
+        "esn",
+        "superu",
+        "urea_sulfer_coated",
+        "urea_formaldehyde",
+        "urea_polymer_coated",
+        "nitamin_nfusion",
+        "osmocote_classic",
+        "entec_26",
+        "entec_46",
+        "nexen_46",
+        "urea_neem_coated",
+        "custom"
+      ],
+      "title": "PublicFertilizersEnum"
+    },
+    "PublicOrganicAmendmentsEnum": {
+      "type": "string",
+      "enum": [
+        "manure_poultry_solid",
+        "manure_poultry_liquid",
+        "manure_dairy_solid",
+        "manure_dairy_liquid",
+        "manure_beef_solid",
+        "manure_beef_liquid",
+        "manure_pig_solid",
+        "manure_pig_liquid",
+        "straw",
+        "municipal_waste",
+        "alfalfa_meal",
+        "blood_meal",
+        "bone_meal",
+        "fish_meal",
+        "hay_grass",
+        "hay_legume",
+        "seaweed_fresh",
+        "manure_horse_solid",
+        "manure_sheep_liquid",
+        "manure_sheep_solid",
+        "peat",
+        "manure_guano",
+        "seaweed_ground",
+        "soybean_meal",
+        "manure_horse_liquid",
+        "manure_compost",
+        "custom"
+      ],
+      "title": "PublicOrganicAmendmentsEnum"
+    },
+    "ReductionEnum": {
+      "type": "string",
+      "enum": [
+        "grain_harvest",
+        "silage_harvest",
+        "mow_50",
+        "hay_50",
+        "mow_75",
+        "hay_75",
+        "mow_100",
+        "hay_100"
+      ],
+      "title": "ReductionEnum",
+      "description": "Represents any reduction to the crop biomass on a farm. This can include harvesting, cutting, etc. One can use built in reduction types or define your own using the overrides param. See @ReductionPropertyEnum.\n\nThe breakdown of the built in types are as follows:\n| Reduction Type   | Reduction Property | Value |\n| ---------------- | ------------| --- |\n| ReductionEnum.GRAIN_HARVEST | frac_grain_removed | 1.0 | \n| ReductionEnum.GRAIN_HARVEST | frac_grain_residue | 0.0 | \n| ReductionEnum.GRAIN_HARVEST | frac_leaf_removed | 0.05 | \n| ReductionEnum.GRAIN_HARVEST | frac_leaf_residue | 0.95 | \n| ReductionEnum.GRAIN_HARVEST | frac_stem_removed | 0.05 | \n| ReductionEnum.GRAIN_HARVEST | frac_stem_residue | 0.95 | \n| ReductionEnum.GRAIN_HARVEST | frac_root_removed | 0.0 | \n| ReductionEnum.GRAIN_HARVEST | frac_root_residue | 0.0 | \n| ReductionEnum.SILAGE_HARVEST | frac_grain_removed | 1.0 | \n| ReductionEnum.SILAGE_HARVEST | frac_grain_residue | 0.0 | \n| ReductionEnum.SILAGE_HARVEST | frac_leaf_removed | 0.95 | \n| ReductionEnum.SILAGE_HARVEST | frac_leaf_residue | 0.05 | \n| ReductionEnum.SILAGE_HARVEST | frac_stem_removed | 0.95 | \n| ReductionEnum.SILAGE_HARVEST | frac_stem_residue | 0.05 | \n| ReductionEnum.SILAGE_HARVEST | frac_root_removed | 0.0 | \n| ReductionEnum.SILAGE_HARVEST | frac_root_residue | 0.0 | \n| ReductionEnum.MOW_50 | frac_grain_removed | 0.0 | \n| ReductionEnum.MOW_50 | frac_grain_residue | 1.0 | \n| ReductionEnum.MOW_50 | frac_leaf_removed | 0.0 | \n| ReductionEnum.MOW_50 | frac_leaf_residue | 0.5 | \n| ReductionEnum.MOW_50 | frac_stem_removed | 0.0 | \n| ReductionEnum.MOW_50 | frac_stem_residue | 0.5 | \n| ReductionEnum.MOW_50 | frac_root_removed | 0.0 | \n| ReductionEnum.MOW_50 | frac_root_residue | 0.0 | \n| ReductionEnum.HAY_50 | frac_grain_removed | 1.0 | \n| ReductionEnum.HAY_50 | frac_grain_residue | 0.0 | \n| ReductionEnum.HAY_50 | frac_leaf_removed | 0.5 | \n| ReductionEnum.HAY_50 | frac_leaf_residue | 0.0 | \n| ReductionEnum.HAY_50 | frac_stem_removed | 0.5 | \n| ReductionEnum.HAY_50 | frac_stem_residue | 0.0 | \n| ReductionEnum.HAY_50 | frac_root_removed | 0.0 | \n| ReductionEnum.HAY_50 | frac_root_residue | 0.0 | \n| ReductionEnum.MOW_75 | frac_grain_removed | 0.0 | \n| ReductionEnum.MOW_75 | frac_grain_residue | 1.0 | \n| ReductionEnum.MOW_75 | frac_leaf_removed | 0.0 | \n| ReductionEnum.MOW_75 | frac_leaf_residue | 0.75 | \n| ReductionEnum.MOW_75 | frac_stem_removed | 0.0 | \n| ReductionEnum.MOW_75 | frac_stem_residue | 0.75 | \n| ReductionEnum.MOW_75 | frac_root_removed | 0.0 | \n| ReductionEnum.MOW_75 | frac_root_residue | 0.0 | \n| ReductionEnum.HAY_75 | frac_grain_removed | 1.0 | \n| ReductionEnum.HAY_75 | frac_grain_residue | 0.0 | \n| ReductionEnum.HAY_75 | frac_leaf_removed | 0.75 | \n| ReductionEnum.HAY_75 | frac_leaf_residue | 0.0 | \n| ReductionEnum.HAY_75 | frac_stem_removed | 0.75 | \n| ReductionEnum.HAY_75 | frac_stem_residue | 0.0 | \n| ReductionEnum.HAY_75 | frac_root_removed | 0.0 | \n| ReductionEnum.HAY_75 | frac_root_residue | 0.0 | \n| ReductionEnum.MOW_100 | frac_grain_removed | 0.0 | \n| ReductionEnum.MOW_100 | frac_grain_residue | 1.0 | \n| ReductionEnum.MOW_100 | frac_leaf_removed | 0.0 | \n| ReductionEnum.MOW_100 | frac_leaf_residue | 1.0 | \n| ReductionEnum.MOW_100 | frac_stem_removed | 0.0 | \n| ReductionEnum.MOW_100 | frac_stem_residue | 1.0 | \n| ReductionEnum.MOW_100 | frac_root_removed | 0.0 | \n| ReductionEnum.MOW_100 | frac_root_residue | 0.0 | \n| ReductionEnum.HAY_100 | frac_grain_removed | 1.0 | \n| ReductionEnum.HAY_100 | frac_grain_residue | 0.0 | \n| ReductionEnum.HAY_100 | frac_leaf_removed | 1.0 | \n| ReductionEnum.HAY_100 | frac_leaf_residue | 0.0 | \n| ReductionEnum.HAY_100 | frac_stem_removed | 1.0 | \n| ReductionEnum.HAY_100 | frac_stem_residue | 0.0 | \n| ReductionEnum.HAY_100 | frac_root_removed | 0.0 | \n| ReductionEnum.HAY_100 | frac_root_residue | 0.0 | "
+    },
+    "ReductionEvent": {
+      "properties": {
+        "date": {
+          "type": "string",
+          "title": "Date",
+          "description": "Format is \"YYYY-MM-DD\". Represents the date the crop reduction occurs"
+        },
+        "type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReductionEnum"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "custom": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CustomReductionEvent"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "CustomReductionEvent",
+          "description": "Specify a custom reduction event"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "date"
+      ],
+      "title": "ReductionEvent"
+    },
+    "Rotation": {
+      "properties": {
+        "phases": {
+          "items": {
+            "$ref": "#/$defs/RotationPhase"
+          },
+          "type": "array",
+          "title": "RotationPhase",
+          "description": "A list of rotation phase objects specifying management event data for each cultivation cycle. Include a `RotationPhase` for each cultivation cycle in the scenario. When multiple `RotationPhase` objects are used to represent distinct cultivation cycles, the `start_date` and `end_date` of the phases must be contiguous. All `RotationPhase`s should have a length that is within two months of each other. For example, one `RotationPhase` cannot have a length of 300 days while another has a length of 380 days, but two `RotationPhase`s with a length of 340 days and 370 days is acceptable."
+        }
+      },
+      "type": "object",
+      "required": [
+        "phases"
+      ],
+      "title": "Rotation",
+      "description": "A `rotation` is a representation of a crop rotation, or crop cycle. For example, a field where soybean and corn are grown in alternating years, the crop rotation is corn + soybean.\n\n    `Rotations` contains a list of rotation phases, which represent a cultivation cycle, or single crop cycle within the rotation.\n\n    Currently, one `Rotation` object is allowed per `Scenario`. Repeating cultivation cycles should be represented in `RotationPhase`s within a single `Rotation`.\n    "
+    },
+    "RotationPhase": {
+      "properties": {
+        "start_date": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Start Date",
+          "description": "Format is \"YYYY-MM-DD\""
+        },
+        "end_date": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "End Date",
+          "description": "Format is \"YYYY-MM-DD\""
+        },
+        "management_events": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Events"
+            }
+          ],
+          "title": "Management Events",
+          "description": "A collection of agricultural management events that took place on a field during the phase.\n\nManagement events are required in the historical baseline scenario. Either management events or intervention practices are allowed in the intervention scenario. Use management events in the intervention scenario to explicitly define each of the practices (such as commodity crop type, irrigation practices, tillage and fertilizer events) that are planned for a field."
+        },
+        "fuel_consumption": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FuelConsumption"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Fossil Fuel Consumption",
+          "description": "The amount of fossil fuel consumed in liters for all farm management practices on a field.",
+          "deprecated": true
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "management_events",
+        "start_date",
+        "end_date"
+      ],
+      "title": "RotationPhase",
+      "description": "A `RotationPhase` is a representation of the crop and field management events in a single cultivation cycle, or crop year. Typically, a cultivation cycle is the time from harvest-harvest, or the time when the previous commodity crop was harvested through the harvest of the current crop for the year. A `RotationPhase` should include all the management event data for the cultivation cycle, such as tillage data, crop info, irrigation data, etc.\n\n    When multiple `RotationPhase` objects are used to represent distinct cultivation cycles, the `start_date` and `end_date` of the phases must be contiguous. All phases should have a length that is within two months of each other. For example, one phase cannot have a length of 300 days while another has a length of 380 days, but two phases with a length of 340 days and 370 days is acceptable.\n    "
+    },
+    "ScenarioTypeEnum": {
+      "type": "string",
+      "enum": [
+        "historical_baseline",
+        "intervention"
+      ],
+      "title": "ScenarioTypeEnum"
+    },
+    "Soil": {
+      "properties": {
+        "ph": {
+          "anyOf": [
+            {
+              "type": "number",
+              "maximum": 11.0,
+              "minimum": 3.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "pH",
+          "description": "Soil pH within the specified topsoil_depth layer. If not specified by the user, a default is provided."
+        },
+        "clay_fraction": {
+          "anyOf": [
+            {
+              "type": "number",
+              "maximum": 1.0,
+              "minimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Clay Fraction",
+          "description": "Clay fraction within the specified topsoil_depth layer. If not specified by the user, a default is provided."
+        },
+        "bulk_density": {
+          "anyOf": [
+            {
+              "type": "number",
+              "maximum": 2.65,
+              "minimum": 0.1
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Bulk Density",
+          "description": "Bulk density (dry fine soil mass per unit soil volume) within the specified topsoil_depth layer. If not specified by the user, a default is provided.\nUnits are g/cm3."
+        },
+        "soc": {
+          "anyOf": [
+            {
+              "type": "number",
+              "maximum": 1.0,
+              "minimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Soil Organic Carbon (SOC)",
+          "description": "Soil organic carbon fraction within the specified topsoil_depth layer. If not specified by the user, a default is provided."
+        },
+        "topsoil_depth": {
+          "type": "number",
+          "maximum": 50.0,
+          "minimum": 5.0,
+          "title": "Topsoil Depth",
+          "description": "Depth of the topsoil layer that represents the specified soil parameters (ph, clay_fraction, bulk_density, soc).\nUnits are cm.",
+          "default": 30.0
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Soil",
+      "description": "The `soil` object contains data points representing soil characteristics for a field. When a `soil` object is not provided or is provided without all data points, soil characteristics will be sourced from an applicable soils database."
+    },
+    "SoilSourceEnum": {
+      "type": "string",
+      "enum": [
+        "SSURGO",
+        "GLOBAL"
+      ],
+      "title": "SoilSourceEnum",
+      "description": "The `soilSource` array provides a list of soil datasets to pull soils data from, in the event the data is not provided as part of the field’s input data.\n\nAvailable datasets to pull from include:\n\n- [SSURGO](https://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/?cid=nrcs142p2_053627): represents soil data from USDA SSURGO - include this option for fields in the United States.\n- [GLOBAL](https://www.isric.org/) represents soil data from ISRIC SoilGrids - include this option for fields globally."
+    },
+    "TillEvent": {
+      "properties": {
+        "date": {
+          "type": "string",
+          "title": "Date",
+          "description": "Format is \"YYYY-MM-DD\""
+        },
+        "soil_inverted": {
+          "type": "boolean",
+          "title": "Soil Invert",
+          "description": "Whether or not the soil was inverted. All tilling mixes soil to a certain depth. This flag is meant to represent the rotation of soil in a similar manner as in a moldboard plow."
+        },
+        "depth": {
+          "type": "number",
+          "maximum": 100.0,
+          "minimum": 0.0,
+          "title": "Depth",
+          "description": "The depth of the till, in cm."
+        },
+        "strip_frac": {
+          "anyOf": [
+            {
+              "type": "number",
+              "maximum": 1.0,
+              "minimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Strip Till Proportion",
+          "description": "The proportional area of the rows of the field that are tilled (0 <= value <= 1). A value of 0.3 would indicate 30% of the soil in the rows is disturbed during tilling, and may be the result of using a till implement such as a chisel. When strip_frac is not provided, the entire row is tilled (akin to strip_frac = 1)."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "date",
+        "soil_inverted",
+        "depth"
+      ],
+      "title": "TillEvent",
+      "description": "The `tillEvent` contains information about when a field was tilled, and to what depth. A `tillEvent` object should be provided for each distinct instance of tillage.\n\n`No tillage` practices are represented by the absence of a `tillEvent`."
+    },
+    "VolumeUnitEnum": {
+      "type": "string",
+      "enum": [
+        "gallon",
+        "liter"
+      ],
+      "title": "VolumeUnitEnum"
+    },
+    "WeatherSourceEnum": {
+      "type": "string",
+      "enum": [
+        "PRISM",
+        "GLOBAL"
+      ],
+      "title": "WeatherSourceEnum",
+      "description": "The `weatherSource` array provides a list of weather datasets to pull weather data from.\n\nAvailable datasets include:\n\n- [PRISM](https://www.prism.oregonstate.edu/): Data is sourced from the Prism Climate Group - choose this option for fields in the United States.\n- [GLOBAL](https://power.larc.nasa.gov/): Date is sourced from the NASA Power Project - select this option for fields anywhere globally."
+    },
+    "scenarios_service_schema__public__units__MassUnitEnum": {
+      "type": "string",
+      "enum": [
+        "kilogram",
+        "tonne",
+        "pound"
+      ],
+      "title": "MassUnitEnum"
+    },
+    "scenarios_service_schema__schema__ReportingInformation[CropNamesEnum]": {
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "title": "Start Date",
+          "description": "Format is \"YYYY-MM-DD\". Represents the date the reporting period begins. Typically, this is the harvest date of the commodity crop from the season prior to the practice change."
+        },
+        "end_date": {
+          "type": "string",
+          "title": "End Date",
+          "description": "Format is \"YYYY-MM-DD\". Represents the date the reporting period ends. Typically, this is the harvest date of the commodity crop during the practice change season, or the date of the last management event, whichever is later."
+        },
+        "crop_name": {
+          "$ref": "#/$defs/CropNamesEnum",
+          "title": "Name",
+          "description": "Cash crop harvested on reporting end date."
+        },
+        "crop_yield": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Yield",
+          "description": "The crop yield in bushels/acre. For Scope 1 and Scope 3 assets generation this means the average yield. This is required for protocols calculating Scope 3 assets. For protocols calculating Scope 1 assets, this is optional and will not be used for Scope 1 asset calculation. If included, it will be passed to the output config for reference."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "start_date",
+        "end_date",
+        "crop_name"
+      ],
+      "title": "ReportingInformation",
+      "description": "The `ReportingInformation` object specifies the metadata needed to quantify emissions/removals for a field, including the time period for which emissions should be quantified, and the crop the emissions/removals will be quantified for.\n\nTypically the `ReportingInformation` period correlates with a growing season or crop year for a field where regenerative or intervention practices are adopted."
+    }
+  }
+}

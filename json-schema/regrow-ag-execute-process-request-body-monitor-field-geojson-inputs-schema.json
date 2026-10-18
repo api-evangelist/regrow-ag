@@ -1,0 +1,612 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/regrow-ag/main/json-schema/regrow-ag-execute-process-request-body-monitor-field-geojson-inputs-schema.json",
+  "title": "ExecuteProcessRequestBody[MonitorFieldGeojsonInputs]",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/regrow-ag-monitor-api-openapi.yml#/components/schemas/ExecuteProcessRequestBody_MonitorFieldGeojsonInputs_",
+  "properties": {
+    "inputs": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/MonitorFieldGeojsonInputs"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "outputs": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Outputs"
+    },
+    "response": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ResponseMode"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "transmission_mode": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/TransmissionMode"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "subscriber": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Subscriber"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "$defs": {
+    "FeatureCollection_Feature_Union_Polygon__MultiPolygon___dict_str__Any___": {
+      "properties": {
+        "bbox": {
+          "anyOf": [
+            {
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array",
+              "maxItems": 4,
+              "minItems": 4
+            },
+            {
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array",
+              "maxItems": 6,
+              "minItems": 6
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Bbox"
+        },
+        "type": {
+          "type": "string",
+          "const": "FeatureCollection",
+          "title": "Type"
+        },
+        "features": {
+          "items": {
+            "$ref": "#/$defs/Feature_Union_Polygon__MultiPolygon___dict_str__Any__"
+          },
+          "type": "array",
+          "title": "Features"
+        }
+      },
+      "type": "object",
+      "required": [
+        "type",
+        "features"
+      ],
+      "title": "FeatureCollection[Feature[Union[Polygon, MultiPolygon], dict[str, Any]]]"
+    },
+    "Feature_Union_Polygon__MultiPolygon___dict_str__Any__": {
+      "properties": {
+        "bbox": {
+          "anyOf": [
+            {
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array",
+              "maxItems": 4,
+              "minItems": 4
+            },
+            {
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array",
+              "maxItems": 6,
+              "minItems": 6
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Bbox"
+        },
+        "type": {
+          "type": "string",
+          "const": "Feature",
+          "title": "Type"
+        },
+        "geometry": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Polygon"
+            },
+            {
+              "$ref": "#/$defs/MultiPolygon"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Geometry"
+        },
+        "properties": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Properties"
+        },
+        "id": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Id"
+        }
+      },
+      "type": "object",
+      "required": [
+        "type",
+        "geometry",
+        "properties"
+      ],
+      "title": "Feature[Union[Polygon, MultiPolygon], dict[str, Any]]"
+    },
+    "MonitorFieldGeojsonInputs": {
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "format": "date",
+          "title": "Start Date"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date",
+          "title": "End Date"
+        },
+        "priority": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Priority"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "feature_collection": {
+          "$ref": "#/$defs/FeatureCollection_Feature_Union_Polygon__MultiPolygon___dict_str__Any___"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "start_date",
+        "end_date",
+        "feature_collection"
+      ],
+      "title": "MonitorFieldGeojsonInputs",
+      "description": "`MonitorFieldGeojsonInputs` are metadata used to define the parameters of a\ndata request, such as the geographical boundaries of the field and the start and\nend date for field monitoring. A defining characteristic of `MonitorFieldGeojsonInputs`\nis that boundaries of one or more agricultural fields or regions being monitored is passed\nin GeoJSON format.\n\n### Limits on GeoJSON Payloads\n\n- `50,000,000` maximum area per Feature (square meters).\n- `2,000` maximum points per Feature.\n- `50` Maximum number of Features in a FeatureCollection.\n\nExceeding any of these limits will generate a HTTP 422 Unprocessable Entity response."
+    },
+    "MultiPolygon": {
+      "properties": {
+        "bbox": {
+          "anyOf": [
+            {
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array",
+              "maxItems": 4,
+              "minItems": 4
+            },
+            {
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array",
+              "maxItems": 6,
+              "minItems": 6
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Bbox"
+        },
+        "type": {
+          "type": "string",
+          "const": "MultiPolygon",
+          "title": "Type"
+        },
+        "coordinates": {
+          "items": {
+            "items": {
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/Position2D"
+                  },
+                  {
+                    "$ref": "#/$defs/Position3D"
+                  }
+                ]
+              },
+              "type": "array",
+              "minItems": 4
+            },
+            "type": "array"
+          },
+          "type": "array",
+          "title": "Coordinates"
+        }
+      },
+      "type": "object",
+      "required": [
+        "type",
+        "coordinates"
+      ],
+      "title": "MultiPolygon",
+      "description": "MultiPolygon Model"
+    },
+    "Polygon": {
+      "properties": {
+        "bbox": {
+          "anyOf": [
+            {
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array",
+              "maxItems": 4,
+              "minItems": 4
+            },
+            {
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array",
+              "maxItems": 6,
+              "minItems": 6
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Bbox"
+        },
+        "type": {
+          "type": "string",
+          "const": "Polygon",
+          "title": "Type"
+        },
+        "coordinates": {
+          "items": {
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Position2D"
+                },
+                {
+                  "$ref": "#/$defs/Position3D"
+                }
+              ]
+            },
+            "type": "array",
+            "minItems": 4
+          },
+          "type": "array",
+          "title": "Coordinates"
+        }
+      },
+      "type": "object",
+      "required": [
+        "type",
+        "coordinates"
+      ],
+      "title": "Polygon",
+      "description": "Polygon Model"
+    },
+    "Position2D": {
+      "prefixItems": [
+        {
+          "type": "number",
+          "title": "Longitude"
+        },
+        {
+          "type": "number",
+          "title": "Latitude"
+        }
+      ],
+      "type": "array",
+      "maxItems": 2,
+      "minItems": 2
+    },
+    "Position3D": {
+      "prefixItems": [
+        {
+          "type": "number",
+          "title": "Longitude"
+        },
+        {
+          "type": "number",
+          "title": "Latitude"
+        },
+        {
+          "type": "number",
+          "title": "Altitude"
+        }
+      ],
+      "type": "array",
+      "maxItems": 3,
+      "minItems": 3
+    },
+    "Priority": {
+      "type": "string",
+      "enum": [
+        "high",
+        "normal",
+        "low"
+      ],
+      "title": "Priority"
+    },
+    "ResponseMode": {
+      "type": "string",
+      "enum": [
+        "document",
+        "raw"
+      ],
+      "title": "ResponseMode",
+      "description": "Defines how Process results (if any) may be retrieved.\n\nThese values are defined in [OGC API - Processes: 7.11.2.5 Process\noutputs](https://docs.ogc.org/is/18-062r2/18-062r2.html#7-11-2-5-%C2%A0-process-outputs)."
+    },
+    "Subscriber": {
+      "properties": {
+        "successUri": {
+          "type": "string",
+          "title": "Successuri"
+        },
+        "successHeaders": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Successheaders"
+        },
+        "inProgressUri": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Inprogressuri"
+        },
+        "inProgressHeaders": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Inprogressheaders"
+        },
+        "failedUri": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Faileduri"
+        },
+        "failedHeaders": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Failedheaders"
+        },
+        "resultsFormat": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "prefill"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Resultsformat"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "successUri"
+      ],
+      "title": "Subscriber",
+      "description": "The `StatusCode` provides information about the status of a job. such as success,\nfailure, processing, etc."
+    },
+    "TransmissionMode": {
+      "type": "string",
+      "enum": [
+        "value",
+        "reference"
+      ],
+      "title": "TransmissionMode",
+      "description": "Defines how Process results (if any) may be retrieved.\n\nThese values are defined in [OGC API - Processes: 7.11.2.5 Process\noutputs](https://docs.ogc.org/is/18-062r2/18-062r2.html#7-11-2-5-%C2%A0-process-outputs)."
+    }
+  }
+}

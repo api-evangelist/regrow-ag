@@ -1,0 +1,35 @@
+{
+  "provider": "regrow-ag",
+  "sources": [
+    "_original/regrow-ag-measure-api-openapi.json",
+    "_original/regrow-ag-monitor-api-openapi.yml"
+  ],
+  "outputs": [
+    "regrow-ag-v0-explore-api-intervention-api-openapi.yml",
+    "regrow-ag-v0-measure-api-intervention-api-openapi.yml",
+    "regrow-ag-v0-measure-api-inventory-api-openapi.yml",
+    "regrow-ag-v1-measure-api-enteric-api-openapi.yml",
+    "regrow-ag-ogc-api-general-api-openapi.yml",
+    "regrow-ag-ogc-api-processes-api-openapi.yml"
+  ],
+  "archived": [
+    "deleted 2 superseded output(s) from the previous generation"
+  ],
+  "errors": [],
+  "warnings": [
+    "regrow-ag-measure-api-openapi.json: info.version missing"
+  ],
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "regrow-ag-measure-api-openapi.json: upgraded openapi 3.0.2 -> OpenAPI 3.2.0; renamed 2 component key(s) illegal in 3.x (e.g. scenarios_service_schema__public__inventory__input__ReportingInformation[CropNamesEnum])",
+    "regrow-ag-monitor-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "regrow-ag-monitor-api-openapi.yml: declared missing tag: OGC API - General",
+    "regrow-ag-monitor-api-openapi.yml: declared missing tag: OGC API - Processes",
+    "superseded outputs removed: regrow-ag-measure-api-openapi.yml, regrow-ag-monitor-api-openapi.yml",
+    "apis.yml register: written (+6 apis, 6 total)"
+  ],
+  "skipped": [
+    "regrow-ag-measure-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "regrow-ag-monitor-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}

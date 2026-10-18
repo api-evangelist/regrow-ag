@@ -1,0 +1,298 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/regrow-ag/main/json-schema/regrow-ag-project-inventory-response-schema.json",
+  "title": "ProjectInventoryResponse",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/ProjectInventoryResponse",
+  "properties": {
+    "crop_level": {
+      "additionalProperties": {
+        "$ref": "#/$defs/InventoryProjectAsset"
+      },
+      "type": "object",
+      "title": "Crop Level",
+      "description": "An object containing data about the emissions outcomes for each crop type in the project."
+    },
+    "field_level": {
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/FieldLevelSharePerGas"
+          },
+          {
+            "$ref": "#/$defs/FieldLevelShare"
+          }
+        ]
+      },
+      "type": "array",
+      "title": "Field Level",
+      "description": "A list of objects containing data about each field's percent contribution to emissions for the project, pre uncertainty."
+    },
+    "field_level_value": {
+      "items": {
+        "$ref": "#/$defs/FieldLevelValue"
+      },
+      "type": "array",
+      "title": "Field Level Value",
+      "description": "A list of objects containing field level contributions to the project, without uncertainty, and which should be used for supporting grower incentives only.",
+      "default": []
+    }
+  },
+  "type": "object",
+  "required": [
+    "crop_level",
+    "field_level"
+  ],
+  "$defs": {
+    "FieldLevelShare": {
+      "properties": {
+        "field_name": {
+          "type": "string",
+          "title": "Field Name"
+        },
+        "crediting_crop": {
+          "type": "string",
+          "title": "Crediting Crop"
+        },
+        "net_emissions_percentage": {
+          "type": "number",
+          "title": "Net Emissions Percentage",
+          "description": "Percentage of the field emissions relative to the total emissions of the same crop, pre uncertainty"
+        },
+        "area_acres": {
+          "type": "number",
+          "title": "Area Acres"
+        },
+        "crop_yield_bushels_per_acre": {
+          "type": "number",
+          "title": "Crop Yield Bushels Per Acre"
+        }
+      },
+      "type": "object",
+      "required": [
+        "field_name",
+        "crediting_crop",
+        "net_emissions_percentage",
+        "area_acres",
+        "crop_yield_bushels_per_acre"
+      ],
+      "title": "FieldLevelShare"
+    },
+    "FieldLevelSharePerGas": {
+      "properties": {
+        "field_name": {
+          "type": "string",
+          "title": "Field Name"
+        },
+        "crediting_crop": {
+          "type": "string",
+          "title": "Crediting Crop"
+        },
+        "net_emissions_percentage": {
+          "type": "number",
+          "title": "Net Emissions Percentage",
+          "description": "Percentage of the field emissions relative to the total emissions of the same crop, pre uncertainty"
+        },
+        "area_acres": {
+          "type": "number",
+          "title": "Area Acres"
+        },
+        "crop_yield_bushels_per_acre": {
+          "type": "number",
+          "title": "Crop Yield Bushels Per Acre"
+        },
+        "ch4_percentage": {
+          "type": "number",
+          "title": "Ch4 Percentage",
+          "description": "Percentage of the field emissions relative to the total CH4 emissions of the same crop, pre uncertainty"
+        },
+        "n2o_percentage": {
+          "type": "number",
+          "title": "N2O Percentage",
+          "description": "Percentage of the field emissions relative to the total N2O emissions of the same crop, pre uncertainty"
+        },
+        "indirect_n2o_percentage": {
+          "type": "number",
+          "title": "Indirect N2O Percentage",
+          "description": "Percentage of the field emissions relative to the total indirect N2O emissions of the same crop, pre uncertainty"
+        },
+        "soc_percentage": {
+          "type": "number",
+          "title": "Soc Percentage",
+          "description": "Percentage of the field emissions relative to the total SOC emissions of the same crop, pre uncertainty"
+        }
+      },
+      "type": "object",
+      "required": [
+        "field_name",
+        "crediting_crop",
+        "net_emissions_percentage",
+        "area_acres",
+        "crop_yield_bushels_per_acre",
+        "ch4_percentage",
+        "n2o_percentage",
+        "indirect_n2o_percentage",
+        "soc_percentage"
+      ],
+      "title": "FieldLevelSharePerGas"
+    },
+    "FieldLevelValue": {
+      "properties": {
+        "field_name": {
+          "type": "string",
+          "title": "Field Name"
+        },
+        "crediting_crop": {
+          "type": "string",
+          "title": "Crediting Crop"
+        },
+        "net_emissions_factor": {
+          "type": "number",
+          "title": "Net Emissions Factor",
+          "description": "Includes GHG and SOC emissions factors combined, reported in tonnes CO2e/bushel"
+        },
+        "area_acres": {
+          "type": "number",
+          "title": "Area Acres"
+        },
+        "crop_yield_bushels_per_acre": {
+          "type": "number",
+          "title": "Crop Yield Bushels Per Acre"
+        },
+        "indirect_n2o_emissions": {
+          "type": "number",
+          "title": "Indirect N2O Emissions"
+        },
+        "direct_n2o_emissions": {
+          "type": "number",
+          "title": "Direct N2O Emissions"
+        },
+        "ch4_emissions": {
+          "type": "number",
+          "title": "Ch4 Emissions"
+        },
+        "soc": {
+          "type": "number",
+          "title": "Soc"
+        },
+        "ghg_emissions_factor": {
+          "type": "number",
+          "title": "Ghg Emissions Factor",
+          "description": "Total direct N2O, indirect N2O and CH4 emissions reported in tonnes CO2e/bushel"
+        },
+        "soc_emissions_factor": {
+          "type": "number",
+          "title": "Soc Emissions Factor",
+          "description": "Total SOC emissions reported in tonnes CO2e/bushel"
+        }
+      },
+      "type": "object",
+      "required": [
+        "field_name",
+        "crediting_crop",
+        "net_emissions_factor",
+        "area_acres",
+        "crop_yield_bushels_per_acre",
+        "indirect_n2o_emissions",
+        "direct_n2o_emissions",
+        "ch4_emissions",
+        "soc",
+        "ghg_emissions_factor",
+        "soc_emissions_factor"
+      ],
+      "title": "FieldLevelValue"
+    },
+    "InventoryProjectAsset": {
+      "properties": {
+        "crop_yield": {
+          "type": "number",
+          "title": "Crop Yield",
+          "description": "Crop yield in bushels"
+        },
+        "number_of_fields": {
+          "type": "integer",
+          "title": "Number Of Fields"
+        },
+        "number_of_acres": {
+          "type": "number",
+          "title": "Number Of Acres"
+        },
+        "direct_n2o_emissions": {
+          "type": "number",
+          "title": "Direct N2O Emissions",
+          "description": "Direct N2O emissions in tonnes CO2e"
+        },
+        "indirect_n2o_emissions": {
+          "type": "number",
+          "title": "Indirect N2O Emissions",
+          "description": "Indirect N2O emissions in tonnes CO2e"
+        },
+        "soil_ch4_emissions": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Soil Ch4 Emissions",
+          "description": "Soil CH4 emissions in tonnes CO2e"
+        },
+        "total_emissions": {
+          "type": "number",
+          "title": "Total Emissions",
+          "description": "Total emissions in tonnes CO2e"
+        },
+        "total_emissions_per_bushel": {
+          "type": "number",
+          "title": "Total Emissions Per Bushel",
+          "description": "Total emissions per bushel in tonnes CO2e/bushel"
+        },
+        "soc": {
+          "type": "number",
+          "title": "Soc",
+          "description": "SOC in tonnes CO2e"
+        },
+        "soc_per_bushel": {
+          "type": "number",
+          "title": "Soc Per Bushel",
+          "description": "SOC per bushel in tonnes CO2e/bushel"
+        },
+        "ghg_emissions_factor": {
+          "type": "number",
+          "title": "Ghg Emissions Factor",
+          "description": "GHG emissions factor in tonnes CO2e/bushel"
+        },
+        "soc_emissions_factor": {
+          "type": "number",
+          "title": "Soc Emissions Factor",
+          "description": "SOC emissions factor in tonnes CO2e/bushel"
+        },
+        "net_emissions_factor": {
+          "type": "number",
+          "title": "Net Emissions Factor",
+          "description": "Net emissions factor in tonnes CO2e/bushel"
+        }
+      },
+      "type": "object",
+      "required": [
+        "crop_yield",
+        "number_of_fields",
+        "number_of_acres",
+        "direct_n2o_emissions",
+        "indirect_n2o_emissions",
+        "total_emissions",
+        "total_emissions_per_bushel",
+        "soc",
+        "soc_per_bushel",
+        "ghg_emissions_factor",
+        "soc_emissions_factor",
+        "net_emissions_factor"
+      ],
+      "title": "InventoryProjectAsset"
+    }
+  }
+}

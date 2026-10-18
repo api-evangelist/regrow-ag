@@ -1,0 +1,5 @@
+generated: '2026-10-18'
+method: none
+source: https://registry.npmjs.org/-/v1/search?text=regrow, https://pypi.org/pypi/regrow/json, https://help.regrow.ag/sdks
+packages: []
+note: Searched npm, PyPI, and help center for SDKs. No first-party SDKs found. The 'regrow' package on npm is unrelated (genetic algorithms for image processing). No official SDKs documented in Regrow's help center or developer portal.

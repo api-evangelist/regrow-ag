@@ -1,0 +1,46 @@
+overlay: 1.0.0
+info:
+  title: Regrow Monitor API overlay
+  version: 1.0.0
+extends: ../openapi/_original/regrow-ag-monitor-api-openapi.yml
+generated: '2026-10-18'
+method: generated
+source: openapi/regrow-ag-monitor-api-openapi.yml
+actions:
+- target: $.components
+  description: Declare the x-apikey header that both specs document only as a per-operation parameter or in prose.
+  update:
+    securitySchemes:
+      apiKey:
+        type: apiKey
+        in: header
+        name: x-apikey
+        description: API key issued by Regrow Support (support@regrow.ag).
+- target: $
+  description: Apply the API key globally.
+  update:
+    security:
+    - apiKey: []
+- target: $.info
+  update:
+    x-apievangelist-provider: regrow-ag
+    contact:
+      email: support@regrow.ag
+- target: $.paths['/jobs/{job_id}'].get
+  update:
+    x-mcp-tool: monitor_get_job_status
+    x-agent-safe: true
+- target: $.paths['/jobs/{job_id}/results'].get
+  update:
+    x-mcp-tool: monitor_get_job_results
+    x-agent-safe: true
+- target: $.paths['/processes/monitor-fields-boundary-id/execution'].post
+  update:
+    x-mcp-tool: monitor_monitor_field
+- target: $.paths['/processes/monitor-fields-geojson/execution'].post
+  update:
+    x-mcp-tool: monitor_monitor_field_geojson
+- target: $.paths['/status'].get
+  update:
+    x-mcp-tool: monitor_health_check
+    x-agent-safe: true

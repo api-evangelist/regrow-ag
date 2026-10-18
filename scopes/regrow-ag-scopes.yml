@@ -1,0 +1,5 @@
+generated: '2026-10-18'
+method: none
+source: openapi/regrow-ag-monitor-api-openapi.yml, openapi/regrow-ag-measure-api-openapi.yml
+scopes: []
+note: APIs use API key authentication (x-apikey header), not OAuth. No scopes or permissions system documented.

@@ -1,0 +1,71 @@
+generated: '2026-10-18'
+method: derived
+source: openapi/regrow-ag-monitor-api-openapi.yml
+scheme: semantic
+current_version: v3.10.0
+entries:
+  - version: v3.10.0
+    date: '2026-10-14'
+    breaking: false
+    highlights:
+      - Add support for preliminary 2026 in-season data for Europe
+  - version: v3.9.0
+    date: '2026-04-22'
+    breaking: false
+    highlights:
+      - Add Geographic Support for CONUS and Canada through December 2025
+  - version: v3.8.0
+    date: '2025-12-16'
+    breaking: false
+    highlights:
+      - Add Geographic Support for Spain
+      - Monitor Results supported from January 2019 through December 2025
+  - version: v3.7.0
+    date: '2025-10-28'
+    breaking: false
+    highlights:
+      - Add support for preliminary 2025 in-season data for Europe
+  - version: v3.6.0
+    date: '2025-07-28'
+    breaking: false
+    highlights:
+      - Enhanced CropID ML Model (CropID V4) for Poland, Romania, Lithuania, Latvia, and Estonia
+      - Adds final 2024 data (replacing preliminary, in-season 2024 data)
+  - version: v3.5.0
+    date: '2025-06-16'
+    breaking: false
+    highlights:
+      - Enhanced CropID ML Model (CropID V4) for Ukraine and Hungary
+      - Adds final 2024 data for Ukraine and Hungary
+  - version: v3.4.0
+    date: '2025-06-04'
+    breaking: false
+    highlights:
+      - Enhanced CropID ML Model (CropID V4) for Ireland and UK
+      - Adds final 2024 data for Ireland and UK
+  - version: v3.3.0
+    date: '2025-05-08'
+    breaking: false
+    highlights:
+      - Enhanced CropID ML Model (CropID V4) for Germany and Benelux
+      - Adds final 2024 data for Germany and Benelux
+  - version: v3.2.0
+    date: '2025-05-01'
+    breaking: false
+    highlights:
+      - Adds Australia as a monitored region
+  - version: v3.1.0
+    date: '2025-04-24'
+    breaking: false
+    highlights:
+      - Enhanced CropID ML Model (CropID V4) for France
+      - Adds final 2024 data for France
+  - version: v3.0.0
+    date: '2025-03-24'
+    breaking: true
+    highlights:
+      - Enhanced CropID ML Model (CropID V4)
+      - New cover crop data points
+      - Improved tillage classifications
+      - New error codes
+note: Changelog extracted from Monitor API OpenAPI specification. Measure API changelog not found in public OpenAPI.

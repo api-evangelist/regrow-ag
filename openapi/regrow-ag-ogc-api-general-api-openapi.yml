@@ -1,0 +1,183 @@
+openapi: 3.2.0
+info:
+  title: Monitor OGC API - General API
+  description: '# Getting Started
+
+
+    The Monitor API provides access to crop and farming practice data using remote
+
+    sensing technology and proprietary machine learning algorithms. Monitor API
+
+    enables access to the specific field and management data (such as crop cover,
+
+    commodity crop type and tillage practices) needed to power sustainability programs
+
+    and verify regenerative practices remotely. The Monitor API is implemented using the OGC API (Open Geospatial Consortium API)
+
+    standard. The OGC API standard is designed to facilitate access and sharing of
+
+    geospatial data by providing a modern and standardized approach to interact with
+
+    geospatial services, making it an effective choice to provide easy access to agricultural
+
+    field data. More information about getting started with OGC standards can be found here. To get started using Monitor API, you’ll need an API key and agricultural field boundaries
+
+    in GeoJSON format. ## Authentication
+
+
+    The Monitor API uses API keys to authenticate requests. To receive an API key, reach
+
+    out to Regrow Support at support@regrow.ag. Include the API key as a `x-apikey` header for all API requests. ## Rate Limits
+
+
+    The Monitor API is rate limited to ensure the platform remains stable and provides fair
+
+    access for all users. The rate limit for the API is 100 requests per minute. Users will
+
+    receive a `429` error if the rate limit for the API is exceeded. ## API Statuses and Error Codes
+
+
+    Monitor API uses conventional HTTP response codes to communicate the success or failure
+
+    of API requests. Responses with `2XX` status codes generally indicate a successful API request,
+
+    while `4XX` status codes indicate an error with the request, and `5XX` codes indicate errors
+
+    internal to Regrow’s service. | Code | Error |
+
+    |--- | --- |
+
+    | 200 | OK |
+
+    | 401 | Invalid API Key |
+
+    | 404 | Resource Not Found |
+
+    | 422 | Validation Error |
+
+    | 429 | Too Many Requests |
+
+    | 500 | Internal Server Error |
+
+    | 503 | Service Unavailable |
+
+
+    ## Changelog
+
+    ## v3.10.0 - 2026-10-14
+
+    * Add support for preliminary 2026 in-season data for Europe
+
+
+    ## v3.9.0 - 2026-04-22
+
+    * Add Geographic Support for CONUS and Canada through December 2025
+
+
+    ## v3.8.0 - 2025-12-16
+
+    * Add Geographic Support for Spain. * Monitor Results supported from January 2019 through December 2025
+
+
+    ## v3.7.0 - 2025-10-28
+
+    * Add support for preliminary 2025 in-season data for Europe. Supported European countries and crops for the 2025 season can be found here. ## v3.6.0 - 2025-07-28
+
+    * Enhanced CropID ML Model (CropID V4) for Poland, Romania, Lithuania, Latvia, and Estonia:
+
+    - Improved accuracy in crop type classification. - New machine learning-based predictions for planting and harvest dates. - 2018-2023 data refreshed using new models
+
+    * Adds final 2024 data (replacing preliminary, in-season 2024 data)
+
+
+    ## v3.5.0 - 2025-06-16
+
+    * Enhanced CropID ML Model (CropID V4) for Ukraine and Hungary:
+
+    - Improved accuracy in crop type classification. - New machine learning-based predictions for planting and harvest dates. - 2018-2023 data refreshed using new models
+
+    * Adds final 2024 data for Ukraine and Hungary (replacing preliminary, in-season 2024 data)
+
+
+    ## v3.4.0 - 2025-06-04
+
+    * Enhanced CropID ML Model (CropID V4) for Ireland and UK:
+
+    - Improved accuracy in crop type classification. - New machine learning-based predictions for planting and harvest dates. - 2018-2023 data refreshed using new models
+
+    * Adds final 2024 data for Ireland and UK (replacing preliminary, in-season 2024 data)
+
+
+    ## v3.3.0 - 2025-05-08
+
+    * Enhanced CropID ML Model (CropID V4) for Germany and Benelux:
+
+    - Improved accuracy in crop type classification. - New machine learning-based predictions for planting and harvest dates.'
+  version: 3.10.0
+servers:
+- url: https://api.regrow.ag/monitor-api/
+tags:
+- name: OGC API - General
+paths:
+  /status:
+    get:
+      tags:
+      - OGC API - General
+      summary: Health Check
+      description: 'Health check endpoint.
+
+
+        This health check endpoint complies with the RFC Health Check Response Format for HTTP
+
+        APIs specification. Returns a
+
+        200 status code for a health service, and a 503 status code for an unhealthy service.'
+      operationId: health_check_status_get
+      responses:
+        '200':
+          description: Service is healthy.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheck'
+        '503':
+          description: Service is unhealthy.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheck'
+              example:
+                status: fail
+components:
+  schemas:
+    HealthCheck:
+      properties:
+        status:
+          type: string
+          title: Status
+        checks:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Checks
+        version:
+          type: string
+          title: Version
+      additionalProperties: false
+      type: object
+      required:
+      - status
+      - version
+      title: HealthCheck
+      description: '`HealthCheck` can be used to retrieve information about the state of Monitor API,
+
+        such as the status and version.'
+      example:
+        checks:
+          database:
+            status: pass
+          redis:
+            status: pass
+        status: pass
+        version: 3.10.0

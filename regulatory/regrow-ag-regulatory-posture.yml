@@ -1,0 +1,118 @@
+generated: '2026-10-18'
+method: searched
+probe: true
+source: https://www.regrow.ag/privacy-policy
+signals:
+  data_subject_request:
+    url: https://www.regrow.ag/privacy-policy
+    section: '15. Additional Information for Individuals in Certain Jurisdictions'
+    channel: privacy@regrow.ag
+    rights_named: [access, correction, erasure, restriction, portability, objection, withdrawal of consent, complaint to supervisory authority, CCPA know/delete/correct/opt-out, LGPD rights, Argentine Law 25,326 rights]
+    evidence:
+    - source: https://www.regrow.ag/privacy-policy
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: >-
+        Right to data portability. To receive a copy of personal information we have obtained from you in a
+        structured, commonly used, and machine-readable format and to reuse it elsewhere or to ask us to
+        transfer it to a third party of your choice, under certain circumstances.
+    - source: https://www.regrow.ag/privacy-policy
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: >-
+        Submitting CCPA Requests to Know, Correct and Delete. California residents may submit a verifiable
+        request to exercise their CCPA rights as set forth below: Email: privacy@regrow.ag Via our webform .
+    note: >-
+      The privacy policy enumerates GDPR-style rights (access, rectification, erasure, restriction,
+      portability, objection) plus CCPA, Brazilian LGPD and Argentine Law 25,326 rights, with an email and
+      webform channel. No response SLA is stated in the passages read.
+  global_privacy_control:
+    url: https://www.regrow.ag/privacy-policy
+    section: 'California Residents'
+    evidence:
+    - source: https://www.regrow.ag/privacy-policy
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: >-
+        If we recognize that your browser is transmitting a GPC signal, we will opt that browser out of
+        “sales” and “sharing” (including via targeting cookies).
+    note: Regrow states it honours the Global Privacy Control browser signal as a CCPA sale/sharing opt-out.
+  data_retention:
+    url: https://www.regrow.ag/privacy-policy
+    section: '12. Retention'
+    evidence:
+    - source: https://www.regrow.ag/privacy-policy
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: >-
+        As a general rule, we retain your personal information for as long as necessary to fulfill the
+        purposes for which it was collected and is used by us, as stated in this Policy.
+    - source: https://www.regrow.ag/privacy-policy
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: >-
+        With respect to retaining Customer Data, our business customers instruct us on how long to retain
+        Customer Data, which we handle as a data processor.
+    note: >-
+      Purpose-bound retention with no fixed periods; customer data retention is set by the business customer
+      (Regrow acts as processor). The trust center lists "Data retention procedures established" and
+      "Customer data deleted upon leaving" as controls. That entry is a control label, not a sentence.
+  subprocessors:
+    url: https://trust.regrow.ag/
+    section: Subprocessors
+    named: [Google Cloud Platform, Google Workspace, HubSpot, Mixpanel]
+    evidence:
+    - source: https://trust.regrow.ag/
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: 'Google Cloud Platform • Cloud Service Provider 1600 Ampitheatre Pkwy, Mountain View, CA 94043 USA A suite of cloud computing services.'
+    - source: https://www.regrow.ag/terms
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: >-
+        Regrow shall remain responsible for its subprocessors to the extent required by applicable law and
+        subject to the limitations of liability set forth in these Terms. Upon reasonable request, Regrow shall
+        provide Customer with information regarding the categories of subprocessors used to process Personal Data
+        and the jurisdictions in which such processing takes place.
+    note: >-
+      The trust center publishes a subprocessor list (the rendered page showed four entries, with a "View all"
+      link). The terms commit to provide subprocessor categories and jurisdictions on request. No advance
+      notice of subprocessor changes was found.
+  data_residency:
+    url: https://www.regrow.ag/privacy-policy
+    section: '10. International Transfers'
+    evidence:
+    - source: https://www.regrow.ag/privacy-policy
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: >-
+        Regrow is headquartered in the United States and operates globally. Personal information collected
+        through the Platform may be transferred to, stored in, or processed in the United States or other
+        jurisdictions outside your home jurisdiction, which may not provide equivalent levels of data protection
+        as applicable laws in your home jurisdiction.
+    note: >-
+      No regional residency option is offered. Data may be processed in the US or elsewhere, using contractual
+      clauses or other safeguards "to the extent required by law" (the terms name AAIP model clauses for
+      Argentina).
+  incident_notification:
+    url: https://www.regrow.ag/terms
+    evidence:
+    - source: https://www.regrow.ag/terms
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: >-
+        Regrow shall notify Customer without undue delay after becoming aware of a confirmed Security Incident
+        involving unauthorized access to, acquisition, disclosure, alteration, loss or destruction of Personal
+        Data processed on behalf of Customer
+    note: Contractual breach notice to the customer "without undue delay" after a confirmed incident. No fixed number of hours is stated.
+  age_assurance:
+    url: https://www.regrow.ag/privacy-policy
+    section: '8. Information About Children'
+    evidence:
+    - source: https://www.regrow.ag/privacy-policy
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: >-
+        The Regrow site is not intended for minors under the age of 13. We do not knowingly or specifically
+        collect information about minors under the age of 13.
+    note: A self-declared under-13 exclusion only. No age-verification mechanism is described.

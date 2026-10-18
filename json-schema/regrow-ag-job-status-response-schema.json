@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/regrow-ag/main/json-schema/regrow-ag-job-status-response-schema.json",
+  "title": "JobStatusResponse",
+  "description": "Summarizes the status information for a job.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/regrow-ag-monitor-api-openapi.yml#/components/schemas/JobStatusResponse",
+  "properties": {
+    "job_id": {
+      "type": "string",
+      "title": "Job Id"
+    },
+    "process_id": {
+      "type": "string",
+      "title": "Process Id"
+    },
+    "status": {
+      "$ref": "#/$defs/StatusCode"
+    },
+    "type": {
+      "type": "string",
+      "const": "process",
+      "title": "Type",
+      "default": "process"
+    },
+    "message": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Message"
+    },
+    "created": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Created"
+    },
+    "started": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Started"
+    },
+    "finished": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Finished"
+    },
+    "updated": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Updated"
+    },
+    "traceback": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/JobTraceback"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "children": {
+      "anyOf": [
+        {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Children"
+    },
+    "parent": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Parent"
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "required": [
+    "job_id",
+    "process_id",
+    "status"
+  ],
+  "$defs": {
+    "JobTraceback": {
+      "properties": {
+        "job_id": {
+          "type": "string",
+          "title": "Job Id"
+        },
+        "task_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Task Name"
+        },
+        "positional_arguments": {
+          "anyOf": [
+            {
+              "items": {},
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Positional Arguments"
+        },
+        "keyword_arguments": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Keyword Arguments"
+        },
+        "traceback": {
+          "type": "string",
+          "title": "Traceback"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "job_id",
+        "traceback"
+      ],
+      "title": "JobTraceback"
+    },
+    "StatusCode": {
+      "type": "string",
+      "enum": [
+        "accepted",
+        "running",
+        "successful",
+        "failed",
+        "dismissed",
+        "{'dismissed', 'successful', 'failed'}"
+      ],
+      "title": "StatusCode",
+      "description": "The `StatusCode` provides information about the status of a job. such as success,\nfailure, processing, etc."
+    }
+  }
+}

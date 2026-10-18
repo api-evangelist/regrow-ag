@@ -1,23 +1,372 @@
 aid: regrow-ag
+
 name: Regrow
-description: 'Regrow is a company surfaced via the API Evangelist harvest backlog (source: kin-score-markets)
-  and added to the network as a stub for full-pipeline profiling.'
+
+description: Regrow (regrow.ag) runs an Agriculture Resilience Platform that helps food and agriculture companies measure, report, and reduce
+  on-farm greenhouse gas emissions, cut scope 3 emissions and work toward net zero goals. Its developer portal at developers.regrow.ag lists the
+  Explore API (baseline GHG emissions and the modeled impact of regenerative practices), the Measure API Enteric, Intervention and Inventory modules,
+  and the Monitor API (remote-sensing based field crop and management practice verification). The API documentation requires signing in to the
+  portal.
+
 url: https://raw.githubusercontent.com/api-evangelist/regrow-ag/refs/heads/main/apis.yml
+
 x-type: company
+
 x-source: harvest:kin-score-markets
-x-tier: stub
-x-tier-reason: harvest
+
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-10-18 (modular-v1; was harvest)
+
 specificationVersion: '0.20'
+
 created: '2026-10-18'
+
 modified: '2026-10-18'
+
 tags:
 - Company
-apis: []
+- Agriculture
+- Sustainability
+- Greenhouse Gas Emissions
+- Carbon
+- Regenerative Agriculture
+- Remote Sensing
+- Climate
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
+image: https://cdn.prod.website-files.com/6886e3608592c9b2ccef36f2/6a34a2ce44d27a821ee6e49c_9ee0b697532cf0b5851d72e412be4d7a_home-og.jpg
+
 common:
+- type: AgenticAccess
+  url: agentic-access/regrow-ag-agentic-access.yml
+- type: RateLimits
+  url: rate-limits/regrow-ag-rate-limits.yml
+- type: Spectral
+  url: rules/regrow-ag-rules.yml
+- type: JSONLD
+  url: json-ld/regrow-ag-context.jsonld
+- type: Vocabulary
+  url: vocabulary/regrow-ag-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/regrow-ag-data-model.yml
+- type: ChangeLog
+  url: changelog/regrow-ag-changelog.yml
+- type: Conventions
+  url: conventions/regrow-ag-conventions.yml
+- type: Authentication
+  url: authentication/regrow-ag-authentication.yml
+- type: Deprecation
+  url: https://help.regrow.ag/versioning-of-measure-api-and-explore-api
+- type: Lifecycle
+  url: lifecycle/regrow-ag-lifecycle.yml
+- type: ErrorCatalog
+  url: errors/regrow-ag-problem-types.yml
+- type: Conformance
+  url: conformance/regrow-ag-conformance.yml
+- type: Overlay
+  url: overlays/regrow-ag-measure-api-overlay.yaml
+- type: Hosts
+  url: hosts/regrow-ag-hosts.yml
+- type: Vendors
+  url: vendors/regrow-ag-vendors.yml
+- type: GettingStarted
+  url: https://help.regrow.ag/new-client-onboarding-to-measure-api
 - type: Website
-  url: https://regrow.ag
+  url: https://www.regrow.ag
+- type: DomainSecurity
+  url: security/regrow-ag-domain-security.yml
+- type: DeveloperPortal
+  url: https://developers.regrow.ag/
+- type: APIReference
+  url: https://developers.regrow.ag/apis
+- type: Login
+  url: https://app.regrow.ag
+- type: Blog
+  url: https://www.regrow.ag/resources/blog
+- type: Newsroom
+  url: https://www.regrow.ag/resources/news
+- type: Leadership
+  url: https://www.regrow.ag/tags/team
+- type: Support
+  url: https://help.regrow.ag/
+- type: TrustCenter
+  url: https://trust.regrow.ag/
+- type: TermsOfService
+  url: https://www.regrow.ag/terms
+- type: PrivacyPolicy
+  url: https://www.regrow.ag/privacy-policy
+- type: LinkedIn
+  url: https://www.linkedin.com/company/regrowag
+- type: Twitter
+  url: https://www.twitter.com/regrowag
+
+apis:
+- aid: regrow-ag:regrow-ag-ogc-api-general-api
+  name: Regrow OGC API - General API
+  description: The OGC API - General API from Regrow — 1 operation(s) for ogc api - general.
+  humanURL: https://developers.regrow.ag/apis
+  baseURL: https://api.regrow.ag/monitor-api/
+  tags:
+  - OGC API - General
+  properties:
+  - type: OpenAPI
+    url: openapi/regrow-ag-ogc-api-general-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/regrow-ag-job-result-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-job-status-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/regrow-ag-execute-process-request-body-monitor-field-boundary-id-inputs-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/regrow-ag-execute-process-request-body-monitor-field-geojson-inputs-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-health-check-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-monitor-field-boundary-id-outputs-schema.json
+  - type: Documentation
+    url: https://docs.regrow.ag/measure
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope3-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope1-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope3-credit-share-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope1-credit-share-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-intervention-input-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-inventory-response-schema.json
+- aid: regrow-ag:regrow-ag-ogc-api-processes-api
+  name: Regrow OGC API - Processes API
+  description: The OGC API - Processes API from Regrow — 4 operation(s) for ogc api - processes.
+  humanURL: https://developers.regrow.ag/apis
+  baseURL: https://api.regrow.ag/monitor-api/
+  tags:
+  - OGC API - Processes
+  properties:
+  - type: OpenAPI
+    url: openapi/regrow-ag-ogc-api-processes-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/regrow-ag-job-result-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-job-status-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/regrow-ag-execute-process-request-body-monitor-field-boundary-id-inputs-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/regrow-ag-execute-process-request-body-monitor-field-geojson-inputs-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-health-check-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-monitor-field-boundary-id-outputs-schema.json
+  - type: Documentation
+    url: https://docs.regrow.ag/measure
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope3-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope1-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope3-credit-share-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope1-credit-share-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-intervention-input-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-inventory-response-schema.json
+- aid: regrow-ag:regrow-ag-v0-explore-api-intervention-api
+  name: Regrow V0 Explore API - Intervention API
+  description: >-
+    Explore API allows users to predict or forecast the emissions impact of adopting a regenerative agricultural
+    practice, or *intervention*, for a specific field. Explore uses the DNDC model to simulate soil carbon
+    and GHG emissions/removals outcomes.
+
+
+    To learn more about the API consult the documentation at https://help.regrow.ag/explore-api.
+  humanURL: https://developers.regrow.ag/apis
+  baseURL: https://api.regrow.ag/monitor-api/
+  tags:
+  - V0 Explore API - Intervention
+  properties:
+  - type: OpenAPI
+    url: openapi/regrow-ag-v0-explore-api-intervention-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/regrow-ag-job-result-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-job-status-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/regrow-ag-execute-process-request-body-monitor-field-boundary-id-inputs-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/regrow-ag-execute-process-request-body-monitor-field-geojson-inputs-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-health-check-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-monitor-field-boundary-id-outputs-schema.json
+  - type: Documentation
+    url: https://docs.regrow.ag/measure
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope3-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope1-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope3-credit-share-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope1-credit-share-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-intervention-input-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-inventory-response-schema.json
+- aid: regrow-ag:regrow-ag-v0-measure-api-intervention-api
+  name: Regrow V0 Measure API - Intervention API
+  description: >-
+    Measure API is composed of modules. This module is called `Intervention`, and to learn more about
+    the API consult the documentation at https://help.regrow.ag/intervention-module-integration-guide.
+  humanURL: https://developers.regrow.ag/apis
+  baseURL: https://api.regrow.ag/monitor-api/
+  tags:
+  - V0 Measure API - Intervention
+  properties:
+  - type: OpenAPI
+    url: openapi/regrow-ag-v0-measure-api-intervention-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/regrow-ag-job-result-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-job-status-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/regrow-ag-execute-process-request-body-monitor-field-boundary-id-inputs-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/regrow-ag-execute-process-request-body-monitor-field-geojson-inputs-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-health-check-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-monitor-field-boundary-id-outputs-schema.json
+  - type: Documentation
+    url: https://docs.regrow.ag/measure
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope3-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope1-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope3-credit-share-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope1-credit-share-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-intervention-input-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-inventory-response-schema.json
+- aid: regrow-ag:regrow-ag-v0-measure-api-inventory-api
+  name: Regrow V0 Measure API - Inventory API
+  description: >-
+    Measure API is composed of modules. This module is called `Inventory`, and to learn more about the
+    API consult the documentation at https://help.regrow.ag/inventory-module-integration-overview.
+  humanURL: https://developers.regrow.ag/apis
+  baseURL: https://api.regrow.ag/monitor-api/
+  tags:
+  - V0 Measure API - Inventory
+  properties:
+  - type: OpenAPI
+    url: openapi/regrow-ag-v0-measure-api-inventory-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/regrow-ag-job-result-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-job-status-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/regrow-ag-execute-process-request-body-monitor-field-boundary-id-inputs-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/regrow-ag-execute-process-request-body-monitor-field-geojson-inputs-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-health-check-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-monitor-field-boundary-id-outputs-schema.json
+  - type: Documentation
+    url: https://docs.regrow.ag/measure
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope3-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope1-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope3-credit-share-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope1-credit-share-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-intervention-input-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-inventory-response-schema.json
+- aid: regrow-ag:regrow-ag-v1-measure-api-enteric-api
+  name: Regrow V1 Measure API - Enteric API
+  description: >-
+    Measure API is composed of modules. This module is called `Enteric`, and to learn more about the API
+    consult the documentation at https://help.regrow.ag/.
+  humanURL: https://developers.regrow.ag/apis
+  baseURL: https://api.regrow.ag/monitor-api/
+  tags:
+  - V1 Measure API - Enteric
+  properties:
+  - type: OpenAPI
+    url: openapi/regrow-ag-v1-measure-api-enteric-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/regrow-ag-job-result-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-job-status-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/regrow-ag-execute-process-request-body-monitor-field-boundary-id-inputs-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/regrow-ag-execute-process-request-body-monitor-field-geojson-inputs-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-health-check-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-monitor-field-boundary-id-outputs-schema.json
+  - type: Documentation
+    url: https://docs.regrow.ag/measure
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope3-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope1-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope3-credit-share-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-scope1-credit-share-response-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-intervention-input-schema.json
+  - type: JSONSchema
+    url: json-schema/regrow-ag-project-inventory-response-schema.json
+x-coverage:
+  state: covered
+  reason: identity-verified
+  detail: Website verified 2026-10-18; Monitor API OpenAPI downloads anonymously from the developers.regrow.ag Apigee portal and the Measure/Explore
+    OpenAPI is public at docs.regrow.ag/measure/public_openapi.json, both serving api.regrow.ag.
+  evidence:
+  - url: https://www.regrow.ag/
+    status: 200
+  - url: https://developers.regrow.ag/apis
+    status: 200
+  - url: https://developers.regrow.ag/docs/explore-api/1/overview
+    status: 401
+  - url: https://developers.regrow.ag/portals/api/sites/flurosat-154904-regrowdeveloper/liveportal/apis/monitor-v2/download_spec
+    status: 200
+  - url: https://docs.regrow.ag/measure/public_openapi.json
+    status: 200
+x-enrichment:
+  date: '2026-10-18'
+  status: enriched
+  artifacts_added: 53
+  pass: modular-v1
+  engine: identity=anthropic,contract=anthropic,surfaces=anthropic,docs=deepseek,regulatory=anthropic

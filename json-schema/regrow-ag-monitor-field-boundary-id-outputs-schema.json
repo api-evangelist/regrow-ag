@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/regrow-ag/main/json-schema/regrow-ag-monitor-field-boundary-id-outputs-schema.json",
+  "title": "MonitorFieldBoundaryIdOutputs",
+  "description": "`MonitorFieldBoundaryIDOutputs` returns the tasks, or jobs, created when a request\nis made using `MonitorFieldBoundaryIDInputs`. Task IDs are used to retrieve field\ndata results once the job has completed processing.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/regrow-ag-monitor-api-openapi.yml#/components/schemas/MonitorFieldBoundaryIdOutputs",
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "title": "Task Id"
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "required": [
+    "task_id"
+  ]
+}

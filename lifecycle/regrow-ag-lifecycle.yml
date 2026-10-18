@@ -1,0 +1,21 @@
+generated: '2026-10-18'
+method: searched
+generator: extract-docs-artifacts.py (deepseek)
+source: https://developers.regrow.ag/monitor-api-v2-migration-guide
+sources:
+- https://developers.regrow.ag/monitor-api-v2-migration-guide
+- https://help.regrow.ag/monitor-api-v3-technical-migration-guide
+- https://help.regrow.ag/versioning-of-measure-api-and-explore-api
+- https://help.regrow.ag/new-client-onboarding-to-measure-api
+versioning:
+  scheme: path
+  how_selected: Version number directly in the API route (e.g., /v1/)
+  docs: https://help.regrow.ag/versioning-of-measure-api-and-explore-api
+deprecation:
+  notice_period: 6 months
+  policy: previously released API version shall remain accessible and fully functional for a period of 6 months, after which it will become deprecated
+  docs: https://help.regrow.ag/versioning-of-measure-api-and-explore-api
+note: '"Versioning information specifically stated for Measure and Explore APIs. Monitor API shows version migrations (v1→v2→v3) but no explicit
+  versioning policy."'
+status_page: null
+docs: https://developers.regrow.ag/monitor-api-v2-migration-guide

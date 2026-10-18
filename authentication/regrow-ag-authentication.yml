@@ -1,0 +1,13 @@
+generated: '2026-10-18'
+method: derived
+source: openapi/regrow-ag-monitor-api-openapi.yml, openapi/regrow-ag-measure-api-openapi.yml
+schemes:
+  - type: apiKey
+    name: x-apikey
+    in: header
+    description: API key authentication for both Monitor API and Measure API
+    docs: https://developers.regrow.ag/portals/api/sites/flurosat-154904-regrowdeveloper/liveportal/apis/monitor-v2/download_spec
+    evidence:
+      - Monitor API OpenAPI states "The Monitor API uses API keys to authenticate requests. To receive an API key, reach out to Regrow Support at support@regrow.ag. Include the API key as a `x-apikey` header for all API requests."
+      - Measure API OpenAPI shows x-apikey header parameter required for all endpoints
+note: Both APIs use API key authentication via x-apikey header. No OAuth or other authentication schemes documented in public OpenAPI specifications.

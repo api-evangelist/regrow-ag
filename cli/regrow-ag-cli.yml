@@ -1,0 +1,6 @@
+generated: '2026-10-18'
+method: none
+source: openapi/regrow-ag-monitor-api-openapi.yml, openapi/regrow-ag-measure-api-openapi.yml, https://help.regrow.ag
+install: No CLI available
+commands: []
+note: No CLI tools documented. APIs are accessed via HTTP requests with API key authentication.

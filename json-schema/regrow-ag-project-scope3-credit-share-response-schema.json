@@ -1,0 +1,319 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/regrow-ag/main/json-schema/regrow-ag-project-scope3-credit-share-response-schema.json",
+  "title": "ProjectScope3CreditShareResponse",
+  "description": "DEPRECATED - Only used for the CREDIT_SHARE_WEIGHTED field level credit share type, which is also deprecated.\n\nThis response does not contain full field level outcomes.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/ProjectScope3CreditShareResponse",
+  "properties": {
+    "crop_level": {
+      "additionalProperties": {
+        "$ref": "#/$defs/CropLevelCredits"
+      },
+      "type": "object",
+      "title": "Crop Level",
+      "description": "An object containing data about the reporting period, crop data, emissions outcomes and credit values for each crop type in the project."
+    },
+    "field_level": {
+      "additionalProperties": {
+        "$ref": "#/$defs/scenarios_service_schema__public__intervention__v0__measure__scope_3_output__FieldLevelCreditShareOutcomes"
+      },
+      "type": "object",
+      "title": "Field Level",
+      "description": "An object containing data about the reporting period, crop data and credit share for each field in the project."
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "required": [
+    "crop_level",
+    "field_level"
+  ],
+  "$defs": {
+    "CreditEntityWithTotalNonReversibleEmissionsReductions": {
+      "properties": {
+        "uncertainty_distribution": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array",
+              "maxItems": 1000,
+              "minItems": 1000
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Uncertainty Distribution",
+          "description": "The uncertainty distribution is an array of values generated from applying uncertainty to modeled emissions outcomes. The crop level `reversible credit` uncertainty distribution represents the sum of the field-level reversible uncertainty distributions, of all fields with the specified crop type."
+        },
+        "mean": {
+          "type": "number",
+          "title": "Mean",
+          "description": "The mean of the crop-level non-reversible uncertainty distribution."
+        },
+        "standard_deviation": {
+          "type": "number",
+          "title": "Standard Deviation",
+          "description": "The standard deviation of the crop-level non-reversible uncertainty distribution."
+        },
+        "reporting_percentile": {
+          "type": "number",
+          "title": "Reporting Percentile",
+          "description": "The percentile of the uncertainty distribution at which a credit value is taken. The reporting percentile determines how conservative the reported outcomes are, where a larger value results in less conservative credit outcomes."
+        },
+        "total_non_reversible_emissions_reductions": {
+          "type": "number",
+          "title": "Total Non Reversible Emissions Reductions",
+          "description": "The non-reversible emissions reduction value, with an uncertainty adjustment. The value is derived from the `reporting percentile` of the crop-level non-reversible uncertainty distribution. Emissions reductions are represented in tonnes of CO2 equivalents."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "mean",
+        "standard_deviation",
+        "reporting_percentile",
+        "total_non_reversible_emissions_reductions"
+      ],
+      "title": "CreditEntityWithTotalNonReversibleEmissionsReductions"
+    },
+    "CreditEntityWithTotalReversibleEmissionsReductions": {
+      "properties": {
+        "uncertainty_distribution": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array",
+              "maxItems": 1000,
+              "minItems": 1000
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Uncertainty Distribution",
+          "description": "The uncertainty distribution is an array of values generated from applying uncertainty to modeled emissions outcomes. The crop level `reversible credit` uncertainty distribution represents the sum of the field-level reversible uncertainty distributions, of all fields with the specified crop type."
+        },
+        "mean": {
+          "type": "number",
+          "title": "Mean",
+          "description": "The mean of the crop-level reversible uncertainty distribution."
+        },
+        "standard_deviation": {
+          "type": "number",
+          "title": "Standard Deviation",
+          "description": "The standard deviation of the crop-level reversible uncertainty distribution."
+        },
+        "reporting_percentile": {
+          "type": "number",
+          "title": "Reporting Percentile",
+          "description": "The percentile of the uncertainty distribution at which a credit value is taken. The reporting percentile determines how conservative the reported outcomes are, where a larger value results in less conservative credit outcomes."
+        },
+        "total_reversible_emissions_reductions": {
+          "type": "number",
+          "title": "Total Reversible Emissions Reductions",
+          "description": "The reversible emissions reduction value, with an uncertainty adjustment. The value is derived from the `reporting percentile` of the crop-level reversible uncertainty distribution. Emissions reductions are represented in tonnes of CO2 equivalents."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "mean",
+        "standard_deviation",
+        "reporting_percentile",
+        "total_reversible_emissions_reductions"
+      ],
+      "title": "CreditEntityWithTotalReversibleEmissionsReductions"
+    },
+    "Credits": {
+      "properties": {
+        "number_of_fields": {
+          "type": "integer",
+          "title": "Number Of Fields",
+          "description": "The total number of fields in the project with the specified crop type in the reporting period."
+        },
+        "number_of_acres": {
+          "type": "number",
+          "title": "Number Of Acres",
+          "description": "The total number of acres for all fields in the project with the specified crop type in the reporting period."
+        },
+        "reversible_credits": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CreditEntityWithTotalReversibleEmissionsReductions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "An object containing data about the reversible emissions outcomes and reversible credit values, for all fields in the project with the specified crop type."
+        },
+        "non_reversible_credits": {
+          "$ref": "#/$defs/CreditEntityWithTotalNonReversibleEmissionsReductions",
+          "description": "An object containing data about the non-reversible emissions outcomes and reversible credit values, for all fields in the project with the specified crop type."
+        },
+        "total_reversible_credit": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Total Reversible Credit",
+          "description": "The total reversible credit is the reversible emissions reduction credit value divided by the total crop yield. Reversible credit values are represented in tonnes of CO2 equivalents, per bushel of commodity crop."
+        },
+        "total_non_reversible_credit": {
+          "type": "number",
+          "title": "Total Non Reversible Credit",
+          "description": "The total non-reversible credit is the reversible emissions reduction credit value divided by the total crop yield. Reversible credit values are represented in tonnes of CO2 equivalents, per bushel of commodity crop."
+        },
+        "total_credit": {
+          "type": "number",
+          "title": "Total Credit",
+          "description": "The sum of the `total reversible credit` and the `total non-reversible credit`. Total credit values are represented in tonnes of CO2 equivalents, per bushel of commodity crop."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "number_of_fields",
+        "number_of_acres",
+        "reversible_credits",
+        "non_reversible_credits",
+        "total_reversible_credit",
+        "total_non_reversible_credit",
+        "total_credit"
+      ],
+      "title": "Credits"
+    },
+    "CropLevelCredits": {
+      "properties": {
+        "reporting_information": {
+          "$ref": "#/$defs/scenarios_service_schema__public__intervention__v0__measure__scope_3_output__ReportingInformation",
+          "description": "An object containing information about the time period for which carbon outcomes are quantified (AKA the ‘crediting period’) and the crop. The crop-level reporting period is the earliest `start date` through the latest `end date` of the field-level reporting period for fields with the specified crop."
+        },
+        "credit": {
+          "$ref": "#/$defs/Credits",
+          "description": "An object containing data about the fields, emissions outcomes and credit values for the specified crop type."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "reporting_information",
+        "credit"
+      ],
+      "title": "CropLevelCredits",
+      "description": "An object containing project-level emissions outcomes for all projects with the specified crop type."
+    },
+    "ReportingInformationForFieldLevel": {
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "title": "Start Date",
+          "description": "The first day of the reporting period, also known as the crediting period. This is the starting date used to quantify carbon outcomes."
+        },
+        "end_date": {
+          "type": "string",
+          "title": "End Date",
+          "description": "The last day of the reporting period, also known as the crediting period. This is the end of the time period used to quantify carbon outcomes."
+        },
+        "crop_name": {
+          "type": "string",
+          "title": "Crop Name",
+          "description": "The common name of the crop for which carbon outcomes are quantified."
+        },
+        "crop_yield": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Yield",
+          "description": "The crop yield in bushels/acre. For Scope 1 and Scope 3 assets generation this means the average yield. This is required for protocols calculating Scope 3 assets. For protocols calculating Scope 1 assets, this is optional and will not be used for Scope 1 asset calculation. If included, it will be passed to the output config for reference."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "start_date",
+        "end_date",
+        "crop_name"
+      ],
+      "title": "ReportingInformationForFieldLevel"
+    },
+    "scenarios_service_schema__public__intervention__v0__measure__scope_3_output__FieldLevelCreditShareOutcomes": {
+      "properties": {
+        "reporting_information": {
+          "$ref": "#/$defs/ReportingInformationForFieldLevel",
+          "description": "An object containing information about the time period for which carbon outcomes are quantified (AKA the ‘crediting period’) and the crop for the field."
+        },
+        "credit_share": {
+          "type": "number",
+          "title": "Credit Share",
+          "description": "An emissions redistribution value that redistributes credits proportionally based on the initial (preliminary) DNDC results. This is calculated as: (preliminary tCO2e for a field/total preliminary tCO2e for that crop) * post-uncertainty tCO2e for that crop."
+        },
+        "field_name": {
+          "type": "string",
+          "title": "Field Name",
+          "description": "The common description provided for the field."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "reporting_information",
+        "credit_share",
+        "field_name"
+      ],
+      "title": "FieldLevelCreditShareOutcomes",
+      "description": "An object containing data about the reporting period and credit share for the specified field."
+    },
+    "scenarios_service_schema__public__intervention__v0__measure__scope_3_output__ReportingInformation": {
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "title": "Start Date",
+          "description": "The first day of the reporting period, also known as the crediting period. This is the starting date used to quantify carbon outcomes. It represents the earliest start date of the field-level reporting period."
+        },
+        "end_date": {
+          "type": "string",
+          "title": "End Date",
+          "description": "The last day of the reporting period, also known as the crediting period. This is the end of the time period used to quantify carbon outcomes. It represents the last end date of the field-level reporting period."
+        },
+        "crop_name": {
+          "type": "string",
+          "title": "Crop Name",
+          "description": "The common name of the crop for which carbon outcomes are quantified."
+        },
+        "total_yield": {
+          "type": "number",
+          "title": "Total Yield",
+          "description": "The sum of the yield from all fields in the project with the specified crop in the reporting information."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "start_date",
+        "end_date",
+        "crop_name",
+        "total_yield"
+      ],
+      "title": "ReportingInformation"
+    }
+  }
+}

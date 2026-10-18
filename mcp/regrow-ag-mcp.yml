@@ -1,0 +1,353 @@
+name: Regrow MCP server (candidate)
+type: MCPServer
+generated: '2026-10-18'
+method: derived
+source:
+- openapi/regrow-ag-measure-api-openapi.yml
+- openapi/regrow-ag-monitor-api-openapi.yml
+status: candidate
+description: Regrow does not publish an MCP server. This is a candidate tool list derived one-to-one from the Measure (Explore, Intervention, Inventory, Enteric) and Monitor API OpenAPI operations. It is
+  not a running server.
+deployment:
+  mode: none
+  auth: api-key
+  verified: derived
+auth:
+  type: apiKey
+  in: header
+  name: x-apikey
+  note: Both specs require an x-apikey header. Keys are issued by Regrow Support (support@regrow.ag).
+evidence:
+- url: https://help.regrow.ag/mcp
+  status: 403
+  note: HubSpot knowledge base; GET with a browser UA returns its "Page not found" page, not an MCP endpoint
+- url: https://docs.regrow.ag/mcp
+  status: 404
+- url: https://docs.regrow.ag/.well-known/mcp.json
+  status: 404
+- url: https://mcp.regrow.ag/
+  status: no response (DNS/connection failure)
+- search: Regrow Ag MCP server "Model Context Protocol" regrow.ag
+  result: no Regrow MCP server found
+tools:
+- name: explore_upload_field
+  description: Upload field location and agricultural management data to simulate estimated carbon emissions and removals for a field.
+  operationId: upload_field_v0_explore_api_fields_post
+  method: POST
+  path: /v0/explore_api/fields
+  api: measure
+  readOnly: false
+  destructive: false
+- name: explore_list_fields
+  description: Retrieve a list of all fields created.
+  operationId: list_fields_v0_explore_api_fields_get
+  method: GET
+  path: /v0/explore_api/fields
+  api: measure
+  readOnly: true
+  destructive: false
+- name: explore_get_raw_input
+  description: Retrieve the location and management data for a submitted field.
+  operationId: get_raw_input_v0_v0_explore_api_fields__field_request_id__get
+  method: GET
+  path: /v0/explore_api/fields/{field_request_id}
+  api: measure
+  readOnly: true
+  destructive: false
+- name: explore_get_status
+  description: Get Status
+  operationId: get_status_v0_explore_api_fields__field_request_id__status_get
+  method: GET
+  path: /v0/explore_api/fields/{field_request_id}/status
+  api: measure
+  readOnly: true
+  destructive: false
+- name: explore_get_estimates
+  description: Retrieve the estimated emissions and removals outcomes for a field.
+  operationId: get_estimates_v0_explore_api_fields__field_request_id__results_get
+  method: GET
+  path: /v0/explore_api/fields/{field_request_id}/results
+  api: measure
+  readOnly: true
+  destructive: false
+- name: intervention_upload_field
+  description: Uploads the data needed to the Regrow Scenarios Service that is necessary to run a simulation.
+  operationId: upload_field_v0_api_projects__project_name__fields_post
+  method: POST
+  path: /v0/api/projects/{project_name}/fields
+  api: measure
+  readOnly: false
+  destructive: false
+- name: intervention_list_fields
+  description: List all the fields in a given project.
+  operationId: list_fields_v0_api_projects__project_name__fields_get
+  method: GET
+  path: /v0/api/projects/{project_name}/fields
+  api: measure
+  readOnly: true
+  destructive: false
+- name: intervention_get_raw_input
+  description: Returns the original inputs of a field inside a project.
+  operationId: get_raw_input_v0_api_projects__project_name__fields__field_request_id__get
+  method: GET
+  path: /v0/api/projects/{project_name}/fields/{field_request_id}
+  api: measure
+  readOnly: true
+  destructive: false
+- name: intervention_delete_field
+  description: Deletes a field inside a non-finalized project.
+  operationId: delete_field_v0_api_projects__project_name__fields__field_request_id__delete
+  method: DELETE
+  path: /v0/api/projects/{project_name}/fields/{field_request_id}
+  api: measure
+  readOnly: false
+  destructive: true
+- name: intervention_list_protocols
+  description: List available protocols.
+  operationId: list_protocols_v0_api_protocols_get
+  method: GET
+  path: /v0/api/protocols
+  api: measure
+  readOnly: true
+  destructive: false
+- name: intervention_create_project
+  description: 'Creates a project. This is the first endpoint that must be called by the user. A project is a grouping of fields (SessionInputs) that will be grouped together to generate results. All fields
+    within a '
+  operationId: create_project_v0_api_projects_post
+  method: POST
+  path: /v0/api/projects
+  api: measure
+  readOnly: false
+  destructive: false
+- name: intervention_list_projects
+  description: List projects.
+  operationId: list_projects_v0_api_projects_get
+  method: GET
+  path: /v0/api/projects
+  api: measure
+  readOnly: true
+  destructive: false
+- name: intervention_delete_project
+  description: Deletes a project that is not finalized and all its resources.
+  operationId: delete_project_v0_api_projects__project_name__delete
+  method: DELETE
+  path: /v0/api/projects/{project_name}
+  api: measure
+  readOnly: false
+  destructive: true
+- name: intervention_finalize_project
+  description: Finalize the project.
+  operationId: finalize_project_v0_api_projects__project_name__finalize_post
+  method: POST
+  path: /v0/api/projects/{project_name}/finalize
+  api: measure
+  readOnly: false
+  destructive: false
+- name: intervention_scope_1_results
+  description: Retrieve results for Scope 1 project.
+  operationId: scope_1_results_v0_api_project_level_scope_1_get
+  method: GET
+  path: /v0/api/project_level_scope_1
+  api: measure
+  readOnly: true
+  destructive: false
+- name: intervention_scope_3_results
+  description: Retrieve results for Scope 3 project.
+  operationId: scope_3_results_v0_api_project_level_scope_3_get
+  method: GET
+  path: /v0/api/project_level_scope_3
+  api: measure
+  readOnly: true
+  destructive: false
+- name: inventory_upload_field
+  description: Uploads the data needed to the Regrow Scenarios Service that is necessary to run a simulation.
+  operationId: upload_field_v0_inventory_projects__project_name__fields_post
+  method: POST
+  path: /v0/inventory/projects/{project_name}/fields
+  api: measure
+  readOnly: false
+  destructive: false
+- name: inventory_list_fields
+  description: Lists fields for an inventory project.
+  operationId: list_fields_v0_inventory_projects__project_name__fields_get
+  method: GET
+  path: /v0/inventory/projects/{project_name}/fields
+  api: measure
+  readOnly: true
+  destructive: false
+- name: inventory_get_field
+  description: Returns the original inputs of a field inside a project.
+  operationId: get_field_v0_inventory_projects__project_name__fields__field_request_id__get
+  method: GET
+  path: /v0/inventory/projects/{project_name}/fields/{field_request_id}
+  api: measure
+  readOnly: true
+  destructive: false
+- name: inventory_delete_field
+  description: Deletes a field inside a non-finalized project.
+  operationId: delete_field_v0_inventory_projects__project_name__fields__field_request_id__delete
+  method: DELETE
+  path: /v0/inventory/projects/{project_name}/fields/{field_request_id}
+  api: measure
+  readOnly: false
+  destructive: true
+- name: inventory_create_project
+  description: Creates an inventory project.
+  operationId: create_project_v0_inventory_projects_post
+  method: POST
+  path: /v0/inventory/projects
+  api: measure
+  readOnly: false
+  destructive: false
+- name: inventory_list_projects
+  description: Lists all inventory projects.
+  operationId: list_projects_v0_inventory_projects_get
+  method: GET
+  path: /v0/inventory/projects
+  api: measure
+  readOnly: true
+  destructive: false
+- name: inventory_finalize_project
+  description: Finalize the project.
+  operationId: finalize_project_v0_inventory_projects__project_name__finalize_post
+  method: POST
+  path: /v0/inventory/projects/{project_name}/finalize
+  api: measure
+  readOnly: false
+  destructive: false
+- name: inventory_delete_project
+  description: Deletes a project that is not finalized and all its resources.
+  operationId: delete_project_v0_inventory_projects__project_name__delete
+  method: DELETE
+  path: /v0/inventory/projects/{project_name}
+  api: measure
+  readOnly: false
+  destructive: true
+- name: inventory_get_results
+  description: Returns the results of an inventory project.
+  operationId: get_results_v0_inventory_projects__project_name__get
+  method: GET
+  path: /v0/inventory/projects/{project_name}
+  api: measure
+  readOnly: true
+  destructive: false
+- name: enteric_upload_rancher
+  description: Uploads the data needed to the Regrow Scenarios Service that is necessary to run a quantification.
+  operationId: upload_rancher_v1_enteric_projects__project_name__ranchers_post
+  method: POST
+  path: /v1/enteric/projects/{project_name}/ranchers
+  api: measure
+  readOnly: false
+  destructive: false
+- name: enteric_list_ranchers
+  description: Lists ranchers for an enteric project.
+  operationId: list_ranchers_v1_enteric_projects__project_name__ranchers_get
+  method: GET
+  path: /v1/enteric/projects/{project_name}/ranchers
+  api: measure
+  readOnly: true
+  destructive: false
+- name: enteric_update_rancher
+  description: Updates the data needed to the Regrow Scenarios Service that is necessary to run a quantification.
+  operationId: update_rancher_v1_enteric_projects__project_name__ranchers__rancher_id__put
+  method: PUT
+  path: /v1/enteric/projects/{project_name}/ranchers/{rancher_id}
+  api: measure
+  readOnly: false
+  destructive: false
+- name: enteric_delete_rancher
+  description: Deletes a rancher (field request) inside a non-finalized project.
+  operationId: delete_rancher_v1_enteric_projects__project_name__ranchers__rancher_id__delete
+  method: DELETE
+  path: /v1/enteric/projects/{project_name}/ranchers/{rancher_id}
+  api: measure
+  readOnly: false
+  destructive: true
+- name: enteric_get_rancher
+  description: Returns the original inputs of a rancher inside a project.
+  operationId: get_rancher_v1_enteric_projects__project_name__ranchers__rancher_id__get
+  method: GET
+  path: /v1/enteric/projects/{project_name}/ranchers/{rancher_id}
+  api: measure
+  readOnly: true
+  destructive: false
+- name: enteric_create_project
+  description: Creates an enteric project.
+  operationId: v1_create_project_v1_enteric_projects_post
+  method: POST
+  path: /v1/enteric/projects
+  api: measure
+  readOnly: false
+  destructive: false
+- name: enteric_list_projects
+  description: Lists all enteric projects.
+  operationId: v1_list_projects_v1_enteric_projects_get
+  method: GET
+  path: /v1/enteric/projects
+  api: measure
+  readOnly: true
+  destructive: false
+- name: enteric_finalize_project
+  description: Finalize the project.
+  operationId: finalize_project_v1_enteric_projects__project_name__finalize_post
+  method: POST
+  path: /v1/enteric/projects/{project_name}/finalize
+  api: measure
+  readOnly: false
+  destructive: false
+- name: enteric_get_results
+  description: Returns the results of an inventory project.
+  operationId: v1_get_results_v1_enteric_projects__project_name__get
+  method: GET
+  path: /v1/enteric/projects/{project_name}
+  api: measure
+  readOnly: true
+  destructive: false
+- name: enteric_delete_project
+  description: Deletes a project that is not finalized and all its resources.
+  operationId: delete_project_v1_enteric_projects__project_name__delete
+  method: DELETE
+  path: /v1/enteric/projects/{project_name}
+  api: measure
+  readOnly: false
+  destructive: true
+- name: monitor_get_job_status
+  description: Job status endpoint.
+  operationId: get_job_status_jobs__job_id__get
+  method: GET
+  path: /jobs/{job_id}
+  api: monitor
+  readOnly: true
+  destructive: false
+- name: monitor_get_job_results
+  description: Job Results endpoint.
+  operationId: get_job_results_jobs__job_id__results_get
+  method: GET
+  path: /jobs/{job_id}/results
+  api: monitor
+  readOnly: true
+  destructive: false
+- name: monitor_monitor_field
+  description: Monitor Field ID Boundary process execution endpoint.
+  operationId: Monitor_Field_processes_monitor_fields_boundary_id_execution_post
+  method: POST
+  path: /processes/monitor-fields-boundary-id/execution
+  api: monitor
+  readOnly: false
+  destructive: false
+- name: monitor_monitor_field_geojson
+  description: Monitor Field Geojson process execution endpoint.
+  operationId: Monitor_Field_Geojson_processes_monitor_fields_geojson_execution_post
+  method: POST
+  path: /processes/monitor-fields-geojson/execution
+  api: monitor
+  readOnly: false
+  destructive: false
+- name: monitor_health_check
+  description: Health check endpoint.
+  operationId: health_check_status_get
+  method: GET
+  path: /status
+  api: monitor
+  readOnly: true
+  destructive: false

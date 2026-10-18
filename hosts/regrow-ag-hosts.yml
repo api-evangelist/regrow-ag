@@ -1,0 +1,151 @@
+generated: '2026-10-18'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 10
+  own: 8
+  other_domain: 0
+  platform: 2
+  roles:
+  - api
+  - docs
+  - identity
+  - other
+  - portal
+  - website
+hosts:
+- host: api.regrow.ag
+  found_by:
+  - apis[]
+  - contract-discovery
+  types: []
+  serves:
+  - api
+  registrable_domain: regrow.ag
+  role: api
+  relation: own
+- host: app.regrow.ag
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - contract-discovery
+  - well-known
+  types:
+  - Login
+  serves: []
+  registrable_domain: regrow.ag
+  role: identity
+  relation: own
+- host: developers.regrow.ag
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - site-links
+  - docs-index
+  - contract-discovery
+  - portal-detect
+  - well-known
+  - vendor-detect
+  types:
+  - DeveloperPortal
+  - APIReference
+  serves:
+  - docs
+  - portal
+  - developer-portal
+  vendor: apigee
+  registrable_domain: regrow.ag
+  role: portal
+  relation: own
+- host: docs.regrow.ag
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - docs
+  registrable_domain: regrow.ag
+  role: docs
+  relation: own
+- host: help.regrow.ag
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - docs-index
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - Deprecation
+  - GettingStarted
+  - Support
+  serves:
+  - docs
+  - hosting
+  vendor: hubspot
+  registrable_domain: regrow.ag
+  role: docs
+  relation: own
+- host: regrow.ag
+  found_by:
+  - probed
+  - contract-discovery
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: regrow.ag
+  role: other
+  relation: own
+- host: trust.regrow.ag
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - well-known
+  types:
+  - TrustCenter
+  serves: []
+  registrable_domain: regrow.ag
+  role: other
+  relation: own
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
+- host: www.regrow.ag
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - well-known
+  - vendor-detect
+  types:
+  - Website
+  - Blog
+  - Newsroom
+  - Leadership
+  - TermsOfService
+  - PrivacyPolicy
+  serves:
+  - cdn
+  vendor: cloudflare
+  registrable_domain: regrow.ag
+  role: website
+  relation: own
+- host: www.twitter.com
+  found_by:
+  - pointer
+  types:
+  - Twitter
+  serves: []
+  registrable_domain: twitter.com
+  role: other
+  relation: platform

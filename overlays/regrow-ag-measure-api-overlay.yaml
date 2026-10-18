@@ -1,0 +1,157 @@
+overlay: 1.0.0
+info:
+  title: Regrow Measure API overlay
+  version: 1.0.0
+extends: ../openapi/_original/regrow-ag-measure-api-openapi.json
+generated: '2026-10-18'
+method: generated
+source: openapi/regrow-ag-measure-api-openapi.yml
+actions:
+- target: $.components
+  description: Declare the x-apikey header that both specs document only as a per-operation parameter or in prose.
+  update:
+    securitySchemes:
+      apiKey:
+        type: apiKey
+        in: header
+        name: x-apikey
+        description: API key issued by Regrow Support (support@regrow.ag).
+- target: $
+  description: Apply the API key globally.
+  update:
+    security:
+    - apiKey: []
+- target: $.info
+  update:
+    x-apievangelist-provider: regrow-ag
+    contact:
+      email: support@regrow.ag
+- target: $.paths['/v0/explore_api/fields'].post
+  update:
+    x-mcp-tool: explore_upload_field
+- target: $.paths['/v0/explore_api/fields'].get
+  update:
+    x-mcp-tool: explore_list_fields
+    x-agent-safe: true
+- target: $.paths['/v0/explore_api/fields/{field_request_id}'].get
+  update:
+    x-mcp-tool: explore_get_raw_input
+    x-agent-safe: true
+- target: $.paths['/v0/explore_api/fields/{field_request_id}/status'].get
+  update:
+    x-mcp-tool: explore_get_status
+    x-agent-safe: true
+- target: $.paths['/v0/explore_api/fields/{field_request_id}/results'].get
+  update:
+    x-mcp-tool: explore_get_estimates
+    x-agent-safe: true
+- target: $.paths['/v0/api/projects/{project_name}/fields'].post
+  update:
+    x-mcp-tool: intervention_upload_field
+- target: $.paths['/v0/api/projects/{project_name}/fields'].get
+  update:
+    x-mcp-tool: intervention_list_fields
+    x-agent-safe: true
+- target: $.paths['/v0/api/projects/{project_name}/fields/{field_request_id}'].get
+  update:
+    x-mcp-tool: intervention_get_raw_input
+    x-agent-safe: true
+- target: $.paths['/v0/api/projects/{project_name}/fields/{field_request_id}'].delete
+  update:
+    x-mcp-tool: intervention_delete_field
+    x-agent-destructive: true
+- target: $.paths['/v0/api/protocols'].get
+  update:
+    x-mcp-tool: intervention_list_protocols
+    x-agent-safe: true
+- target: $.paths['/v0/api/projects'].post
+  update:
+    x-mcp-tool: intervention_create_project
+- target: $.paths['/v0/api/projects'].get
+  update:
+    x-mcp-tool: intervention_list_projects
+    x-agent-safe: true
+- target: $.paths['/v0/api/projects/{project_name}'].delete
+  update:
+    x-mcp-tool: intervention_delete_project
+    x-agent-destructive: true
+- target: $.paths['/v0/api/projects/{project_name}/finalize'].post
+  update:
+    x-mcp-tool: intervention_finalize_project
+- target: $.paths['/v0/api/project_level_scope_1'].get
+  update:
+    x-mcp-tool: intervention_scope_1_results
+    x-agent-safe: true
+- target: $.paths['/v0/api/project_level_scope_3'].get
+  update:
+    x-mcp-tool: intervention_scope_3_results
+    x-agent-safe: true
+- target: $.paths['/v0/inventory/projects/{project_name}/fields'].post
+  update:
+    x-mcp-tool: inventory_upload_field
+- target: $.paths['/v0/inventory/projects/{project_name}/fields'].get
+  update:
+    x-mcp-tool: inventory_list_fields
+    x-agent-safe: true
+- target: $.paths['/v0/inventory/projects/{project_name}/fields/{field_request_id}'].get
+  update:
+    x-mcp-tool: inventory_get_field
+    x-agent-safe: true
+- target: $.paths['/v0/inventory/projects/{project_name}/fields/{field_request_id}'].delete
+  update:
+    x-mcp-tool: inventory_delete_field
+    x-agent-destructive: true
+- target: $.paths['/v0/inventory/projects'].post
+  update:
+    x-mcp-tool: inventory_create_project
+- target: $.paths['/v0/inventory/projects'].get
+  update:
+    x-mcp-tool: inventory_list_projects
+    x-agent-safe: true
+- target: $.paths['/v0/inventory/projects/{project_name}/finalize'].post
+  update:
+    x-mcp-tool: inventory_finalize_project
+- target: $.paths['/v0/inventory/projects/{project_name}'].delete
+  update:
+    x-mcp-tool: inventory_delete_project
+    x-agent-destructive: true
+- target: $.paths['/v0/inventory/projects/{project_name}'].get
+  update:
+    x-mcp-tool: inventory_get_results
+    x-agent-safe: true
+- target: $.paths['/v1/enteric/projects/{project_name}/ranchers'].post
+  update:
+    x-mcp-tool: enteric_upload_rancher
+- target: $.paths['/v1/enteric/projects/{project_name}/ranchers'].get
+  update:
+    x-mcp-tool: enteric_list_ranchers
+    x-agent-safe: true
+- target: $.paths['/v1/enteric/projects/{project_name}/ranchers/{rancher_id}'].put
+  update:
+    x-mcp-tool: enteric_update_rancher
+- target: $.paths['/v1/enteric/projects/{project_name}/ranchers/{rancher_id}'].delete
+  update:
+    x-mcp-tool: enteric_delete_rancher
+    x-agent-destructive: true
+- target: $.paths['/v1/enteric/projects/{project_name}/ranchers/{rancher_id}'].get
+  update:
+    x-mcp-tool: enteric_get_rancher
+    x-agent-safe: true
+- target: $.paths['/v1/enteric/projects'].post
+  update:
+    x-mcp-tool: enteric_create_project
+- target: $.paths['/v1/enteric/projects'].get
+  update:
+    x-mcp-tool: enteric_list_projects
+    x-agent-safe: true
+- target: $.paths['/v1/enteric/projects/{project_name}/finalize'].post
+  update:
+    x-mcp-tool: enteric_finalize_project
+- target: $.paths['/v1/enteric/projects/{project_name}'].get
+  update:
+    x-mcp-tool: enteric_get_results
+    x-agent-safe: true
+- target: $.paths['/v1/enteric/projects/{project_name}'].delete
+  update:
+    x-mcp-tool: enteric_delete_project
+    x-agent-destructive: true

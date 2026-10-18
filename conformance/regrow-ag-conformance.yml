@@ -1,0 +1,43 @@
+generated: '2026-10-18'
+method: derived
+source: openapi/regrow-ag-monitor-api-openapi.yml
+standards:
+- id: OGC API
+  conforms: true
+  evidence: Monitor API description states "The Monitor API is implemented using the OGC API (Open Geospatial Consortium API) standard. The OGC
+    API standard is designed to facilitate access and sharing of geospatial data by providing a modern and standardized approach to interact with
+    geospatial services."
+  docs: https://developers.regrow.ag/portals/api/sites/flurosat-154904-regrowdeveloper/liveportal/apis/monitor-v2/download_spec
+- id: OpenAPI
+  conforms: true
+  evidence: Both Monitor API and Measure API publish OpenAPI 3.0 specifications
+  docs: https://developers.regrow.ag/portals/api/sites/flurosat-154904-regrowdeveloper/liveportal/apis/monitor-v2/download_spec
+- id: JSON
+  conforms: true
+  evidence: APIs use JSON request/response format
+  docs: https://developers.regrow.ag/portals/api/sites/flurosat-154904-regrowdeveloper/liveportal/apis/monitor-v2/download_spec
+- id: openapi-3.0
+  conforms: true
+  evidence: the document declares 3.0.0
+- id: openapi-3.0
+  conforms: true
+  evidence: the document declares 3.0.2
+- id: oauth2
+  conforms: false
+  evidence: no securitySchemes declared
+- id: rfc9457
+  conforms: false
+  evidence: no response declares application/problem+json
+- id: idempotency
+  conforms: false
+  evidence: no idempotency key parameter on mutating operations
+- id: pagination
+  conforms: true
+  evidence: list operations take limit, offset
+domain_standard_conformance:
+- standard: OGC API
+  conforms: true
+  scope: Monitor API
+  evidence: Monitor API description explicitly states implementation using OGC API standard for geospatial data access
+  docs: https://developers.regrow.ag/portals/api/sites/flurosat-154904-regrowdeveloper/liveportal/apis/monitor-v2/download_spec
+note: Monitor API conforms to OGC API standard for geospatial data. Measure API does not claim specific domain standards.

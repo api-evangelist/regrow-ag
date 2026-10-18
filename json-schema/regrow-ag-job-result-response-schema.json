@@ -1,0 +1,584 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/regrow-ag/main/json-schema/regrow-ag-job-result-response-schema.json",
+  "title": "JobResultResponse",
+  "description": "Job results are the data returned for an agricultural field or area after a request\nis successfully processed. Job results include main crop data, cover crop data and till\ninformation, as well as metadata about the field itself and the date range monitored.\nis successfully processed.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/regrow-ag-monitor-api-openapi.yml#/components/schemas/JobResultResponse",
+  "items": {
+    "$ref": "#/$defs/MonitorFieldResult"
+  },
+  "type": "array",
+  "$defs": {
+    "CultivationCycle": {
+      "additionalProperties": false,
+      "properties": {
+        "start_date": {
+          "format": "date",
+          "title": "Start Date",
+          "type": "string"
+        },
+        "end_date": {
+          "format": "date",
+          "title": "End Date",
+          "type": "string"
+        },
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "An MD5 hash ID generated from the start_date, and end_date, and boundary_id of the cultivation cycle.",
+          "title": "Id"
+        }
+      },
+      "required": [
+        "start_date",
+        "end_date"
+      ],
+      "title": "CultivationCycle",
+      "type": "object"
+    },
+    "DateWindow": {
+      "additionalProperties": false,
+      "properties": {
+        "start_date": {
+          "format": "date",
+          "title": "Start Date",
+          "type": "string"
+        },
+        "end_date": {
+          "format": "date",
+          "title": "End Date",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start_date",
+        "end_date"
+      ],
+      "title": "DateWindow",
+      "type": "object"
+    },
+    "FieldPractices": {
+      "additionalProperties": false,
+      "properties": {
+        "errors": {
+          "description": "A list of errors raised while calculating field stats.",
+          "items": {
+            "$ref": "#/$defs/MonitorError"
+          },
+          "title": "Errors",
+          "type": "array"
+        },
+        "green_cover": {
+          "description": "An array of objects describing the level of green cover on a field during the requested time period. Each object represents a post-harvest green cover ‘observation window’. Green cover data is used to inform the likelihood and strength of a cover crop on a field.",
+          "items": {
+            "$ref": "#/$defs/GreenCover"
+          },
+          "title": "Green Cover",
+          "type": "array"
+        },
+        "main_crop_type": {
+          "description": "An array of objects describing the main crops on field during the requested time period.",
+          "items": {
+            "$ref": "#/$defs/MainCropTypes"
+          },
+          "title": "Main Crop Type",
+          "type": "array"
+        },
+        "tillage": {
+          "description": "An array of tillage practice determination objects and their associated tillage intensity, during the requested time period for a field. Each object represents a tillage determination window, which is derived from a tillage observation window. Tillage observation windows represent the time period by which plant residue is monitored on the field. The observation windows span a period of four months, either 3 months before the crop `plant date` and one month after, or 3 months after the crop `harvest date` and one month before.",
+          "items": {
+            "$ref": "#/$defs/Tillage"
+          },
+          "title": "Tillage",
+          "type": "array"
+        },
+        "living_root": {
+          "items": {
+            "$ref": "#/$defs/LivingRootIntermediate"
+          },
+          "title": "Living Root",
+          "type": "array"
+        },
+        "cultivation_cycles": {
+          "items": {
+            "$ref": "#/$defs/CultivationCycle"
+          },
+          "title": "Cultivation Cycles",
+          "type": "array"
+        }
+      },
+      "required": [
+        "errors",
+        "green_cover",
+        "main_crop_type",
+        "tillage",
+        "living_root",
+        "cultivation_cycles"
+      ],
+      "title": "FieldPractices",
+      "type": "object"
+    },
+    "GreenCover": {
+      "additionalProperties": false,
+      "properties": {
+        "start_date": {
+          "format": "date",
+          "title": "Start Date",
+          "type": "string"
+        },
+        "end_date": {
+          "format": "date",
+          "title": "End Date",
+          "type": "string"
+        },
+        "cover_crop_class": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The classification of the cover crop on a field, as it relates to the likelihood of a cover crop. Classifications are `Cover crop not tracked`, `Potential cover crop`, `Cover crop`, `No green cover data`, and `Cover crop not applicable`.",
+          "title": "Cover Crop Class"
+        },
+        "cover_crop_class_confidence": {
+          "anyOf": [
+            {
+              "maximum": 3,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Confidence associated with the cover_crop_class. Based on the percent of field observed throughout the observation period.",
+          "title": "Cover Crop Class Confidence"
+        },
+        "emergence_class": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The classification of the emergence of green cover on a field during the observation window. The emergence_class provides an indication of the crop’s health, quality and vitality, and contributes to an overall green cover classification. Emergence classes are `no vegetation`, `weak emergence`, `good emergence`, `strong emergence`",
+          "title": "Emergence Class"
+        },
+        "emergence_class_confidence": {
+          "anyOf": [
+            {
+              "maximum": 3,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Confidence associated with the emergence_class. Based on the percent of field observed in the first 3 months of the observation period.",
+          "title": "Emergence Class Confidence"
+        },
+        "ndvi_mean": {
+          "anyOf": [
+            {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The mean value of the max_ndvi statistic for the field, over the observation window.",
+          "title": "Ndvi Mean"
+        },
+        "practice_parameters": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PracticeParametersGreenCover"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "cultivation_cycle_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cultivation Cycle Id"
+        }
+      },
+      "required": [
+        "start_date",
+        "end_date",
+        "cover_crop_class",
+        "cover_crop_class_confidence",
+        "emergence_class",
+        "emergence_class_confidence",
+        "ndvi_mean"
+      ],
+      "title": "GreenCover",
+      "type": "object"
+    },
+    "LivingRootIntermediate": {
+      "additionalProperties": false,
+      "properties": {
+        "start_date": {
+          "format": "date",
+          "title": "Start Date",
+          "type": "string"
+        },
+        "end_date": {
+          "format": "date",
+          "title": "End Date",
+          "type": "string"
+        },
+        "living_root_ndvi_mean": {
+          "anyOf": [
+            {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Living Root Ndvi Mean"
+        },
+        "living_root_ndvi_variance": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Living Root Ndvi Variance"
+        },
+        "living_root_percent_high_ndvi": {
+          "anyOf": [
+            {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Living Root Percent High Ndvi"
+        },
+        "living_root_percent_moderate_ndvi": {
+          "anyOf": [
+            {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Living Root Percent Moderate Ndvi"
+        },
+        "living_root_percent_low_ndvi": {
+          "anyOf": [
+            {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Living Root Percent Low Ndvi"
+        },
+        "living_root_pct_nodata_frac": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Living Root Pct Nodata Frac"
+        }
+      },
+      "required": [
+        "start_date",
+        "end_date",
+        "living_root_ndvi_mean",
+        "living_root_ndvi_variance",
+        "living_root_percent_high_ndvi",
+        "living_root_percent_moderate_ndvi",
+        "living_root_percent_low_ndvi",
+        "living_root_pct_nodata_frac"
+      ],
+      "title": "LivingRootIntermediate",
+      "type": "object"
+    },
+    "MainCropTypes": {
+      "additionalProperties": false,
+      "properties": {
+        "observation_window_start_date": {
+          "description": "The start date of the time period a field is observed to detect and identify main, commodity crops growing.\nMain crop observation windows are a 12 month period. The windows are determined based on the time crops\ncycles/rotations transition on a field. This allows for detecting crops as the field's crop cover changes\nover the course of typical field management. The windows are dynamic for countries/larger regions,\ncorresponding to an agronomic event such as the major harvest, or aligned with a standard crop calendar\nfor the region.",
+          "format": "date",
+          "title": "Observation Window Start Date",
+          "type": "string"
+        },
+        "observation_window_end_date": {
+          "description": "The end date of the main crop observation time period.",
+          "format": "date",
+          "title": "Observation Window End Date",
+          "type": "string"
+        },
+        "crop_type": {
+          "description": "The common name of the type of crop that was detected on the field.",
+          "title": "Crop Type",
+          "type": "string"
+        },
+        "plant_date": {
+          "description": "The estimated emergence date of the crop, derived from remote sensing data. YYYY-MM-DD format.",
+          "format": "date",
+          "title": "Plant Date",
+          "type": "string"
+        },
+        "harvest_date": {
+          "description": "The estimated senescence date of the crop, derived from remote sensing data. YYYY-MM-DD format.",
+          "format": "date",
+          "title": "Harvest Date",
+          "type": "string"
+        },
+        "crop_type_conf": {
+          "anyOf": [
+            {
+              "maximum": 100.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "This value represents the confidence in the crop type determination. Confidence is affected by the availability of remote sensing data and the quality of the data, where the quality of remote sensing data will be lower when there is high cloud cover. This value provides a correlation between the crop classification and the accuracy of the classification. For example, given 10 confidence values of 0.9, approximately 90% of the crop_type classifications will be correct.",
+          "title": "Crop Type Conf"
+        },
+        "practice_parameters": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PracticeParametersSimple"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "cultivation_cycle_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "An MD5 hash ID generated from the start_date, and end_date, and boundary_id of the crop.",
+          "title": "Cultivation Cycle Id"
+        }
+      },
+      "required": [
+        "observation_window_start_date",
+        "observation_window_end_date",
+        "crop_type",
+        "plant_date",
+        "harvest_date",
+        "crop_type_conf"
+      ],
+      "title": "MainCropTypes",
+      "type": "object"
+    },
+    "MonitorError": {
+      "additionalProperties": false,
+      "description": "Data model for monitor errors to be returned in API responses. Includes fields for an error code, human-readable\n(text) and a dictionary of metadata for machine-readable structured payloads.",
+      "properties": {
+        "code": {
+          "default": "",
+          "title": "Code",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "title": "Metadata",
+          "type": "object"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "title": "MonitorError",
+      "type": "object"
+    },
+    "MonitorFieldResult": {
+      "additionalProperties": false,
+      "properties": {
+        "start_date": {
+          "format": "date",
+          "title": "Start Date",
+          "type": "string"
+        },
+        "end_date": {
+          "format": "date",
+          "title": "End Date",
+          "type": "string"
+        },
+        "algorithm_version": {
+          "title": "Algorithm Version",
+          "type": "string"
+        },
+        "area_m2": {
+          "title": "Area M2",
+          "type": "number"
+        },
+        "input_data_versions": {
+          "additionalProperties": true,
+          "title": "Input Data Versions",
+          "type": "object"
+        },
+        "row_crop_data": {
+          "$ref": "#/$defs/FieldPractices"
+        },
+        "external_properties": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "anyOf": [
+                  {},
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "External Properties"
+        }
+      },
+      "required": [
+        "start_date",
+        "end_date",
+        "algorithm_version",
+        "area_m2",
+        "input_data_versions",
+        "row_crop_data"
+      ],
+      "title": "MonitorFieldResult",
+      "type": "object"
+    },
+    "PracticeParametersGreenCover": {
+      "additionalProperties": false,
+      "properties": {
+        "cover_crop_ndvi_threshold": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Cover Crop Ndvi Threshold"
+        }
+      },
+      "required": [
+        "cover_crop_ndvi_threshold"
+      ],
+      "title": "PracticeParametersGreenCover",
+      "type": "object"
+    },
+    "PracticeParametersSimple": {
+      "additionalProperties": false,
+      "properties": {
+        "geohash": {
+          "title": "Geohash",
+          "type": "string"
+        },
+        "date_range": {
+          "$ref": "#/$defs/DateWindow"
+        },
+        "revision": {
+          "title": "Revision",
+          "type": "string"
+        }
+      },
+      "required": [
+        "geohash",
+        "date_range",
+        "revision"
+      ],
+      "title": "PracticeParametersSimple",
+      "type": "object"
+    },
+    "Tillage": {
+      "additionalProperties": false,
+      "description": "Tillage data model inherits from OptionalDateWindow data model because\nstart_date and end_date may be null if missing observation data available\nor missing data that meets the no data threshold.",
+      "properties": {
+        "observation_window_start_date": {
+          "description": "The start date of a tillage practice observation time period. Remote sensing data is analyzed for tillage impact over dynamic time windows that are defined around planting and harvest of main crops on a field. A large tillage time window is observed initially, which is used to target the period of greatest tillage impact."
+        },
+        "observation_window_end_date": {
+          "description": "The end date of a tillage observation time period."
+        }
+      },
+      "required": [
+        "observation_window_start_date",
+        "observation_window_end_date",
+        "tillage_intensity",
+        "residue_pct",
+        "residue_conf"
+      ],
+      "title": "Tillage",
+      "type": "object"
+    }
+  }
+}

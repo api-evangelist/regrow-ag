@@ -1,0 +1,1209 @@
+openapi: 3.2.0
+info:
+  title: Regrow APIs 🌱 V1 Measure API - Enteric API
+  description: Regrow's suite of APIs for various carbon modules.
+  version: ''
+servers:
+- url: https://api.regrow.ag/dndc-scenarios-service
+tags:
+- name: V1 Measure API - Enteric
+  description: Measure API is composed of modules. This module is called `Enteric`, and to learn more about the API consult the documentation at https://help.regrow.ag/.
+paths:
+  /v1/enteric/projects/{project_name}/ranchers:
+    post:
+      tags:
+      - V1 Measure API - Enteric
+      summary: Upload Rancher
+      description: Uploads the data needed to the Regrow Scenarios Service that is necessary to run a quantification.
+      operationId: upload_rancher_v1_enteric_projects__project_name__ranchers_post
+      parameters:
+      - name: project_name
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Project Name
+      - name: x-apikey
+        in: header
+        required: true
+        schema:
+          type: string
+          title: API Key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RancherInput'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RancherIdOutputResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      tags:
+      - V1 Measure API - Enteric
+      summary: List Ranchers
+      description: Lists ranchers for an enteric project.
+      operationId: list_ranchers_v1_enteric_projects__project_name__ranchers_get
+      parameters:
+      - name: project_name
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Project Name
+      - name: x-apikey
+        in: header
+        required: true
+        schema:
+          type: string
+          title: API Key
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListRanchersOutputResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/enteric/projects/{project_name}/ranchers/{rancher_id}:
+    put:
+      tags:
+      - V1 Measure API - Enteric
+      summary: Update Rancher
+      description: Updates the data needed to the Regrow Scenarios Service that is necessary to run a quantification.
+      operationId: update_rancher_v1_enteric_projects__project_name__ranchers__rancher_id__put
+      parameters:
+      - name: project_name
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Project Name
+      - name: rancher_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Rancher Id
+      - name: x-apikey
+        in: header
+        required: true
+        schema:
+          type: string
+          title: API Key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RancherInput'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RancherIdOutputResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - V1 Measure API - Enteric
+      summary: Delete Rancher
+      description: Deletes a rancher (field request) inside a non-finalized project.
+      operationId: delete_rancher_v1_enteric_projects__project_name__ranchers__rancher_id__delete
+      parameters:
+      - name: project_name
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Project Name
+      - name: rancher_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Rancher Id
+      - name: x-apikey
+        in: header
+        required: true
+        schema:
+          type: string
+          title: API Key
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteRancherResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      tags:
+      - V1 Measure API - Enteric
+      summary: Get Rancher
+      description: Returns the original inputs of a rancher inside a project.
+      operationId: get_rancher_v1_enteric_projects__project_name__ranchers__rancher_id__get
+      parameters:
+      - name: project_name
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Project Name
+      - name: rancher_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Rancher Id
+      - name: x-apikey
+        in: header
+        required: true
+        schema:
+          type: string
+          title: API Key
+      responses:
+        '302':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/enteric/projects:
+    post:
+      tags:
+      - V1 Measure API - Enteric
+      summary: V1 Create Project
+      description: Creates an enteric project.
+      operationId: v1_create_project_v1_enteric_projects_post
+      parameters:
+      - name: program_start_date
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+          description: 'The program_start_date is when new practices were first being adopted by ranchers in the project. This date typically represents the beginning of the project. This field will also be used when the baseline period needs to remain constant for a multi-year program.
+
+            Date format ''YYYY-MM-DD''.'
+          title: Program Start Date
+        description: 'The program_start_date is when new practices were first being adopted by ranchers in the project. This date typically represents the beginning of the project. This field will also be used when the baseline period needs to remain constant for a multi-year program.
+
+          Date format ''YYYY-MM-DD''.'
+      - name: project_name
+        in: query
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 256
+          title: Project Name
+      - name: is_test
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Test
+          description: Flag to indicate if the project is a test project. Test projects are not billable and do not produce real results.
+        description: Flag to indicate if the project is a test project. Test projects are not billable and do not produce real results.
+      - name: x-apikey
+        in: header
+        required: true
+        schema:
+          type: string
+          title: API Key
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateProjectResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      tags:
+      - V1 Measure API - Enteric
+      summary: V1 List Projects
+      description: Lists all enteric projects.
+      operationId: v1_list_projects_v1_enteric_projects_get
+      parameters:
+      - name: is_test
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+          title: Is Test
+      - name: created_at_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Date format 'YYYY-MM-DD'.
+          title: Created At From
+        description: Date format 'YYYY-MM-DD'.
+      - name: created_at_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Date format 'YYYY-MM-DD'.
+          title: Created At To
+        description: Date format 'YYYY-MM-DD'.
+      - name: finalized_at_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Date format 'YYYY-MM-DD'.
+          title: Finalized At From
+        description: Date format 'YYYY-MM-DD'.
+      - name: finalized_at_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Date format 'YYYY-MM-DD'.
+          title: Finalized At To
+        description: Date format 'YYYY-MM-DD'.
+      - name: results_available_at_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Date format 'YYYY-MM-DD'.
+          title: Results Available At From
+        description: Date format 'YYYY-MM-DD'.
+      - name: results_available_at_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Date format 'YYYY-MM-DD'.
+          title: Results Available At To
+        description: Date format 'YYYY-MM-DD'.
+      - name: billable_at_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Date format 'YYYY-MM-DD'.
+          title: Billable At From
+        description: Date format 'YYYY-MM-DD'.
+      - name: billable_at_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Date format 'YYYY-MM-DD'.
+          title: Billable At To
+        description: Date format 'YYYY-MM-DD'.
+      - name: x-apikey
+        in: header
+        required: true
+        schema:
+          type: string
+          title: API Key
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntericListProjectsResponseWithStats'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/enteric/projects/{project_name}/finalize:
+    post:
+      tags:
+      - V1 Measure API - Enteric
+      summary: Finalize Project
+      description: 'Finalize the project.
+
+
+        By “finalizing” a project the user is freezing the data in that project. It can no longer be
+
+        extended or updated. This is the step in the process where the user is communicating to Regrow
+
+        that the data for that project is all “submitted” and complete.'
+      operationId: finalize_project_v1_enteric_projects__project_name__finalize_post
+      parameters:
+      - name: project_name
+        in: path
+        required: true
+        schema:
+          type: string
+          examples:
+          - my_project
+          title: Project Name
+      - name: x-apikey
+        in: header
+        required: true
+        schema:
+          type: string
+          title: API Key
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinalizeProjectResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/enteric/projects/{project_name}:
+    get:
+      tags:
+      - V1 Measure API - Enteric
+      summary: V1 Get Results
+      description: Returns the results of an inventory project.
+      operationId: v1_get_results_v1_enteric_projects__project_name__get
+      parameters:
+      - name: project_name
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Project Name
+      - name: signed_url
+        in: query
+        required: false
+        schema:
+          type: boolean
+          description: Return a download link which expires after 1 hour
+          default: false
+          title: Signed Url
+        description: Return a download link which expires after 1 hour
+      - name: x-apikey
+        in: header
+        required: true
+        schema:
+          type: string
+          title: API Key
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/DownloadLink'
+                - $ref: '#/components/schemas/EntericProjectResponse'
+                title: Response V1 Get Results V1 Enteric Projects  Project Name  Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - V1 Measure API - Enteric
+      summary: Delete Project
+      description: Deletes a project that is not finalized and all its resources.
+      operationId: delete_project_v1_enteric_projects__project_name__delete
+      parameters:
+      - name: project_name
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Project Name
+      - name: x-apikey
+        in: header
+        required: true
+        schema:
+          type: string
+          title: API Key
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteProjectResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    Livestock:
+      properties:
+        type:
+          $ref: '#/components/schemas/LivestockTypeEnum'
+        age_class:
+          $ref: '#/components/schemas/BeefCattleAgeClassEnum'
+      additionalProperties: false
+      type: object
+      required:
+      - type
+      - age_class
+      title: Livestock
+    DepartureEvent:
+      properties:
+        date:
+          type: string
+          title: Date
+          description: Format is "YYYY-MM-DD"
+        type:
+          type: string
+          const: departure
+          title: Type
+          default: departure
+        count:
+          type: integer
+          minimum: 1.0
+          title: Count
+          description: If a departure event reduces the Cohort's head count to 0, then the Cohort must end on the same date as the departure event.
+        departure_type:
+          $ref: '#/components/schemas/DepartureTypeEnum'
+          default: non_terminal
+        departure_end_weight:
+          allOf:
+          - $ref: '#/components/schemas/TotalWeight'
+          description: Total end weight per animal, must be greater than 0.
+      additionalProperties: false
+      type: object
+      required:
+      - date
+      - count
+      - departure_end_weight
+      title: DepartureEvent
+    ArrivalEvent:
+      properties:
+        date:
+          type: string
+          title: Date
+          description: Format is "YYYY-MM-DD"
+        type:
+          type: string
+          const: arrival
+          title: Type
+          default: arrival
+        count:
+          type: integer
+          minimum: 1.0
+          title: Count
+        total_start_weight:
+          allOf:
+          - $ref: '#/components/schemas/TotalWeight'
+          description: Total start weight per animal, must be greater than 0.
+      additionalProperties: false
+      type: object
+      required:
+      - date
+      - count
+      - total_start_weight
+      title: ArrivalEvent
+    RancherInput:
+      properties:
+        name:
+          type: string
+          title: Rancher Name
+        practice_change:
+          anyOf:
+          - $ref: '#/components/schemas/PracticeChangeEnum'
+          - type: 'null'
+        cohorts:
+          items:
+            $ref: '#/components/schemas/Cohort'
+          type: array
+          minItems: 1
+          title: Cohorts
+        reporting_information:
+          allOf:
+          - $ref: '#/components/schemas/scenarios_service_schema__public__enteric__v1__input__ReportingInformation'
+          description: 'The length of a reporting period must be at least 365 days.
+
+
+            `Cohort`(s) that exist before the project `program_start_date` form the baseline period, and the length of the baseline period must be at least two years. Therefore, at least one `Cohort` with a `start_date` at minimum two years before the `program_start_date` must exist in order to satisfy the baseline period length requirement.'
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - cohorts
+      - reporting_information
+      title: RancherInput
+    BeefCattleAgeClassEnum:
+      type: string
+      enum:
+      - bull
+      - calf
+      - cow
+      - heifer_calf
+      - steer_calf
+      - weaner
+      - weaned_bull
+      - weaned_heifer
+      - weaned_steer
+      - yearling
+      - yearling_heifer
+      - yearling_steer
+      - feedlot
+      title: BeefCattleAgeClassEnum
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ListRancherOutput:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+      type: object
+      required:
+      - id
+      - name
+      - created_at
+      title: ListRancherOutput
+    Diet:
+      properties:
+        start_date:
+          type: string
+          title: Start Date
+          description: Format is "YYYY-MM-DD"
+        end_date:
+          type: string
+          title: End Date
+          description: Format is "YYYY-MM-DD"
+        dry_matter_intake:
+          anyOf:
+          - $ref: '#/components/schemas/DryMatterIntake'
+          - type: 'null'
+        neutral_detergent_fiber_percentage:
+          anyOf:
+          - type: number
+            maximum: 100.0
+            minimum: 0.0
+          - type: 'null'
+          title: Neutral Detergent Fiber (%)
+        gross_energy_intake:
+          anyOf:
+          - type: number
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Gross Energy in Feed (MJ/day)
+          description: Gross Energy Intake is the total amount of energy the animal eats each day from its feed. If the value is not provided, a default value will be provided.
+        crude_protein_percentage:
+          type: number
+          maximum: 100.0
+          minimum: 0.0
+          title: Crude Protein (%)
+          description: Optional and defaulted if not informed.
+          default: 0.0
+        acid_detergent_fiber_percentage:
+          type: number
+          maximum: 100.0
+          minimum: 0.0
+          title: Acid Detergent Fiber (%)
+          description: Optional and defaulted if not informed.
+          default: 0.0
+        type:
+          allOf:
+          - $ref: '#/components/schemas/DietTypeEnum'
+          description: '"grazing":
+
+            * `dry_matter_intake`: Not required. If provided, then must be > 0. If not provided, then DMI is calculated by Regrow.
+
+            * `neutral_detergent_fiber_percentage`: Not required. If provided, then must be > 0. If not provided, then a value is calculated by Regrow.
+
+
+            "supplemental":
+
+            * `dry_matter_intake`: Required, can be = or > 0
+
+            * `neutral_detergent_fiber_percentage`: Required, can be = or > 0.
+
+
+            "nursing":
+
+            * This diet type is restricted to the following calf age classes: `calf`, `heifer_calf`, `steer_calf`.
+
+            * `dry_matter_intake`: Not required. If provided, then must be 0.
+
+            * `neutral_detergent_fiber_percentage`: Required, can be = or > 0.
+
+
+            '
+      additionalProperties: false
+      type: object
+      required:
+      - start_date
+      - end_date
+      - type
+      title: Diet
+      description: The diet of a `Cohort` for a given period of time.
+    DietTypeEnum:
+      type: string
+      enum:
+      - grazing
+      - supplemental
+      - nursing
+      title: DietTypeEnum
+    AggregatedEmissions:
+      properties:
+        co2eq_total:
+          type: number
+          title: Co2Eq Total
+        co2eq_per_animal_unit:
+          type: number
+          title: Co2Eq Per Animal Unit
+        co2eq_per_terminal_unit:
+          type: number
+          title: Co2Eq Per Terminal Unit
+        co2eq_per_pound_of_terminal_unit:
+          type: number
+          title: Co2Eq Per Pound Of Terminal Unit
+        co2eq_per_animal_stage:
+          additionalProperties:
+            type: number
+          propertyNames:
+            $ref: '#/components/schemas/BeefCattleAgeClassEnum'
+          type: object
+          title: Co2Eq Per Animal Stage
+      additionalProperties: false
+      type: object
+      required:
+      - co2eq_total
+      - co2eq_per_animal_unit
+      - co2eq_per_terminal_unit
+      - co2eq_per_pound_of_terminal_unit
+      - co2eq_per_animal_stage
+      title: AggregatedEmissions
+    TotalWeight:
+      properties:
+        value:
+          type: number
+          minimum: 0.0
+          title: Value
+        unit:
+          $ref: '#/components/schemas/scenarios_service_schema__public__enteric__common__MassUnitEnum'
+      additionalProperties: false
+      type: object
+      required:
+      - value
+      - unit
+      title: TotalWeight
+      description: Total weight per animal
+    ListRanchersOutputResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ListRancherOutput'
+          type: array
+          title: Data
+      type: object
+      required:
+      - data
+      title: ListRanchersOutputResponse
+    DownloadLink:
+      properties:
+        download_link:
+          type: string
+          minLength: 1
+          format: uri
+          title: Download Link
+      additionalProperties: false
+      type: object
+      required:
+      - download_link
+      title: DownloadLink
+    DepartureTypeEnum:
+      type: string
+      enum:
+      - non_terminal
+      - terminal
+      title: DepartureTypeEnum
+    RancherIdOutputResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/RancherIdOutput'
+        message:
+          type: string
+          title: Message
+      additionalProperties: false
+      type: object
+      required:
+      - data
+      - message
+      title: RancherIdOutputResponse
+    PracticeChangeEnum:
+      type: string
+      enum:
+      - fencing
+      - improved_forage
+      - improved_genetics
+      - improved_grazing
+      - soil_biology
+      - water_infrastructure
+      title: PracticeChangeEnum
+      description: The type of practice change.
+    Cohort:
+      properties:
+        start_date:
+          type: string
+          title: Start Date
+          description: Format is "YYYY-MM-DD"
+        end_date:
+          type: string
+          title: End Date
+          description: Format is "YYYY-MM-DD"
+        name:
+          type: string
+          title: Cohort Name
+          description: Cohort names must be unique.
+        location:
+          $ref: '#/components/schemas/Location'
+        livestock:
+          $ref: '#/components/schemas/Livestock'
+        initial_head_count:
+          type: integer
+          minimum: 0.0
+          title: Initial Head Count
+        total_end_weight:
+          allOf:
+          - $ref: '#/components/schemas/TotalWeight'
+          description: Total end weight per animal.
+        total_start_weight:
+          allOf:
+          - $ref: '#/components/schemas/TotalWeight'
+          description: Total start weight per animal.
+        diet:
+          items:
+            $ref: '#/components/schemas/Diet'
+          type: array
+          minItems: 1
+          title: The diet(s) of the Cohort
+          description: Diets can be overlapping but must be within the time period of the `Cohort`. There must be at least one `Diet` active on the days when the `Cohort` has a positive head count.
+        management_events:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/ArrivalEvent'
+            - $ref: '#/components/schemas/DepartureEvent'
+          type: array
+          title: Management Events
+          default: []
+      additionalProperties: false
+      type: object
+      required:
+      - start_date
+      - end_date
+      - name
+      - location
+      - livestock
+      - initial_head_count
+      - total_end_weight
+      - total_start_weight
+      - diet
+      title: Cohort
+    FinalizeProjectResponse:
+      properties:
+        message:
+          type: string
+          title: Message
+      additionalProperties: false
+      type: object
+      required:
+      - message
+      title: FinalizeProjectResponse
+      example:
+        message: Approved project my_project
+    AggregatedRancherEmissions:
+      properties:
+        name:
+          type: string
+          title: Name
+        baseline:
+          $ref: '#/components/schemas/AggregatedEmissions'
+        reporting_period:
+          anyOf:
+          - $ref: '#/components/schemas/ReportingPeriodEmissions'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - baseline
+      - reporting_period
+      title: AggregatedRancherEmissions
+    Location:
+      properties:
+        boundary:
+          anyOf:
+          - $ref: '#/components/schemas/Polygon'
+          - $ref: '#/components/schemas/MultiPolygon'
+          title: Boundary
+          description: GeoJSON describing the field boundaries. The geometry type must be 'Polygon' or `MultiPolygon`.
+      additionalProperties: false
+      type: object
+      required:
+      - boundary
+      title: Location
+      description: The `Location` object contains geospatial data representing a field's location.
+      example:
+        boundary:
+          coordinates:
+          - - - 105.772974220978
+              - 10.4899598787941
+            - - 105.77320811563
+              - 10.4899502341707
+            - - 105.773208120131
+              - 10.4899875955381
+            - - 105.772974220978
+              - 10.4899598787941
+          type: Polygon
+    EntericProjectResponseWithStats:
+      properties:
+        project_name:
+          type: string
+          title: Project Name
+        created_at:
+          type: string
+          title: Created At
+        finalized_at:
+          type: string
+          title: Finalized At
+        is_finalized:
+          type: boolean
+          title: Is Finalized
+        results_available:
+          type: boolean
+          title: Results Available
+        results_available_at:
+          type: string
+          title: Results Available At
+        is_billable:
+          type: boolean
+          title: Is Billable
+        total_ranchers:
+          type: integer
+          title: Total Ranchers
+        program_start_date:
+          type: string
+          title: Program Start Date
+      additionalProperties: false
+      type: object
+      required:
+      - project_name
+      - created_at
+      - finalized_at
+      - is_finalized
+      - results_available
+      - results_available_at
+      - is_billable
+      - total_ranchers
+      - program_start_date
+      title: EntericProjectResponseWithStats
+    CreateProjectResponse:
+      properties:
+        message:
+          type: string
+          title: Message
+      type: object
+      required:
+      - message
+      title: CreateProjectResponse
+      example:
+        message: Created project my_project
+    scenarios_service_schema__public__enteric__common__MassUnitEnum:
+      type: string
+      enum:
+      - pound
+      title: MassUnitEnum
+    scenarios_service_schema__public__enteric__v1__input__ReportingInformation:
+      properties:
+        start_date:
+          type: string
+          title: Start Date
+          description: Format is "YYYY-MM-DD". Represents the date the reporting period begins.
+        end_date:
+          type: string
+          title: End Date
+          description: Format is "YYYY-MM-DD". Represents the date the reporting period ends.
+      additionalProperties: false
+      type: object
+      required:
+      - start_date
+      - end_date
+      title: ReportingInformation
+    EntericProjectResponse:
+      properties:
+        ranchers:
+          items:
+            $ref: '#/components/schemas/AggregatedRancherEmissions'
+          type: array
+          title: Ranchers
+        baseline:
+          $ref: '#/components/schemas/AggregatedEmissions'
+        reporting_period:
+          anyOf:
+          - $ref: '#/components/schemas/AggregatedEmissions'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      required:
+      - ranchers
+      - baseline
+      - reporting_period
+      title: EntericProjectResponse
+    Polygon:
+      properties:
+        type:
+          type: string
+          const: Polygon
+          title: Type
+          default: Polygon
+        coordinates:
+          items:
+            items:
+              items:
+                type: number
+              type: array
+            type: array
+          type: array
+          title: Coordinates
+      additionalProperties: false
+      type: object
+      required:
+      - coordinates
+      title: Polygon
+    RancherIdOutput:
+      properties:
+        id:
+          type: integer
+          title: Id
+        project_name:
+          type: string
+          title: Project Name
+        rancher_name:
+          type: string
+          title: Rancher Name
+        rancher_id:
+          type: integer
+          title: Rancher Id
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - project_name
+      - rancher_name
+      - rancher_id
+      title: RancherIdOutput
+    DryMatterIntake:
+      properties:
+        value:
+          type: number
+          minimum: 0.0
+          title: Value
+        unit:
+          $ref: '#/components/schemas/scenarios_service_schema__public__enteric__common__MassUnitEnum'
+        time_period:
+          $ref: '#/components/schemas/TimePeriodEnum'
+      additionalProperties: false
+      type: object
+      required:
+      - value
+      - unit
+      - time_period
+      title: DryMatterIntake
+      description: Dry Matter Intake
+    TimePeriodEnum:
+      type: string
+      enum:
+      - day
+      title: TimePeriodEnum
+    LivestockTypeEnum:
+      type: string
+      enum:
+      - beef_cattle
+      title: LivestockTypeEnum
+    MultiPolygon:
+      properties:
+        type:
+          type: string
+          const: MultiPolygon
+          title: Type
+          default: MultiPolygon
+        coordinates:
+          items:
+            items:
+              items:
+                items:
+                  type: number
+                type: array
+              type: array
+            type: array
+          type: array
+          title: Coordinates
+      additionalProperties: false
+      type: object
+      required:
+      - coordinates
+      title: MultiPolygon
+    DeleteRancherResponse:
+      properties:
+        message:
+          type: string
+          title: Message
+      type: object
+      required:
+      - message
+      title: DeleteRancherResponse
+      example:
+        message: Deleted rancher 1234 from project my-project
+    DeleteProjectResponse:
+      properties:
+        message:
+          type: string
+          title: Message
+      additionalProperties: false
+      type: object
+      required:
+      - message
+      title: DeleteProjectResponse
+      example:
+        message: Deleted project my_project
+    EntericListProjectsResponseWithStats:
+      properties:
+        projects:
+          items:
+            $ref: '#/components/schemas/EntericProjectResponseWithStats'
+          type: array
+          title: Projects
+      additionalProperties: false
+      type: object
+      required:
+      - projects
+      title: EntericListProjectsResponseWithStats
+    ReportingPeriodEmissions:
+      properties:
+        co2eq_total:
+          type: number
+          title: Co2Eq Total
+        co2eq_per_animal_unit:
+          type: number
+          title: Co2Eq Per Animal Unit
+        co2eq_per_terminal_unit:
+          type: number
+          title: Co2Eq Per Terminal Unit
+        co2eq_per_pound_of_terminal_unit:
+          type: number
+          title: Co2Eq Per Pound Of Terminal Unit
+        co2eq_per_animal_stage:
+          additionalProperties:
+            type: number
+          propertyNames:
+            $ref: '#/components/schemas/BeefCattleAgeClassEnum'
+          type: object
+          title: Co2Eq Per Animal Stage
+        practice_change:
+          anyOf:
+          - $ref: '#/components/schemas/PracticeChangeEnum'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      required:
+      - co2eq_total
+      - co2eq_per_animal_unit
+      - co2eq_per_terminal_unit
+      - co2eq_per_pound_of_terminal_unit
+      - co2eq_per_animal_stage
+      title: ReportingPeriodEmissions

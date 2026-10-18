@@ -1,0 +1,66 @@
+generated: '2026-10-18'
+method: probed
+source: pre-flight dossier (docs platform, portal detections) + CNAME chains and response headers of the hosts apis.yml names
+registry: all/0-working/vendors.yml
+areas_vocabulary:
+- documentation
+- developer-portal
+- api-gateway
+- cdn
+- hosting
+- sdk-generation
+- api-collections
+- status-page
+- support
+- community
+- identity
+- mcp-hosting
+vendors:
+- vendor: cloudflare
+  name: Cloudflare
+  area: cdn
+  host: www.regrow.ag
+  evidence: header:cf-ray
+  signal: header
+  confidence: high
+  kin_score:
+  - https_enforced
+  - hsts
+- vendor: apigee
+  name: Apigee (Google Cloud)
+  area: developer-portal
+  host: developers.regrow.ag
+  evidence: https://developers.regrow.ag/portals/api/sites/flurosat-154904-regrowdeveloper/liveportal
+  signal: portal-url
+  confidence: high
+  kin_score:
+  - developer_portal
+  - rate_limits_documented
+  - authentication
+- vendor: hubspot
+  name: HubSpot
+  area: hosting
+  host: help.regrow.ag
+  evidence: cname:hubspot.net
+  signal: cname
+  confidence: high
+  kin_score: []
+reliance:
+  areas_vendor_served:
+  - cdn
+  - developer-portal
+  - hosting
+  vendor_count: 3
+  areas_observed: 12
+  share_of_observable_areas: 0.25
+  note: areas where a third party was DETECTED serving this provider; an area absent here was either self-run or not observed, and this script
+    cannot tell those apart
+checked:
+- 'docs-platform: no-docs-host'
+- help.regrow.ag (GettingStarted)
+- www.regrow.ag (Website)
+- developers.regrow.ag (DeveloperPortal)
+- developers.regrow.ag (APIReference)
+- app.regrow.ag (Login)
+- help.regrow.ag (Support)
+- api.regrow.ag (baseURL)

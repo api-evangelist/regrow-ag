@@ -1,0 +1,31 @@
+generated: '2026-10-18'
+method: derived
+source: openapi/regrow-ag-monitor-api-openapi.yml
+format: HTTP status codes with error messages
+envelope: JSON response body
+problems:
+  - status: 401
+    title: Invalid API Key
+    description: Authentication failed due to invalid or missing API key
+    remediation: Check that x-apikey header contains a valid API key
+  - status: 404
+    title: Resource Not Found
+    description: The requested resource could not be found
+    remediation: Verify the resource ID or path is correct
+  - status: 422
+    title: Validation Error
+    description: Request validation failed
+    remediation: Check request parameters and payload against API documentation
+  - status: 429
+    title: Too Many Requests
+    description: Rate limit exceeded
+    remediation: Wait before making more requests or contact support for higher limits
+  - status: 500
+    title: Internal Server Error
+    description: Internal server error
+    remediation: Contact Regrow support
+  - status: 503
+    title: Service Unavailable
+    description: Service temporarily unavailable
+    remediation: Wait and retry later
+note: Error codes documented in Monitor API OpenAPI specification. Measure API error codes not documented in public OpenAPI.

@@ -1,0 +1,16 @@
+generated: '2026-10-18'
+method: searched
+source: https://www.regrow.ag, https://developers.regrow.ag/pricing
+name: Regrow pricing
+audience: business-product
+pricing_basis: negotiated
+published: false
+delivery:
+  delivery: managed
+  evidence: SaaS platform with API access
+  free_edition: null
+  managed_tier: null
+  open_source_license: null
+plans: []
+plan_count: 0
+note: 'No public pricing found. Pricing appears to be enterprise/negotiated. "Request a Demo" button suggests custom pricing. API access requires contacting support for API keys. Source URLs checked: www.regrow.ag shows enterprise platform, developers.regrow.ag/pricing requires login.'

@@ -1,0 +1,465 @@
+generated: '2026-10-18'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/regrow-ag-measure-api-openapi.yml
+- openapi/regrow-ag-monitor-api-openapi.yml
+vocabulary:
+  name: Regrow Domain Vocabulary
+  description: 'Terms declared by Regrow''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-18'
+  terms:
+  - term: V0 Explore API - Intervention
+    definition: Explore API allows users to predict or forecast the emissions impact of adopting a regenerative agricultural practice, or *intervention*,
+      for a specific field. Explore uses the DNDC model to simulate soil carbon and GHG emissions/removals outcomes. To learn more about the API
+      consult the documentation at https://help.regrow.ag/explore-api.
+    tags:
+    - Resource Group
+    source: openapi/regrow-ag-measure-api-openapi.yml
+  - term: V0 Measure API - Intervention
+    definition: Measure API is composed of modules. This module is called `Intervention`, and to learn more about the API consult the documentation
+      at https://help.regrow.ag/intervention-module-integration-guide.
+    tags:
+    - Resource Group
+    source: openapi/regrow-ag-measure-api-openapi.yml
+  - term: V0 Measure API - Inventory
+    definition: Measure API is composed of modules. This module is called `Inventory`, and to learn more about the API consult the documentation
+      at https://help.regrow.ag/inventory-module-integration-overview.
+    tags:
+    - Resource Group
+    source: openapi/regrow-ag-measure-api-openapi.yml
+  - term: V1 Measure API - Enteric
+    definition: Measure API is composed of modules. This module is called `Enteric`, and to learn more about the API consult the documentation
+      at https://help.regrow.ag/.
+    tags:
+    - Resource Group
+    source: openapi/regrow-ag-measure-api-openapi.yml
+  - term: AWDFlood
+    definition: 'Object declared by the contract with fields: intervention, parameters.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/AWDFlood
+  - term: AggregatedEmissions
+    definition: 'Object declared by the contract with fields: co2eq_total, co2eq_per_animal_unit, co2eq_per_terminal_unit, co2eq_per_pound_of_terminal_unit,
+      co2eq_per_animal_stage.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/AggregatedEmissions
+  - term: AggregatedRancherEmissions
+    definition: 'Object declared by the contract with fields: name, baseline, reporting_period.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/AggregatedRancherEmissions
+  - term: ApplicationAmountTypeEnum
+    definition: 'The Application Amount Type represents the fertilizer nutrient corresponding to the fertilizer amount. Select the product option
+      when only the total application amount for a fertilizer product is known. Select a specific nutrient application rate when the fertilizer
+      amount is known for a specific nutrient (ex: select n_rate when the total amount of nitrogen applied to the field is measured).'
+    tags:
+    - Enumeration
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/ApplicationAmountTypeEnum
+  - term: ApplicationEvent
+    definition: 'The applicationEvent contains data about a single fertilizer or nutrient management event on a field. The applied product type
+      (ex: basic synthetic fertilizer, organic fertilizer) is specified for each event, along with the application date, method, amount and rate
+      applied. - Basic Inorganic: inorganic fertilizer products that are not enhanced-efficiency nitrogen fertilizers - EENF Inorganic: enha'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/ApplicationEvent
+  - term: ApplicationMethodEnum
+    definition: 'The `applicationMethod` specified how a fertilizer is applied to the soil. The following options are supported: - `broadcast`
+      - application is spread across the soil surface - `subsurface` - application is applied below the soil surface, at the depth specified.
+      *(The `depth` input is required for `subsurface` applications.)* - `inject` - application is injected directly into the soil. *(The `depth'
+    tags:
+    - Enumeration
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/ApplicationMethodEnum
+  - term: AreaUnitEnum
+    definition: 'Enumeration declared by the contract with values: square_meter, hectare, acre.'
+    tags:
+    - Enumeration
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/AreaUnitEnum
+  - term: ArrivalEvent
+    definition: 'Object declared by the contract with fields: date, type, count, total_start_weight.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/ArrivalEvent
+  - term: AutoIrrigationEvent
+    definition: 'The `AutoIrrigationEvent` contains information about irrigation that occurs over the course of the growing season. With this
+      event, irrigation is automatically applied over a period of time, for the specified application method. The irrigation amount will be calculated
+      automatically based on the water demand of the crop and climate factors such as weather precipitation, weather method, and index. '
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/AutoIrrigationEvent
+  - term: BaseReportingInformation
+    definition: The `ReportingInformation` object specifies the metadata needed to quantify emissions/removals for a field, including the time
+      period for which emissions should be quantified, and the crop the emissions/removals will be quantified for. Typically the `ReportingInformation`
+      period correlates with a growing season or crop year for a field where regenerative or intervention practices are adopted.
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/BaseReportingInformation
+  - term: BaselineMethodEnum
+    definition: The `baselineMethod` allows for selecting the baseline logic that will be used to generate a counterfactual baseline scenario.
+      Choose the baseline scenario that is most applicable for the project, or the one that will be used to quantify measured outcomes to ensure
+      consistency between estimates and outcomes.
+    tags:
+    - Enumeration
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/BaselineMethodEnum
+  - term: BeefCattleAgeClassEnum
+    definition: 'Enumeration declared by the contract with values: bull, calf, cow, heifer_calf, steer_calf, weaner, weaned_bull, weaned_heifer,
+      weaned_steer, yearling, yearling_heifer, yearling_steer. (1 more)'
+    tags:
+    - Enumeration
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/BeefCattleAgeClassEnum
+  - term: Cohort
+    definition: 'Object declared by the contract with fields: start_date, end_date, name, location, livestock, initial_head_count, total_end_weight,
+      total_start_weight, diet, management_events.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/Cohort
+  - term: CoverCrop
+    definition: 'Object declared by the contract with fields: intervention.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/CoverCrop
+  - term: CreateProjectResponse
+    definition: 'Object declared by the contract with fields: message.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/CreateProjectResponse
+  - term: CreditEntityWithCredit
+    definition: 'Object declared by the contract with fields: mean, standard_deviation, reporting_percentile, uncertainty_distribution, credit.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/CreditEntityWithCredit
+  - term: CreditEntityWithTotalNonReversibleEmissionsReductions
+    definition: 'Object declared by the contract with fields: uncertainty_distribution, mean, standard_deviation, reporting_percentile, total_non_reversible_emissions_reductions.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/CreditEntityWithTotalNonReversibleEmissionsReductions
+  - term: CreditEntityWithTotalReversibleEmissionsReductions
+    definition: 'Object declared by the contract with fields: uncertainty_distribution, mean, standard_deviation, reporting_percentile, total_reversible_emissions_reductions.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/CreditEntityWithTotalReversibleEmissionsReductions
+  - term: Credits
+    definition: 'Object declared by the contract with fields: number_of_fields, number_of_acres, reversible_credits, non_reversible_credits, total_reversible_credit,
+      total_non_reversible_credit, total_credit.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/Credits
+  - term: CropLevelCredits
+    definition: An object containing project-level emissions outcomes for all projects with the specified crop type.
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/CropLevelCredits
+  - term: CropNamesEnum
+    definition: 'Enumeration declared by the contract with values: corn, wheat_winter, soybean, hay, wheat_spring, barley, oat, alfalfa, grass_annual,
+      sorghum, cotton, rye_spring. (48 more)'
+    tags:
+    - Enumeration
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/CropNamesEnum
+  - term: CroppingEvent
+    definition: The `CroppingEvent` contains information about a crop growing on a field, including the type of crop, planting and harvest dates,
+      and when applicable the harvest/reduction methods. Cropping events can be used to represent commodity crops, cover crops and pasture cover.
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/CroppingEvent
+  - term: CultivationCycle
+    definition: 'Object declared by the contract with fields: start_date, end_date, management_events.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/CultivationCycle
+  - term: CustomFertilizer
+    definition: The CustomFertilizer object allows customers to specify fertilizers and fertilizer blends that do not already exist in Regrow's
+      predefined fertilizer types. To use this users will need to provide the nutrient breakdown and the liquid density of the product (in the
+      event it's a liquid). To use, set the parent fertilizer "name" to "custom".
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/CustomFertilizer
+  - term: CustomOrganicAmendment
+    definition: 'Object declared by the contract with fields: organic_n_percent, nitrate_percent, ammonium_percent, urea_percent, carbon_percent,
+      liquid_density, mass_liquid_density_unit.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/CustomOrganicAmendment
+  - term: CustomReductionEvent
+    definition: The `CustomReductionEvent` contains information about the plant biomass removed/retained on the field after a mechanical reduction.
+      Use the `CustomReductionEvent` when none of the available reduction methods are applicable for the crop type.
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/CustomReductionEvent
+  - term: DeleteFieldRequestResponse
+    definition: 'Object declared by the contract with fields: message.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/DeleteFieldRequestResponse
+  - term: DeleteProjectResponse
+    definition: 'Object declared by the contract with fields: message.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/DeleteProjectResponse
+  - term: DeleteRancherResponse
+    definition: 'Object declared by the contract with fields: message.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/DeleteRancherResponse
+  - term: DepartureEvent
+    definition: 'Object declared by the contract with fields: date, type, count, departure_type, departure_end_weight.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/DepartureEvent
+  - term: DepartureTypeEnum
+    definition: 'Enumeration declared by the contract with values: non_terminal, terminal.'
+    tags:
+    - Enumeration
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/DepartureTypeEnum
+  - term: Diet
+    definition: The diet of a `Cohort` for a given period of time.
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/Diet
+  - term: DietTypeEnum
+    definition: 'Enumeration declared by the contract with values: grazing, supplemental, nursing.'
+    tags:
+    - Enumeration
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/DietTypeEnum
+  - term: DownloadLink
+    definition: 'Object declared by the contract with fields: download_link.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/DownloadLink
+  - term: DryMatterIntake
+    definition: Dry Matter Intake
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/DryMatterIntake
+  - term: EmissionReductionEntity
+    definition: EmissionReductionEntity is similar to an EmissionsEntity, but with an offset instead of a credit.
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/EmissionReductionEntity
+  - term: EmissionReductionEntityWithConservativeDeduction
+    definition: 'Object declared by the contract with fields: baseline, practice_change, offset, deduction.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/EmissionReductionEntityWithConservativeDeduction
+  - term: EmissionReductionEstimatesWithConservativeDeduction
+    definition: 'Object declared by the contract with fields: total_emissions_reductions_estimate, dsoc, indirect_n2o, direct_n2o, soil_ch4, enteric_ch4,
+      fossil_fuel_co2, liming.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/EmissionReductionEstimatesWithConservativeDeduction
+  - term: EmissionsEntity
+    definition: 'Object declared by the contract with fields: baseline, practice_change, credit.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/EmissionsEntity
+  - term: EmissionsEntityFuel
+    definition: 'Object declared by the contract with fields: baseline, practice_change, credit.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/EmissionsEntityFuel
+  - term: EmissionsEntityIndirectN2O
+    definition: 'Object declared by the contract with fields: baseline, practice_change, credit.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/EmissionsEntityIndirectN2O
+  - term: EmissionsEntitySoilCH4
+    definition: 'Object declared by the contract with fields: baseline, practice_change, credit, uncertainty_distribution, mean, standard_deviation.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/EmissionsEntitySoilCH4
+  - term: EntericListProjectsResponseWithStats
+    definition: 'Object declared by the contract with fields: projects.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/EntericListProjectsResponseWithStats
+  - term: EntericProjectResponse
+    definition: 'Object declared by the contract with fields: ranchers, baseline, reporting_period.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/EntericProjectResponse
+  - term: EntericProjectResponseWithStats
+    definition: 'Object declared by the contract with fields: project_name, created_at, finalized_at, is_finalized, results_available, results_available_at,
+      is_billable, total_ranchers, program_start_date.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/EntericProjectResponseWithStats
+  - term: Events
+    definition: 'Object declared by the contract with fields: irrigation, till, flood, cropping, fertilizer, organic_amendment, fire, application.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/Events
+  - term: ExploreAPIFieldSimulationResponseStatusEnum
+    definition: 'Enumeration declared by the contract with values: available, pending, failed.'
+    tags:
+    - Enumeration
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/ExploreAPIFieldSimulationResponseStatusEnum
+  - term: ExploreAPIFieldSimulationStatusResponse
+    definition: Informs of the status of the availability of Field emissions reduction estimates.
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/ExploreAPIFieldSimulationStatusResponse
+  - term: ExploreAPIInput
+    definition: 'Object declared by the contract with fields: session_name, scenarios, optional_ghg_boundaries, conservative_deduction, baseline_method,
+      reporting_information.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/ExploreAPIInput
+  - term: ExploreAPIResultsResponse
+    definition: The schema of the emissions reductions estimates response for a Field.
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/ExploreAPIResultsResponse
+  - term: ExploreScenario
+    definition: 'Object declared by the contract with fields: name, location, soil, weather, rotations, weather_sources, soil_sources, scenario_type,
+      fuel_consumption, intervention_practices.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/ExploreScenario
+  - term: FertilizerEvent
+    definition: 'The FertilizerEvent contains data about a single inorganic fertilizer or inorganic nutrient management event on a field. The
+      applied product name is specified for each event, along with the application date, method, amount and rate applied. Inorganic fertilizer
+      types include: - Basic Inorganic: inorganic fertilizer products that are not enhanced-efficiency nitrogen fertilizers - EENF Inorganic:
+      en'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/FertilizerEvent
+  - term: FertilizerMethodEnum
+    definition: 'The application_method specifies how a fertilizer is applied to the soil. The following options are supported: - `broadcast`
+      - fertilizer is spread across the soil surface - `subsurface` - fertilizer is applied below the soil surface, at the depth specified. *(The
+      `depth` input is required for `subsurface` applications.)* - `fertigation_furrow` - fertilizer product is applied to the field with wat'
+    tags:
+    - Enumeration
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/FertilizerMethodEnum
+  - term: FieldLevelCreditShareEnum
+    definition: 'The type of field level credit share to be included in the project''s response: `credit_share_weighted`: [DEPRECATED] Use `credit_share_weighted_full`
+      instead. `credit_share_weighted_full`: An emissions redistribution value that redistributes credits proportionally based on the initial
+      (preliminary) DNDC results. This is calculated as (preliminary tCO2e for a field/total preliminary tCO2e for that '
+    tags:
+    - Enumeration
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/FieldLevelCreditShareEnum
+  - term: FieldLevelShare
+    definition: 'Object declared by the contract with fields: field_name, crediting_crop, net_emissions_percentage, area_acres, crop_yield_bushels_per_acre.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/FieldLevelShare
+  - term: FieldLevelSharePerGas
+    definition: 'Object declared by the contract with fields: field_name, crediting_crop, net_emissions_percentage, area_acres, crop_yield_bushels_per_acre,
+      ch4_percentage, n2o_percentage, indirect_n2o_percentage, soc_percentage.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/FieldLevelSharePerGas
+  - term: FieldLevelValue
+    definition: 'Object declared by the contract with fields: field_name, crediting_crop, net_emissions_factor, area_acres, crop_yield_bushels_per_acre,
+      indirect_n2o_emissions, direct_n2o_emissions, ch4_emissions, soc, ghg_emissions_factor, soc_emissions_factor.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/FieldLevelValue
+  - term: FieldLocation
+    definition: 'The `FieldLocation` object contains geospatial data representing a field''s location. Location data can be provided in one of
+      two ways: point based or boundary based. *Regrow strongly recommends providing a field boundary, as it results in higher fidelity outcomes.*'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/FieldLocation
+  - term: FieldRequestIdOutputResponse
+    definition: 'Object declared by the contract with fields: id, name, message.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/FieldRequestIdOutputResponse
+  - term: FieldRequestOutput
+    definition: 'Object declared by the contract with fields: id, name, created_at.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/FieldRequestOutput
+  - term: FieldRequestOutputWithAPIVersion
+    definition: 'Object declared by the contract with fields: id, name, created_at, api_version.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/FieldRequestOutputWithAPIVersion
+  - term: FinalizeProjectResponse
+    definition: 'Object declared by the contract with fields: message.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/FinalizeProjectResponse
+  - term: FireEvent
+    definition: 'Object declared by the contract with fields: date, burn_area_fraction, combusted_fraction.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/FireEvent
+  - term: FloodEvent
+    definition: The `FloodEvent` contains information about field flooding, or time periods where standing water is present on the field. This
+      event is most commonly used for rice fields, and includes information about the duration of the flood. Additionally, this event is used
+      to represent Alternate-Wetting-and_Drying (AWD) irrigation on a field a rice field. A flood event is specified for each instance of 'wett
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/FloodEvent
+  - term: FuelConsumption
+    definition: The amount of fossil fuel consumed in liters for all farm management practices on a field, including operating machinery for tillage
+      and crop harvests. This is only required if the optional GHG boundary `fossil_fuel_co2` was set. When field data is provided with `baseline`
+      and `practice_change` scenario types and a single `RotationPhase` of management events, the fuel consumption is the amount con
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/FuelConsumption
+  - term: FurrowIrrigation
+    definition: 'Object declared by the contract with fields: intervention, parameters.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/FurrowIrrigation
+  - term: HTTPValidationError
+    definition: 'Object declared by the contract with fields: detail.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/HTTPValidationError
+  - term: InterventionEnum
+    definition: 'Enumeration declared by the contract with values: reduce_tillage_depth, no_till, cover_crop, reduce_applied_nitrogen, furrow_irrigation,
+      awd_flood.'
+    tags:
+    - Enumeration
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/InterventionEnum
+  - term: InterventionInput
+    definition: 'Object declared by the contract with fields: session_name, scenarios, reporting_information, intervention_start_date.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/InterventionInput
+  - term: InterventionScenario
+    definition: 'Object declared by the contract with fields: name, location, soil, weather, rotations, weather_sources, soil_sources, scenario_type,
+      fuel_consumption.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/InterventionScenario
+  - term: InventoryInput
+    definition: 'Object declared by the contract with fields: field_name, location, soil, start_year, cultivation_cycles, reporting_information.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/InventoryInput
+  - term: InventoryListProjectsResponseWithStats
+    definition: 'Object declared by the contract with fields: projects.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/InventoryListProjectsResponseWithStats
+  - term: InventoryProjectAsset
+    definition: 'Object declared by the contract with fields: crop_yield, number_of_fields, number_of_acres, direct_n2o_emissions, indirect_n2o_emissions,
+      soil_ch4_emissions, total_emissions, total_emissions_per_bushel, soc, soc_per_bushel, ghg_emissions_factor, soc_emissions_factor. (1 more)'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/InventoryProjectAsset
+  - term: InventoryProjectResponseWithStats
+    definition: 'Object declared by the contract with fields: project_name, created_at, finalized_at, is_finalized, api_version, results_available,
+      results_available_at, is_billable, total_fields, total_area, area_unit.'
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/InventoryProjectResponseWithStats
+  - term: IrrigationEvent
+    definition: The `irrigationEvent` contains data about a single irrigation instance on a field, including the date of irrigation, the amount
+      of water applied and the application method. Use the `IrrigationEvent` for single instances of irrigation, such as supplementing normal
+      rainfall. For recurring irrigation over the course of the growing season, use the `AutoIrrigationEvent`.
+    tags:
+    - Object
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/IrrigationEvent
+  - term: IrrigationMethodEnum
+    definition: 'The irrigationMethod specifies how water is applied to the field. The following options are supported: - `furrow`: water_amount
+      added to the surface at single point in day. Plant accessible water is 0.15x `water_amount` - `sprinkler`: water_amount added to the surface
+      distributed equally over half a day. Plant accessible water is 0.50x `water_amount` - `drip`: water_amount added to the surface dis'
+    tags:
+    - Enumeration
+    source: openapi/regrow-ag-measure-api-openapi.yml#/components/schemas/IrrigationMethodEnum

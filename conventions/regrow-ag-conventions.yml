@@ -1,0 +1,36 @@
+generated: '2026-10-18'
+method: derived
+source: openapi/regrow-ag-monitor-api-openapi.yml, openapi/regrow-ag-measure-api-openapi.yml
+auth_style:
+  description: API key authentication via x-apikey header
+  header: x-apikey
+  docs: https://developers.regrow.ag/portals/api/sites/flurosat-154904-regrowdeveloper/liveportal/apis/monitor-v2/download_spec
+idempotency:
+  coverage: none
+  description: No idempotency mechanism documented in OpenAPI specifications
+pagination:
+  description: No pagination conventions documented in OpenAPI specifications
+error_envelope:
+  description: Conventional HTTP status codes with error messages in response body
+  format: JSON
+  docs: https://developers.regrow.ag/portals/api/sites/flurosat-154904-regrowdeveloper/liveportal/apis/monitor-v2/download_spec
+versioning:
+  scheme: path
+  pattern: /v{version}/
+  docs: https://help.regrow.ag/versioning-of-measure-api-and-explore-api
+rate_limit_signaling:
+  headers:
+    - X-RateLimit-Limit
+    - X-RateLimit-Remaining
+    - X-RateLimit-Reset
+  status_code: 429
+  docs: https://developers.regrow.ag/portals/api/sites/flurosat-154904-regrowdeveloper/liveportal/apis/monitor-v2/download_spec
+request_id_tracing:
+  description: No request ID tracing documented
+reversibility:
+  coverage: none
+  description: No reversal operations documented for agricultural carbon measurement APIs
+dry_run_mode:
+  coverage: none
+  description: No dry-run mode documented
+note: Conventions derived from OpenAPI specifications. Limited documentation of cross-cutting conventions beyond authentication and rate limiting.

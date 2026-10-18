@@ -1,0 +1,46 @@
+generated: '2026-10-18'
+method: generated
+generator: extract-docs-artifacts.py skills (deepseek)
+source: openapi/regrow-ag-measure-api-openapi.yml
+skills:
+- file: skills/regrow-ag-create-and-manage-project-with-fields.md
+  name: regrow-ag-create-and-manage-project-with-fields
+  api: openapi/regrow-ag-measure-api-openapi.yml
+  operations:
+  - create_project_v0_api_projects_post
+  - upload_field_v0_api_projects__project_name__fields_post
+  - list_fields_v0_api_projects__project_name__fields_get
+  - finalize_project_v0_api_projects__project_name__finalize_post
+- file: skills/regrow-ag-enteric-project-management.md
+  name: regrow-ag-enteric-project-management
+  api: openapi/regrow-ag-measure-api-openapi.yml
+  operations:
+  - v1_create_project_v1_enteric_projects_post
+  - upload_rancher_v1_enteric_projects__project_name__ranchers_post
+  - list_ranchers_v1_enteric_projects__project_name__ranchers_get
+  - finalize_project_v1_enteric_projects__project_name__finalize_post
+  - v1_get_results_v1_enteric_projects__project_name__get
+- file: skills/regrow-ag-measure-inventory-project.md
+  name: regrow-ag-measure-inventory-project
+  api: openapi/regrow-ag-measure-api-openapi.yml
+  operations:
+  - create_project_v0_inventory_projects_post
+  - upload_field_v0_inventory_projects__project_name__fields_post
+  - finalize_project_v0_inventory_projects__project_name__finalize_post
+  - get_results_v0_inventory_projects__project_name__get
+- file: skills/regrow-ag-upload-field-and-retrieve-estimates.md
+  name: regrow-ag-upload-field-and-retrieve-estimates
+  api: openapi/regrow-ag-measure-api-openapi.yml
+  operations:
+  - upload_field_v0_explore_api_fields_post
+  - get_status_v0_explore_api_fields__field_request_id__status_get
+  - get_raw_input_v0_v0_explore_api_fields__field_request_id__get
+  - get_estimates_v0_explore_api_fields__field_request_id__results_get
+- file: skills/regrow-ag-monitor-field-and-retrieve-results.md
+  name: regrow-ag-monitor-field-and-retrieve-results
+  api: openapi/regrow-ag-monitor-api-openapi.yml
+  operations:
+  - Monitor_Field_processes_monitor_fields_boundary_id_execution_post
+  - Monitor_Field_Geojson_processes_monitor_fields_geojson_execution_post
+  - get_job_status_jobs__job_id__get
+  - get_job_results_jobs__job_id__results_get
