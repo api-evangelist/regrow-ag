@@ -1,5 +1,5 @@
 generated: '2026-10-18'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/regrow-ag/integrations
 - https://zapier.com/apps/regrow/integrations
@@ -7,6 +7,9 @@ source:
 - https://composio.dev/toolkits/regrow-ag
 - https://monid.ai/tools/regrow-ag
 checked:
+- https://aggateway.org/AboutUs/Members.aspx
+- https://agrirouter.com/en/solutions
+- https://climate.com/en-us/partners.html
 - https://composio.dev/toolkits/regrow-ag
 - https://developers.regrow.ag
 - https://help.regrow.ag/integrate-with-monitor-api
@@ -16,9 +19,39 @@ checked:
 - https://zapier.com/apps/regrow
 - https://zapier.com/apps/regrow-ag/integrations
 - https://zapier.com/apps/regrow/integrations
+- https://www.aef-online.org/membership/memberlist.html
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: Climate FieldView (connected partners)
+  partner: climate-fieldview
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://climate.com/en-us/partners/regrow.html
+  mirror_of: climate-fieldview/integrations/climate-fieldview-integration-edges.yml
+  apps:
+  - Regrow
+  detected: '2026-10-19'
+  detected_by: sweep-agriculture-food.py
+- partner_name: Open Geospatial Consortium
+  partner: ogc
+  detected_by: sweep-geospatial.py
+  first_seen: '2026-10-19'
+  partner_match: shape-anchor
+  type: contract
+  direction: provider-built
+  channel: provider-built
+  relationship: compatible
+  shape: ogc-api-processes
+  evidence_kind: own-contract
+  evidence: https://github.com/api-evangelist/regrow-ag/blob/main/openapi/regrow-ag-ogc-api-processes-api-openapi.yml#L3
+  degree: declared-unqualified
+  quote: 'title: Monitor OGC API - Processes API'
 templates: []
 note: No integration marketplace listings found. Zapier app not found. Integration documentation pages return 404.
   APIs appear to be used for direct integration rather than through marketplace platforms.
