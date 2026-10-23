@@ -1207,3 +1207,9 @@ components:
       - co2eq_per_pound_of_terminal_unit
       - co2eq_per_animal_stage
       title: ReportingPeriodEmissions
+x-provenance:
+  method: harvested
+  publisher: Regrow
+  source: https://docs.regrow.ag/measure/public_openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
